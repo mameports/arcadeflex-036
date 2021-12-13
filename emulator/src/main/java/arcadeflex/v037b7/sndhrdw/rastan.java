@@ -2,7 +2,7 @@
  * ported to v0.37b7
  * using automatic conversion tool v0.01
  */
-package gr.codebb.arcadeflex.v037b7.sndhrdw;
+package arcadeflex.v037b7.sndhrdw;
 
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.Z80_NMI_INT;

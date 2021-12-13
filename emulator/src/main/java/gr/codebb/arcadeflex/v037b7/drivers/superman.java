@@ -19,7 +19,7 @@ import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.superman.*;
-import static gr.codebb.arcadeflex.v037b7.sndhrdw.rastan.*;
+import static arcadeflex.v037b7.sndhrdw.rastan.*;
 import static gr.codebb.arcadeflex.v036.machine.cchip.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;

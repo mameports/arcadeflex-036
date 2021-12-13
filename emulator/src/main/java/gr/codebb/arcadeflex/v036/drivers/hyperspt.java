@@ -21,7 +21,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.vidhrdw.hyperspt.*;
 import static gr.codebb.arcadeflex.v037b7.machine.konami.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static gr.codebb.arcadeflex.v037b7.sndhrdw.trackfld.*;
+import static arcadeflex.v037b7.sndhrdw.trackfld.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v058.sound.vlm5030.*;
