@@ -20,7 +20,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v037b7.sound.okim6295.OKIM6295_set_bank_base;
 import gr.codebb.arcadeflex.v037b7.sound.okim6295H.OKIM6295interface;
-import static gr.codebb.arcadeflex.v037b7.vidhrdw.macross.*;
+import static arcadeflex.v037b7.vidhrdw.macross.*;
 
 
 

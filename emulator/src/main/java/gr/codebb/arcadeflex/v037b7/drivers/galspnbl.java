@@ -24,7 +24,7 @@ import gr.codebb.arcadeflex.v037b7.sound._3812intfH.YM3812interface;
 import static gr.codebb.arcadeflex.v037b7.sound.okim6295.OKIM6295_data_0_w;
 import static gr.codebb.arcadeflex.v037b7.sound.okim6295.OKIM6295_status_0_r;
 import gr.codebb.arcadeflex.v037b7.sound.okim6295H.OKIM6295interface;
-import static gr.codebb.arcadeflex.v037b7.vidhrdw.galspnbl.*;
+import static arcadeflex.v037b7.vidhrdw.galspnbl.*;
 
 public class galspnbl {
 
