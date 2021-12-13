@@ -16,7 +16,7 @@ import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v037b7.vidhrdw.slapfght.*;
 import static gr.codebb.arcadeflex.v037b7.sound.ay8910.*;
 import static gr.codebb.arcadeflex.v037b7.sound.ay8910H.*;
-import static gr.codebb.arcadeflex.v037b7.machine.slapfght.*;
+import static arcadeflex.v037b7.machine.slapfght.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 
 public class slapfght {
