@@ -16,11 +16,11 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
 import static arcadeflex.v037b7.vidhrdw.kingobox.*;
-import static gr.codebb.arcadeflex.v037b7.sound.ay8910.*;
-import static gr.codebb.arcadeflex.v037b7.sound.ay8910H.*;
+import static arcadeflex.v037b7.sound.ay8910.*;
+import static arcadeflex.v037b7.sound.ay8910H.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dac.DAC_0_data_w;
-import static gr.codebb.arcadeflex.v037b7.sound.dacH.*;
+import static arcadeflex.v037b7.sound.dac.*;
+import static arcadeflex.v037b7.sound.dacH.*;
 
 public class kingobox {
 

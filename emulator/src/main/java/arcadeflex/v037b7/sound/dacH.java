@@ -2,7 +2,7 @@
  * ported to 0.37b7
  * ported to v0.36
  */
-package gr.codebb.arcadeflex.v037b7.sound;
+package arcadeflex.v037b7.sound;
 
 public class dacH {
 

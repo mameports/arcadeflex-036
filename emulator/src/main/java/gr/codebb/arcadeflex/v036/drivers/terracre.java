@@ -23,8 +23,8 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
 import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dac.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dacH.*;
+import static arcadeflex.v037b7.sound.dac.*;
+import static arcadeflex.v037b7.sound.dacH.*;
 
 public class terracre
 {

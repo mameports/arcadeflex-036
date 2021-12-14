@@ -26,7 +26,7 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static arcadeflex.v058.sound.vlm5030.*;
 import static arcadeflex.v058.sound.vlm5030H.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dac.*;
+import static arcadeflex.v037b7.sound.dac.*;
 
 public class hyperspt
 {

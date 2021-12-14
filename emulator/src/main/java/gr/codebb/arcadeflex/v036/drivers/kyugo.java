@@ -18,8 +18,8 @@ import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
-import static gr.codebb.arcadeflex.v037b7.sound.ay8910.*;
-import static gr.codebb.arcadeflex.v037b7.sound.ay8910H.*;
+import static arcadeflex.v037b7.sound.ay8910.*;
+import static arcadeflex.v037b7.sound.ay8910H.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 
 public class kyugo {

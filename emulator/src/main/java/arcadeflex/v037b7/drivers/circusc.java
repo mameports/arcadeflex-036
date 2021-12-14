@@ -17,8 +17,8 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static arcadeflex.v037b7.vidhrdw.circusc.*;
 import static arcadeflex.v037b7.machine.konami.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dacH.*;
-import static gr.codebb.arcadeflex.v037b7.sound.dac.*;
+import static arcadeflex.v037b7.sound.dacH.*;
+import static arcadeflex.v037b7.sound.dac.*;
 import static gr.codebb.arcadeflex.v036.sound.sn76496H.*;
 import static gr.codebb.arcadeflex.v036.sound.sn76496.*;
 public class circusc {
