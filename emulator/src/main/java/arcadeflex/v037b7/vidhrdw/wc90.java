@@ -1,25 +1,24 @@
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.08
- *
- *
- *
  */
-package gr.codebb.arcadeflex.v036.vidhrdw;
-import static gr.codebb.arcadeflex.common.libc.cstring.*;
-import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
-import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
+package arcadeflex.v037b7.vidhrdw;
+
+import static gr.codebb.arcadeflex.common.PtrLib.*;
+import static gr.codebb.arcadeflex.common.libc.cstring.memset;
+import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
+import static gr.codebb.arcadeflex.v036.mame.common.bitmap_free;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
+import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
+import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.platform.video.*;
+import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
-import static gr.codebb.arcadeflex.common.PtrLib.*;
+import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
 
 public class wc90 {
 
@@ -44,9 +43,6 @@ public class wc90 {
     public static int[] wc90_tile_videoram_size = new int[1];
     public static int[] wc90_tile_videoram_size2 = new int[1];
 
-    static int[] last_tile1 = {-1};
-    static int[] last_tile2 = {-1};
-
     static char[] dirtybuffer1 = null;
     static char[] dirtybuffer2 = null;
     static osd_bitmap tmpbitmap1 = null;
@@ -65,14 +61,14 @@ public class wc90 {
 
             memset(dirtybuffer1, 1, wc90_tile_videoram_size[0]);
 
-            if ((tmpbitmap1 = osd_new_bitmap(4 * Machine.drv.screen_width, 2 * Machine.drv.screen_height, Machine.scrbitmap.depth)) == null) {
+            if ((tmpbitmap1 = bitmap_alloc(4 * Machine.drv.screen_width, 2 * Machine.drv.screen_height)) == null) {
                 dirtybuffer1 = null;
                 generic_vh_stop.handler();
                 return 1;
             }
 
             if ((dirtybuffer2 = new char[wc90_tile_videoram_size2[0]]) == null) {
-                osd_free_bitmap(tmpbitmap1);
+                bitmap_free(tmpbitmap1);
                 dirtybuffer1 = null;
                 generic_vh_stop.handler();
                 return 1;
@@ -80,8 +76,8 @@ public class wc90 {
 
             memset(dirtybuffer2, 1, wc90_tile_videoram_size2[0]);
 
-            if ((tmpbitmap2 = osd_new_bitmap(4 * Machine.drv.screen_width, 2 * Machine.drv.screen_height, Machine.scrbitmap.depth)) == null) {
-                osd_free_bitmap(tmpbitmap1);
+            if ((tmpbitmap2 = tmpbitmap2 = bitmap_alloc(4 * Machine.drv.screen_width, 2 * Machine.drv.screen_height)) == null) {
+                bitmap_free(tmpbitmap1);
                 dirtybuffer1 = null;
                 dirtybuffer2 = null;
                 generic_vh_stop.handler();
@@ -91,18 +87,15 @@ public class wc90 {
             // Free the generic bitmap and allocate one twice as wide
             tmpbitmap = null;
 
-            if ((tmpbitmap = osd_new_bitmap(2 * Machine.drv.screen_width, Machine.drv.screen_height, Machine.scrbitmap.depth)) == null) {
-                osd_free_bitmap(tmpbitmap1);
-                osd_free_bitmap(tmpbitmap2);
+            if ((tmpbitmap = bitmap_alloc(2 * Machine.drv.screen_width, Machine.drv.screen_height)) == null) {
+                bitmap_free(tmpbitmap1);
+                bitmap_free(tmpbitmap2);
                 dirtybuffer = null;
                 dirtybuffer1 = null;
                 dirtybuffer2 = null;
                 generic_vh_stop.handler();
                 return 1;
             }
-
-            last_tile1[0] = wc90_tile_videoram_size[0];
-            last_tile2[0] = wc90_tile_videoram_size2[0];
 
             return 0;
         }
@@ -112,8 +105,8 @@ public class wc90 {
         public void handler() {
             dirtybuffer1 = null;
             dirtybuffer2 = null;
-            osd_free_bitmap(tmpbitmap1);
-            osd_free_bitmap(tmpbitmap2);
+            bitmap_free(tmpbitmap1);
+            bitmap_free(tmpbitmap2);
             generic_vh_stop.handler();
         }
     };
@@ -125,13 +118,10 @@ public class wc90 {
     };
 
     public static WriteHandlerPtr wc90_tile_videoram_w = new WriteHandlerPtr() {
-        public void handler(int offset, int v) {
-            if (wc90_tile_videoram.read(offset) != v) {
+        public void handler(int offset, int data) {
+            if (wc90_tile_videoram.read(offset) != data) {
                 dirtybuffer1[offset] = 1;
-                wc90_tile_videoram.write(offset, v);
-                if (offset > last_tile1[0]) {
-                    last_tile1[0] = offset;
-                }
+                wc90_tile_videoram.write(offset, data);
             }
         }
     };
@@ -143,13 +133,10 @@ public class wc90 {
     };
 
     public static WriteHandlerPtr wc90_tile_colorram_w = new WriteHandlerPtr() {
-        public void handler(int offset, int v) {
-            if (wc90_tile_colorram.read(offset) != v) {
+        public void handler(int offset, int data) {
+            if (wc90_tile_colorram.read(offset) != data) {
                 dirtybuffer1[offset] = 1;
-                wc90_tile_colorram.write(offset, v);
-                if (offset > last_tile1[0]) {
-                    last_tile1[0] = offset;
-                }
+                wc90_tile_colorram.write(offset, data);
             }
         }
     };
@@ -161,13 +148,10 @@ public class wc90 {
     };
 
     public static WriteHandlerPtr wc90_tile_videoram2_w = new WriteHandlerPtr() {
-        public void handler(int offset, int v) {
-            if (wc90_tile_videoram2.read(offset) != v) {
+        public void handler(int offset, int data) {
+            if (wc90_tile_videoram2.read(offset) != data) {
                 dirtybuffer2[offset] = 1;
-                wc90_tile_videoram2.write(offset, v);
-                if (offset > last_tile2[0]) {
-                    last_tile2[0] = offset;
-                }
+                wc90_tile_videoram2.write(offset, data);
             }
         }
     };
@@ -179,13 +163,10 @@ public class wc90 {
     };
 
     public static WriteHandlerPtr wc90_tile_colorram2_w = new WriteHandlerPtr() {
-        public void handler(int offset, int v) {
-            if (wc90_tile_colorram2.read(offset) != v) {
+        public void handler(int offset, int data) {
+            if (wc90_tile_colorram2.read(offset) != data) {
                 dirtybuffer2[offset] = 1;
-                wc90_tile_colorram2.write(offset, v);
-                if (offset > last_tile2[0]) {
-                    last_tile2[0] = offset;
-                }
+                wc90_tile_colorram2.write(offset, data);
             }
         }
     };
@@ -212,7 +193,7 @@ public class wc90 {
                 char[] palette_map = new char[4 * 16];
                 int tile, cram;
 
-			//memset (palette_map, 0, sizeof (palette_map));
+                //memset (palette_map, 0, sizeof (palette_map));
                 for (offs = wc90_tile_videoram_size2[0] - 1; offs >= 0; offs--) {
                     cram = wc90_tile_colorram2.read(offs);
                     tile = wc90_tile_videoram2.read(offs) + 256 * ((cram & 3) + ((cram >> 1) & 4));
@@ -231,7 +212,8 @@ public class wc90 {
                 for (offs = 0; offs < spriteram_size[0]; offs += 16) {
                     int bank = spriteram.read(offs + 0);
 
-                    if ((bank & 4) != 0) { /* visible */
+                    if ((bank & 4) != 0) {
+                        /* visible */
 
                         int flags = spriteram.read(offs + 4);
                         palette_map[0 * 16 + (flags >> 4)] |= 0xfffe;
@@ -251,7 +233,7 @@ public class wc90 {
                             }
                         }
                     } else {
-				//	memset (&palette_used_colors[i * 16 + 0], PALETTE_COLOR_UNUSED, 16);
+                        //	memset (&palette_used_colors[i * 16 + 0], PALETTE_COLOR_UNUSED, 16);
                         //System.out.println("TODO");
                         for (j = 1; j < 16; j++) {
                             palette_used_colors.write(i * 16 + j, PALETTE_COLOR_UNUSED);
@@ -270,7 +252,7 @@ public class wc90 {
              time here:
              wc90_draw_sprites( bitmap, 3 );
              */
-            for (offs = last_tile2[0] - 1; offs >= 0; offs--) {
+            for (offs = wc90_tile_videoram_size2[0] - 1; offs >= 0; offs--) {
                 int sx, sy, tile;
 
                 if (dirtybuffer2[offs] != 0) {
@@ -292,16 +274,14 @@ public class wc90 {
                 }
             }
 
-            last_tile2[0] = -1;
-
             scrollx = -wc90_scroll2xlo.read(0) - 256 * (wc90_scroll2xhi.read(0) & 3);
             scrolly = -wc90_scroll2ylo.read(0) - 256 * (wc90_scroll2yhi.read(0) & 1);
 
-            copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             wc90_draw_sprites(bitmap, 2);
 
-            for (offs = last_tile1[0] - 1; offs >= 0; offs--) {
+            for (offs = wc90_tile_videoram_size[0] - 1; offs >= 0; offs--) {
                 int sx, sy, tile;
                 if (dirtybuffer1[offs] != 0) {
 
@@ -322,12 +302,10 @@ public class wc90 {
                 }
             }
 
-            last_tile1[0] = -1;
-
             scrollx = -wc90_scroll1xlo.read(0) - 256 * (wc90_scroll1xhi.read(0) & 3);
             scrolly = -wc90_scroll1ylo.read(0) - 256 * (wc90_scroll1yhi.read(0) & 1);
 
-            copyscrollbitmap(bitmap, tmpbitmap1, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, tmpbitmap1, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
 
             wc90_draw_sprites(bitmap, 1);
 
@@ -352,7 +330,7 @@ public class wc90 {
             scrollx = -wc90_scroll0xlo.read(0) - 256 * (wc90_scroll0xhi.read(0) & 1);
             scrolly = -wc90_scroll0ylo.read(0) - 256 * (wc90_scroll0yhi.read(0) & 1);
 
-            copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
 
             wc90_draw_sprites(bitmap, 0);
         }
@@ -366,7 +344,7 @@ public class wc90 {
 
     public static void WC90_DRAW_SPRITE(int code, int sx, int sy, int flags, int bank, osd_bitmap bitmap) {
         drawgfx(bitmap, Machine.gfx[3], code, flags >> 4,
-                bank & 1, bank & 2, sx, sy, Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                bank & 1, bank & 2, sx, sy, Machine.visible_area, TRANSPARENCY_PEN, 0);
     }
 
     static char pos32x32[] = {0, 1, 2, 3};
@@ -526,9 +504,7 @@ public class wc90 {
 
     public static drawsprites_proc_procPtr drawsprite_invalid = new drawsprites_proc_procPtr() {
         public void handler(osd_bitmap bitmap, int code, int sx, int sy, int bank, int flags) {
-            if (errorlog != null) {
-                fprintf(errorlog, "8 pixel sprite size not supported\n");
-            }
+            logerror("8 pixel sprite size not supported\n");
         }
     };
 
@@ -550,7 +526,7 @@ public class wc90 {
                 drawsprite_16x64, /* 1101 = 16x64 */
                 drawsprite_32x64, /* 1110 = 32x64 */
                 drawsprite_64x64 /* 1111 = 64x64 */};
-	//static drawsprites_procdef drawsprites_proc[16] = {
+    //static drawsprites_procdef drawsprites_proc[16] = {
     //	
 
     static void wc90_draw_sprites(osd_bitmap bitmap, int priority) {
@@ -562,7 +538,8 @@ public class wc90 {
 
             if ((bank >> 4) == priority) {
 
-                if ((bank & 4) != 0) { /* visible */
+                if ((bank & 4) != 0) {
+                    /* visible */
 
                     which = (spriteram.read(offs + 2) >> 2) + (spriteram.read(offs + 3) << 6);
 
