@@ -14,10 +14,8 @@ import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import gr.codebb.arcadeflex.v037b7.mame.timer.timer_callback;
-import static gr.codebb.arcadeflex.v037b7.mame.timer.timer_pulse;
-import static gr.codebb.arcadeflex.v037b7.mame.timer.timer_remove;
-import static gr.codebb.arcadeflex.v037b7.mame.timerH.TIME_IN_HZ;
+import static arcadeflex.v056.mame.timer.*;
+import static arcadeflex.v056.mame.timerH.*;
 
 public class exctsccr {
 

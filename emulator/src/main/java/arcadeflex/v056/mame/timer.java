@@ -1,28 +1,24 @@
-/**
+/*
+ * ported to 0.56
  * ported to 0.37b7
  */
-package gr.codebb.arcadeflex.v037b7.mame;
+package arcadeflex.v056.mame;
 
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.timerH.*;
+import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
+import static arcadeflex.v056.mame.timerH.*;
 
-/**
- *
- * @author shadow
- */
 public class timer {
 
-    /*TODO*///    #define VERBOSE 0
+    // #define VERBOSE 0
     public static final int MAX_TIMERS = 256;
 
-
     /*
-     *		internal timer structures
+   *		internal timer structures
      */
-    public static abstract interface timer_callback {
+    public abstract static interface timer_callback {
 
         public abstract void handler(int i);
     }
@@ -61,8 +57,8 @@ public class timer {
     /* list of per-CPU timer data */
     static cpu_entry[] cpudata = new cpu_entry[MAX_CPU + 1];
     static int /*cpu_entry*/ lastcpu_ptr;
-    static int /*cpu_entry*/ activecpu_ptr;
-    static int /*cpu_entry*/ last_activecpu_ptr;
+    static int /*cpu_entry*/ active_cpu_ptr;
+    static int /*cpu_entry*/ last_active_cpu_ptr;
 
     /* list of active timers */
     static timer_entry[] timers = new timer_entry[MAX_TIMERS];
@@ -79,8 +75,11 @@ public class timer {
      * return the current absolute time
      */
     public static double getabsolutetime() {
-        if (activecpu_ptr != -1 && (cpudata[activecpu_ptr].icount[0] + cpudata[activecpu_ptr].lost) > 0) {
-            return base_time - ((double) (cpudata[activecpu_ptr].icount[0] + cpudata[activecpu_ptr].lost) * cpudata[activecpu_ptr].cycles_to_sec);
+        if (active_cpu_ptr != -1
+                && (cpudata[active_cpu_ptr].icount[0] + cpudata[active_cpu_ptr].lost) > 0) {
+            return base_time
+                    - ((double) (cpudata[active_cpu_ptr].icount[0] + cpudata[active_cpu_ptr].lost)
+                    * cpudata[active_cpu_ptr].cycles_to_sec);
         } else {
             return base_time;
         }
@@ -97,20 +96,20 @@ public class timer {
         if (period == TIME_NOW) {
             newicount = 0;
         } else {
-            newicount = (int) ((timer.expire - time) * cpudata[activecpu_ptr].sec_to_cycles) + 1;
+            newicount = (int) ((timer.expire - time) * cpudata[active_cpu_ptr].sec_to_cycles) + 1;
         }
 
         /* determine if we're scheduled to run more cycles */
-        diff = cpudata[activecpu_ptr].icount[0] - newicount;
+        diff = cpudata[active_cpu_ptr].icount[0] - newicount;
 
         /* if so, set the new icount and compute the amount of "lost" time */
         if (diff > 0) {
-            cpudata[activecpu_ptr].lost += diff;
-            if (cpudata[activecpu_ptr].burn != null) {
-                (cpudata[activecpu_ptr].burn).handler(diff);
+            cpudata[active_cpu_ptr].lost += diff;
+            if (cpudata[active_cpu_ptr].burn != null) {
+                (cpudata[active_cpu_ptr].burn).handler(diff);
                 /* let the CPU burn the cycles */
             } else {
-                cpudata[activecpu_ptr].icount[0] = newicount;
+                cpudata[active_cpu_ptr].icount[0] = newicount;
                 /* CPU doesn't care */
             }
         }
@@ -215,11 +214,11 @@ public class timer {
         for (int i = 0; i < cpudata.length; i++) {
             cpudata[i] = new cpu_entry();
         }
-        activecpu_ptr = -1;
-        last_activecpu_ptr = lastcpu_ptr;
+        active_cpu_ptr = -1;
+        last_active_cpu_ptr = lastcpu_ptr;
 
         /* compute the cycle times */
-        for (int i = 0; i <= lastcpu_ptr; i++)//for (cpu = cpudata, i = 0; cpu <= lastcpu; cpu++, i++)
+        for (int i = 0; i <= lastcpu_ptr; i++) // for (cpu = cpudata, i = 0; cpu <= lastcpu; cpu++, i++)
         {
             /* make a pointer to this CPU's interface functions */
             cpudata[i].icount = cpuintf[Machine.drv.cpu[i].cpu_type & ~CPU_FLAGS_MASK].icount;
@@ -235,7 +234,8 @@ public class timer {
             cpudata[i].index = i;
 
             /* compute the cycle times */
-            cpudata[i].sec_to_cycles = sec_to_cycles[i] = cpudata[i].overclock * Machine.drv.cpu[i].cpu_clock;
+            cpudata[i].sec_to_cycles
+                    = sec_to_cycles[i] = cpudata[i].overclock * Machine.drv.cpu[i].cpu_clock;
             cpudata[i].cycles_to_sec = cycles_to_sec[i] = 1.0 / sec_to_cycles[i];
         }
     }
@@ -284,14 +284,13 @@ public class timer {
         timer_list_insert(timer);
 
         /* if we're supposed to fire before the end of this cycle, adjust the counter */
-        if (activecpu_ptr != -1 && timer.expire < base_time) {
+        if (active_cpu_ptr != -1 && timer.expire < base_time) {
             timer_adjust(timer, time, period);
         }
-        /*TODO*///
-/*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: New pulse=%08X, period=%.6g\n", time + global_offset, timer, period);
-/*TODO*///	#endif
-/*TODO*///
+        // #if VERBOSE
+        // verbose_print("T=%.6g: New pulse=%08X, period=%.6g\n", time + global_offset, timer, period);
+        // #endif
+
         /* return a handle */
         return timer;
     }
@@ -322,13 +321,14 @@ public class timer {
         timer_list_insert(timer);
 
         /* if we're supposed to fire before the end of this cycle, adjust the counter */
-        if (activecpu_ptr != -1 && timer.expire < base_time) {
+        if (active_cpu_ptr != -1 && timer.expire < base_time) {
             timer_adjust(timer, time, duration);
         }
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: New oneshot=%08X, duration=%.6g\n", time + global_offset, timer, duration);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // verbose_print("T=%.6g: New oneshot=%08X, duration=%.6g\n", time + global_offset,
+        // timer,duration);
+        // #endif
 
         /* return a handle */
         return timer;
@@ -350,7 +350,7 @@ public class timer {
         timer_list_insert(timer);
 
         /* if we're supposed to fire before the end of this cycle, adjust the counter */
-        if (activecpu_ptr != -1 && timer.expire < base_time) {
+        if (active_cpu_ptr != -1 && timer.expire < base_time) {
             timer_adjust(timer, time, duration);
         }
 
@@ -359,9 +359,9 @@ public class timer {
             callback_timer_modified = 1;
         }
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: Reset %08X, duration=%.6g\n", time + global_offset, timer, duration);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // verbose_print("T=%.6g: Reset %08X, duration=%.6g\n", time + global_offset, timer, duration);
+        // #endif
     }
 
     /**
@@ -377,9 +377,9 @@ public class timer {
         timer.next = timer_free_head;
         timer_free_head = timer;
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: Removed %08X\n", getabsolutetime() + global_offset, timer);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // verbose_print("T=%.6g: Removed %08X\n", getabsolutetime() + global_offset, timer);
+        // #endif
     }
 
     /**
@@ -388,11 +388,10 @@ public class timer {
     public static int timer_enable(Object which, int enable) {
         timer_entry timer = (timer_entry) which;
         int old;
-        /*TODO*///
-/*TODO*///	#if VERBOSE
-/*TODO*///		if (enable) verbose_print("T=%.6g: Enabled %08X\n", getabsolutetime() + global_offset, timer);
-/*TODO*///		else verbose_print("T=%.6g: Disabled %08X\n", getabsolutetime() + global_offset, timer);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // if (enable) verbose_print("T=%.6g: Enabled %08X\n", getabsolutetime() + global_offset,timer);
+        // else verbose_print("T=%.6g: Disabled %08X\n", getabsolutetime() + global_offset, timer);
+        // #endif
 
         /* set the enable flag */
         old = timer.enabled;
@@ -467,9 +466,10 @@ public class timer {
             /* the base time is now the time of the timer */
             base_time = timer.expire;
 
-            /*TODO*///		#if VERBOSE
-/*TODO*///			verbose_print("T=%.6g: %08X fired (exp time=%.6g)\n", getabsolutetime() + global_offset, timer, timer->expire + global_offset);
-/*TODO*///		#endif
+            // #if VERBOSE
+            // verbose_print("T=%.6g: %08X fired (exp time=%.6g)\n", getabsolutetime() +
+            // global_offset,timer, timer->expire + global_offset);
+            // #endif
 
             /* set the global state of which callback we're in */
             callback_timer_modified = 0;
@@ -498,7 +498,7 @@ public class timer {
         }
 
         /* reset scheduling so it starts with CPU 0 */
-        last_activecpu_ptr = lastcpu_ptr;
+        last_active_cpu_ptr = lastcpu_ptr;
 
         /* go back to scheduling */
         return pick_cpu(cpu, cycles, timer_head.expire);
@@ -516,22 +516,22 @@ public class timer {
             cpu.lost = 0;
         }
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: CPU %d finished (net=%d)\n", cpu->time + global_offset, cpunum, ran - cpu->lost);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // verbose_print("T=%.6g: CPU %d finished (net=%d)\n", cpu->time + global_offset, cpunum, ran
+        // -cpu->lost);
+        // #endif
 
         /* time to renormalize? */
         if (cpu.time >= 1.0) {
             timer_entry timer;
             double one = 1.0;
-            int c;//cpu_entry c;
-/*TODO*///
-/*TODO*///		#if VERBOSE
-/*TODO*///			verbose_print("T=%.6g: Renormalizing\n", cpu->time + global_offset);
-/*TODO*///		#endif
+            int c; // cpu_entry c;
+            // #if VERBOSE
+            // verbose_print("T=%.6g: Renormalizing\n", cpu->time + global_offset);
+            // #endif
 
             /* renormalize all the CPU timers */
-            for (c = 0; c <= lastcpu_ptr; c++)//for (c = cpudata; c <= lastcpu; c++)
+            for (c = 0; c <= lastcpu_ptr; c++) // for (c = cpudata; c <= lastcpu; c++)
             {
                 cpudata[c].time -= one;
             }
@@ -548,7 +548,7 @@ public class timer {
 
         /* now stop counting cycles */
         base_time = cpu.time;
-        activecpu_ptr = -1;
+        active_cpu_ptr = -1;
     }
 
     /**
@@ -559,10 +559,11 @@ public class timer {
         int nocount = cpu.nocount;
         int old = cpu.suspended;
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		if (suspend) verbose_print("T=%.6g: Suspending CPU %d\n", getabsolutetime() + global_offset, cpunum);
-/*TODO*///		else verbose_print("T=%.6g: Resuming CPU %d\n", getabsolutetime() + global_offset, cpunum);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // if (suspend) verbose_print("T=%.6g: Suspending CPU %d\n", getabsolutetime() +
+        // global_offset,cpunum);
+        // else verbose_print("T=%.6g: Resuming CPU %d\n", getabsolutetime() + global_offset, cpunum);
+        // #endif
 
         /* mark the CPU */
         if (suspend != 0) {
@@ -573,11 +574,14 @@ public class timer {
         cpu.nocount = 0;
 
         /* if this is the active CPU and we're halting, stop immediately */
-        if (activecpu != -1 && cpunum == activecpu && old == 0 && cpu.suspended != 0)//if (activecpu && cpu == activecpu && !old && cpu->suspended)
+        if (active_cpu_ptr != -1
+                && cpunum == active_cpu_ptr
+                && old == 0
+                && cpu.suspended != 0) // if (active_cpu && cpu == active_cpu && !old && cpu->suspended)
         {
-            /*TODO*///		#if VERBOSE
-/*TODO*///			verbose_print("T=%.6g: Reset ICount\n", getabsolutetime() + global_offset);
-/*TODO*///		#endif
+            // #if VERBOSE
+            // verbose_print("T=%.6g: Reset ICount\n", getabsolutetime() + global_offset);
+            // #endif
 
             /* set the CPU's time to the current time */
             cpu.time = base_time = getabsolutetime();
@@ -592,7 +596,9 @@ public class timer {
                 cpu.icount[0] = 0;
                 /* CPU doesn't care */
             }
-        } /* else if we're unsuspending a CPU, reset its time */ else if (old != 0 && cpu.suspended == 0 && nocount == 0) {
+        } /* else if we're unsuspending a CPU, reset its time */ else if (old != 0
+                && cpu.suspended == 0
+                && nocount == 0) {
             double time = getabsolutetime();
 
             /* only update the time if it's later than the CPU's time */
@@ -600,10 +606,9 @@ public class timer {
                 cpu.time = time;
             }
             cpu.lost = 0;
-            /*TODO*///
-/*TODO*///		#if VERBOSE
-/*TODO*///			verbose_print("T=%.6g: Resume time\n", cpu->time + global_offset);
-/*TODO*///		#endif
+            // #if VERBOSE
+            // verbose_print("T=%.6g: Resume time\n", cpu->time + global_offset);
+            // #endif
         }
     }
 
@@ -644,10 +649,11 @@ public class timer {
     public static void timer_suspendcpu_trigger(int cpunum, int trigger) {
         cpu_entry cpu = cpudata[cpunum];
 
-        /*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: CPU %d suspended until %d\n", getabsolutetime() + global_offset, cpunum, trigger);
-/*TODO*///	#endif
-/*TODO*///
+        // #if VERBOSE
+        // verbose_print("T=%.6g: CPU %d suspended until %d\n", getabsolutetime() +
+        // global_offset,cpunum, trigger);
+        // endif
+
         /* suspend the CPU immediately if it's not already */
         timer_suspendcpu(cpunum, 1, SUSPEND_REASON_TRIGGER);
 
@@ -660,10 +666,10 @@ public class timer {
      */
     public static void timer_holdcpu_trigger(int cpunum, int trigger) {
         cpu_entry cpu = cpudata[cpunum];
-        /*TODO*///
-/*TODO*///	#if VERBOSE
-/*TODO*///		verbose_print("T=%.6g: CPU %d held until %d\n", getabsolutetime() + global_offset, cpunum, trigger);
-/*TODO*///	#endif
+        // #if VERBOSE
+        // verbose_print("T=%.6g: CPU %d held until %d\n", getabsolutetime() + global_offset,
+        // cpunum,trigger);
+        // #endif
 
         /* suspend the CPU immediately if it's not already */
         timer_holdcpu(cpunum, 1, SUSPEND_REASON_TRIGGER);
@@ -676,30 +682,31 @@ public class timer {
      * generates a trigger to unsuspend any CPUs waiting for it
      */
     public static void timer_trigger(int trigger) {
-        int cpu;//cpu_entry *cpu;
+        int cpu; // cpu_entry *cpu;
 
         /* cause an immediate resynchronization */
-        if (activecpu_ptr != -1) {
-            int left = cpudata[activecpu_ptr].icount[0];
+        if (active_cpu_ptr != -1) {
+            int left = cpudata[active_cpu_ptr].icount[0];
             if (left > 0) {
-                cpudata[activecpu_ptr].lost += left;
-                if (cpudata[activecpu_ptr].burn != null) {
-                    (cpudata[activecpu_ptr].burn).handler(left);
+                cpudata[active_cpu_ptr].lost += left;
+                if (cpudata[active_cpu_ptr].burn != null) {
+                    (cpudata[active_cpu_ptr].burn).handler(left);
                     /* let the CPU burn the cycles */
                 } else {
-                    cpudata[activecpu_ptr].icount[0] = 0;
+                    cpudata[active_cpu_ptr].icount[0] = 0;
                     /* CPU doesn't care */
                 }
             }
         }
 
         /* look for suspended CPUs waiting for this trigger and unsuspend them */
-        for (cpu = 0; cpu <= lastcpu_ptr; cpu++)//for (cpu = cpudata; cpu <= lastcpu; cpu++)
+        for (cpu = 0; cpu <= lastcpu_ptr; cpu++) // for (cpu = cpudata; cpu <= lastcpu; cpu++)
         {
             if (cpudata[cpu].suspended != 0 && cpudata[cpu].trigger == trigger) {
-                /*TODO*///			#if VERBOSE
-/*TODO*///				verbose_print("T=%.6g: CPU %d triggered\n", getabsolutetime() + global_offset, cpu->index);
-/*TODO*///			#endif
+                // #if VERBOSE
+                // verbose_print("T=%.6g: CPU %d triggered\n", getabsolutetime() +
+                // global_offset,cpu->index);
+                // #endif
 
                 timer_suspendcpu(cpudata[cpu].index, 0, SUSPEND_REASON_TRIGGER);
                 cpudata[cpu].trigger = 0;
@@ -711,7 +718,7 @@ public class timer {
      * pick the next CPU to run
      */
     public static int pick_cpu(int[] cpunum, int[] cycles, double end) {
-        int cpu = last_activecpu_ptr;//cpu_entry *cpu = last_activecpu;
+        int cpu = last_active_cpu_ptr; // cpu_entry *cpu = last_active_cpu;
 
         /* look for a CPU that isn't suspended and hasn't run its full timeslice yet */
         do {
@@ -725,22 +732,22 @@ public class timer {
             if (cpudata[cpu].suspended != 0) {
                 /* ASG 990225 - defer this update until the slice has finished */
  /*			if (!cpu->nocount)
-			{
-				cpu->time = end;
-				cpu->lost = 0;
-			}*/
+        {
+        	cpu->time = end;
+        	cpu->lost = 0;
+        }*/
             } /* if this CPU isn't suspended and has time left.... */ else if (cpudata[cpu].time < end) {
                 /* mark the CPU active, and remember the CPU number locally */
-                activecpu_ptr = last_activecpu_ptr = cpu;
+                active_cpu_ptr = last_active_cpu_ptr = cpu;
 
                 /* return the number of cycles to execute and the CPU number */
                 cpunum[0] = cpudata[cpu].index;
                 cycles[0] = (int) ((double) (end - cpudata[cpu].time) * cpudata[cpu].sec_to_cycles);
 
                 if (cycles[0] > 0) {
-                    /*TODO*///				#if VERBOSE
-/*TODO*///					verbose_print("T=%.6g: CPU %d runs %d cycles\n", cpu->time + global_offset, *cpunum, *cycles);
-/*TODO*///				#endif
+                    // #if VERBOSE
+                    // verbose_print("T=%.6g: CPU %d runs %d cycles\n", cpu->time + global_offset,
+                    // #endif
 
                     /* remember the base time for this CPU */
                     base_time = cpudata[cpu].time + ((double) cycles[0] * cpudata[cpu].cycles_to_sec);
@@ -749,10 +756,10 @@ public class timer {
                     return 1;
                 }
             }
-        } while (cpu != last_activecpu_ptr);
+        } while (cpu != last_active_cpu_ptr);
 
         /* ASG 990225 - bump all suspended CPU times after the slice has finished */
-        for (cpu = 0; cpu <= lastcpu_ptr; cpu++)//for (cpu = cpudata; cpu <= lastcpu; cpu++)
+        for (cpu = 0; cpu <= lastcpu_ptr; cpu++) // for (cpu = cpudata; cpu <= lastcpu; cpu++)
         {
             if (cpudata[cpu].suspended != 0 && cpudata[cpu].nocount == 0) {
                 cpudata[cpu].time = end;
@@ -763,34 +770,17 @@ public class timer {
         /* failure */
         return 0;
     }
-    /*TODO*///
-/*TODO*///
-/*TODO*///
-/*TODO*////*
-/*TODO*/// *		debugging
-/*TODO*/// */
-/*TODO*///#if VERBOSE
-/*TODO*///
-/*TODO*///#ifdef macintosh
-/*TODO*///#undef printf
-/*TODO*///#endif
-/*TODO*///
-/*TODO*///static void verbose_print(char *s, ...)
-/*TODO*///{
-/*TODO*///	va_list ap;
-/*TODO*///
-/*TODO*///	va_start(ap, s);
-/*TODO*///
-/*TODO*///	#if (VERBOSE == 1)
-/*TODO*///		if (errorlog) vfprintf(errorlog, s, ap);
-/*TODO*///	#else
-/*TODO*///		vprintf(s, ap);
-/*TODO*///		fflush(NULL);
-/*TODO*///	#endif
-/*TODO*///
-/*TODO*///	va_end(ap);
-/*TODO*///}
-/*TODO*///
-/*TODO*///#endif
-/*TODO*///    
+    /*static void verbose_print(char *s, ...)
+  {
+  	va_list ap;
+  	va_start(ap, s);
+  	#if (VERBOSE == 1)
+  		if (errorlog) vfprintf(errorlog, s, ap);
+  	#else
+  		vprintf(s, ap);
+  		fflush(NULL);
+  	#endif
+  	va_end(ap);
+   }*/
+
 }

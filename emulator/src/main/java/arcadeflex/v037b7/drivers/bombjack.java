@@ -16,8 +16,8 @@ import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static arcadeflex.v037b7.vidhrdw.bombjack.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;
-import static gr.codebb.arcadeflex.v037b7.mame.timer.*;
-import static gr.codebb.arcadeflex.v037b7.mame.timerH.*;
+import static arcadeflex.v056.mame.timer.*;
+import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 
 public class bombjack {

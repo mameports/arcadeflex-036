@@ -1,6 +1,7 @@
 package gr.codebb.arcadeflex.v036.sound;
 
-import gr.codebb.arcadeflex.v037b7.mame.timer;
+import static arcadeflex.v056.mame.timer.*;
+import static arcadeflex.v056.mame.timerH.*;
 
 /**
  * *******************************************************
@@ -15,7 +16,7 @@ public class k053260H {
 
     public static class K053260_interface {
 
-        public K053260_interface(int clock, int region, int[] mixing_level, timer.timer_callback irq) {
+        public K053260_interface(int clock, int region, int[] mixing_level, timer_callback irq) {
             this.clock = clock;
             this.region = region;
             this.mixing_level = mixing_level;
@@ -27,7 +28,7 @@ public class k053260H {
 
         int[] mixing_level;		/* volume */
 
-        timer.timer_callback irq;	/* called on SH1 complete cycle ( clock / 32 ) */
+        timer_callback irq;	/* called on SH1 complete cycle ( clock / 32 ) */
 
     };
 }

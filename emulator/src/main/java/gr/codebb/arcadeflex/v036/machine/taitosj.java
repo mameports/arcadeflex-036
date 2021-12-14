@@ -27,8 +27,8 @@ import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_readmem16;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_writemem16;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.memorycontextswap;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.timer.*;
-import static gr.codebb.arcadeflex.v037b7.mame.timerH.*;
+import static arcadeflex.v056.mame.timer.*;
+import static arcadeflex.v056.mame.timerH.*;
 
 public class taitosj
 {
