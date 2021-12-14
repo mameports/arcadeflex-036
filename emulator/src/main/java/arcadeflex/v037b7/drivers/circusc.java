@@ -19,8 +19,8 @@ import static arcadeflex.v037b7.vidhrdw.circusc.*;
 import static arcadeflex.v037b7.machine.konami.*;
 import static arcadeflex.v037b7.sound.dacH.*;
 import static arcadeflex.v037b7.sound.dac.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496H.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496.*;
+import static arcadeflex.v058.sound.sn76496H.*;
+import static arcadeflex.v058.sound.sn76496.*;
 public class circusc {
 
     public static final int CIRCUSCHALIE_TIMER_RATE = (14318180 / 6144);

@@ -17,8 +17,8 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.exedexes.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496H.*;
+import static arcadeflex.v058.sound.sn76496.*;
+import static arcadeflex.v058.sound.sn76496H.*;
 
 public class exedexes
 {

@@ -1,23 +1,29 @@
-package gr.codebb.arcadeflex.v036.sound;
+/*
+ * ported to v0.58
+ * ported to v0.37b7
+ */
+package arcadeflex.v058.sound;
 
-import gr.codebb.arcadeflex.v036.mame.sndintrf;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496H.*;
+import static arcadeflex.v058.sound.sn76496H.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.sound.streams.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
+import gr.codebb.arcadeflex.v036.mame.sndintrf.snd_interface;
 
-public class sn76496 extends sndintrf.snd_interface {
+public class sn76496 extends snd_interface {
 
     private static final int MAX_OUTPUT = 0x7fff;
     private static final int STEP = 0x10000;
     /* noise feedback for white noise mode */
-    private static final int FB_WNOISE = 0x12000;	/* bit15.d(16bits) = bit0(out) ^ bit2 */
+    private static final int FB_WNOISE = 0x12000;
+    /* bit15.d(16bits) = bit0(out) ^ bit2 */
 
-    private static final int FB_PNOISE = 0x08000;   /* JH 981127 - fixes Do Run Run */
-    /* noise generator start preset (for periodic noise) */
+    private static final int FB_PNOISE = 0x08000;
+    /* JH 981127 - fixes Do Run Run */
+ /* noise generator start preset (for periodic noise) */
 
     private static final int NG_PRESET = 0x0f35;
 
@@ -41,17 +47,23 @@ public class sn76496 extends sndintrf.snd_interface {
         int Channel;
         int SampleRate;
         int UpdateStep;
-        int[] VolTable;	/* volume table         */
+        int[] VolTable;
+        /* volume table         */
 
-        int[] Register;	/* registers */
+        int[] Register;
+        /* registers */
 
-        int LastRegister;	/* last register written */
+        int LastRegister;
+        /* last register written */
 
-        int[] Volume;		/* volume of voice 0-2 and noise */
+        int[] Volume;
+        /* volume of voice 0-2 and noise */
 
-        int RNG;		/* noise generator      */
+        int RNG;
+        /* noise generator      */
 
-        int NoiseFB;		/* noise feedback mask */
+        int NoiseFB;
+        /* noise feedback mask */
 
         int[] Period;
         int[] Count;
@@ -107,11 +119,14 @@ public class sn76496 extends sndintrf.snd_interface {
             R.LastRegister = r;
             R.Register[r] = (R.Register[r] & 0x3f0) | (data & 0x0f);
             switch (r) {
-                case 0:	/* tone 0 : frequency */
+                case 0:
+                /* tone 0 : frequency */
 
-                case 2:	/* tone 1 : frequency */
+                case 2:
+                /* tone 1 : frequency */
 
-                case 4:	/* tone 2 : frequency */
+                case 4:
+                    /* tone 2 : frequency */
 
                     R.Period[c] = R.UpdateStep * R.Register[r];
                     if (R.Period[c] == 0) {
@@ -124,13 +139,17 @@ public class sn76496 extends sndintrf.snd_interface {
                         }
                     }
                     break;
-                case 1:	/* tone 0 : volume */
+                case 1:
+                /* tone 0 : volume */
 
-                case 3:	/* tone 1 : volume */
+                case 3:
+                /* tone 1 : volume */
 
-                case 5:	/* tone 2 : volume */
+                case 5:
+                /* tone 2 : volume */
 
-                case 7:	/* noise  : volume */
+                case 7:
+                    /* noise  : volume */
 
                     R.Volume[c] = R.VolTable[data & 0x0f];
                     break;
@@ -152,11 +171,14 @@ public class sn76496 extends sndintrf.snd_interface {
             int c = r / 2;
 
             switch (r) {
-                case 0:	/* tone 0 : frequency */
+                case 0:
+                /* tone 0 : frequency */
 
-                case 2:	/* tone 1 : frequency */
+                case 2:
+                /* tone 1 : frequency */
 
-                case 4:	/* tone 2 : frequency */
+                case 4:
+                    /* tone 2 : frequency */
 
                     R.Register[r] = (R.Register[r] & 0x0f) | ((data & 0x3f) << 4);
                     R.Period[c] = R.UpdateStep * R.Register[r];
@@ -204,8 +226,8 @@ public class sn76496 extends sndintrf.snd_interface {
             for (i = 0; i < 4; i++) {
                 if (R.Volume[i] == 0) {
                     /* note that I do count += length, NOT count = length + 1. You might think */
-                    /* it's the same since the volume is 0, but doing the latter could cause */
-                    /* interferencies when the program is rapidly modulating the volume. */
+ /* it's the same since the volume is 0, but doing the latter could cause */
+ /* interferencies when the program is rapidly modulating the volume. */
                     if (R.Count[i] <= length * STEP) {
                         R.Count[i] += length * STEP;
                     }
@@ -213,12 +235,13 @@ public class sn76496 extends sndintrf.snd_interface {
             }
             while (length > 0) {
                 int[] vol = new int[4];
-                /*unsigned*/ int out;
+                /*unsigned*/
+                int out;
                 int left;
 
 
                 /* vol[] keeps track of how long each square wave stays */
-                /* in the 1 position during the sample period. */
+ /* in the 1 position during the sample period. */
                 vol[0] = vol[1] = vol[2] = vol[3] = 0;
 
                 for (i = 0; i < 3; i++) {
@@ -227,13 +250,13 @@ public class sn76496 extends sndintrf.snd_interface {
                     }
                     R.Count[i] -= STEP;
                     /* Period[i] is the half period of the square wave. Here, in each */
-                    /* loop I add Period[i] twice, so that at the end of the loop the */
-                    /* square wave is in the same status (0 or 1) it was at the start. */
-                    /* vol[i] is also incremented by Period[i], since the wave has been 1 */
-                    /* exactly half of the time, regardless of the initial position. */
-                    /* If we exit the loop in the middle, Output[i] has to be inverted */
-                    /* and vol[i] incremented only if the exit status of the square */
-                    /* wave is 1. */
+ /* loop I add Period[i] twice, so that at the end of the loop the */
+ /* square wave is in the same status (0 or 1) it was at the start. */
+ /* vol[i] is also incremented by Period[i], since the wave has been 1 */
+ /* exactly half of the time, regardless of the initial position. */
+ /* If we exit the loop in the middle, Output[i] has to be inverted */
+ /* and vol[i] incremented only if the exit status of the square */
+ /* wave is 1. */
                     while (R.Count[i] <= 0) {
                         R.Count[i] += R.Period[i];
                         if (R.Count[i] > 0) {
@@ -290,8 +313,7 @@ public class sn76496 extends sndintrf.snd_interface {
                     out = MAX_OUTPUT * STEP;
                 }
 
-                buffer.write(0, (short) (out / STEP));
-                buffer.offset += 2;
+                buffer.writeinc((short) (out / STEP));
                 length--;
             }
         }
@@ -300,11 +322,11 @@ public class sn76496 extends sndintrf.snd_interface {
     static void SN76496_set_clock(int chip, int clock) {
         _SN76496 R = sn[chip];
         /* the base clock for the tone generators is the chip clock divided by 16; */
-        /* for the noise generator, it is clock / 256. */
-        /* Here we calculate the number of steps which happen during one sample */
-        /* at the given sample rate. No. of events = sample rate / (clock/16). */
-        /* STEP is a multiplier used to turn the fraction into a fixed point */
-        /* number. */
+ /* for the noise generator, it is clock / 256. */
+ /* Here we calculate the number of steps which happen during one sample */
+ /* at the given sample rate. No. of events = sample rate / (clock/16). */
+ /* STEP is a multiplier used to turn the fraction into a fixed point */
+ /* number. */
         R.UpdateStep = (int) (((double) STEP * R.SampleRate * 16) / clock);
     }
 
@@ -318,7 +340,8 @@ public class sn76496 extends sndintrf.snd_interface {
         /* increase max output basing on gain (0.2 dB per step) */
         out = MAX_OUTPUT / 3;
         while (gain-- > 0) {
-            out *= 1.023292992;	/* = (10 ^ (0.2/20)) */
+            out *= 1.023292992;
+            /* = (10 ^ (0.2/20)) */
 
         }
 
@@ -331,7 +354,8 @@ public class sn76496 extends sndintrf.snd_interface {
                 R.VolTable[i] = (int) out;
             }
 
-            out /= 1.258925412;	/* = 10 ^ (2/20) = 2dB */
+            out /= 1.258925412;
+            /* = 10 ^ (2/20) = 2dB */
 
         }
         R.VolTable[15] = 0;
@@ -359,7 +383,8 @@ public class sn76496 extends sndintrf.snd_interface {
         R.LastRegister = 0;
         for (i = 0; i < 8; i += 2) {
             R.Register[i] = 0;
-            R.Register[i + 1] = 0x0f;	/* volume = 0 */
+            R.Register[i + 1] = 0x0f;
+            /* volume = 0 */
 
         }
 

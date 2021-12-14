@@ -3,7 +3,7 @@ import gr.codebb.arcadeflex.v036.sound.Dummy_snd;
 import arcadeflex.v037b7.sound.dac;
 import gr.codebb.arcadeflex.v036.sound.samples;
 import gr.codebb.arcadeflex.v036.sound.namco;
-import gr.codebb.arcadeflex.v036.sound.sn76496;
+import arcadeflex.v058.sound.sn76496;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 import arcadeflex.v037b7.sound.ay8910;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;

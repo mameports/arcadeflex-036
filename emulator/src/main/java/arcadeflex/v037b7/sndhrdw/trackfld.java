@@ -13,8 +13,8 @@ import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.sound.adpcm.*;
 import gr.codebb.arcadeflex.v036.sound.adpcmH.ADPCMinterface;
 import static arcadeflex.v037b7.sound.dacH.*;
-import static gr.codebb.arcadeflex.v036.sound.sn76496.*;
-import gr.codebb.arcadeflex.v036.sound.sn76496H.SN76496interface;
+import static arcadeflex.v058.sound.sn76496.*;
+import static arcadeflex.v058.sound.sn76496H.*;
 import static arcadeflex.v058.sound.vlm5030.*;
 import static arcadeflex.v058.sound.vlm5030H.*;
 
