@@ -6,17 +6,15 @@ import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.platform.video.*;
-import static gr.codebb.arcadeflex.v036.mame.usrintrfH.*;
+import static arcadeflex.v037b7.mame.usrintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.input.*;
 import static gr.codebb.arcadeflex.v036.mame.version.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -373,7 +371,7 @@ public class usrintrf {
     /* Writes messages on the screen. */
     public static void ui_text(String buf,int x,int y)
     {
-    	ui_text_ex(buf, buf.length(), x, y, DT_COLOR_WHITE);
+    	ui_text_ex(buf, buf.length(), x, y, UI_COLOR_NORMAL);
     }
     
     public static void drawpixel(int x, int y, char color)
@@ -681,7 +679,7 @@ public class usrintrf {
     		if (i == 0 && item > 0)
     		{
     			dt[curr_dt].text = uparrow;
-    			dt[curr_dt].color = DT_COLOR_WHITE;
+    			dt[curr_dt].color = UI_COLOR_NORMAL;
     			dt[curr_dt].x = (Machine.uiwidth - Machine.uifontwidth * strlen(uparrow)) / 2;
     			dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     			curr_dt++;
@@ -689,7 +687,7 @@ public class usrintrf {
     		else if (i == visible - 1 && item < count - 1)
     		{
     			dt[curr_dt].text = downarrow;
-    			dt[curr_dt].color = DT_COLOR_WHITE;
+    			dt[curr_dt].color = UI_COLOR_NORMAL;
     			dt[curr_dt].x = (Machine.uiwidth - Machine.uifontwidth * strlen(downarrow)) / 2;
     			dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     			curr_dt++;
@@ -701,7 +699,7 @@ public class usrintrf {
     				int sublen;
     				len = strlen(items[item]);
     				dt[curr_dt].text = items[item];
-    				dt[curr_dt].color = DT_COLOR_WHITE;
+    				dt[curr_dt].color = UI_COLOR_NORMAL;
     				dt[curr_dt].x = leftoffs + 3*Machine.uifontwidth/2;
     				dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     				curr_dt++;
@@ -716,7 +714,7 @@ public class usrintrf {
     					dt[curr_dt].text = subitems[item];
     				}
     				/* If this item is flagged, draw it in inverse print */
-    				dt[curr_dt].color = (flag!=null && flag[item]!=0) ? DT_COLOR_YELLOW : DT_COLOR_WHITE;
+    				dt[curr_dt].color = (flag!=null && flag[item]!=0) ? UI_COLOR_INVERSE : UI_COLOR_NORMAL;
     				dt[curr_dt].x = leftoffs + Machine.uifontwidth * (maxlen-1-sublen) - Machine.uifontwidth/2;
     				dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     				curr_dt++;
@@ -724,7 +722,7 @@ public class usrintrf {
     			else
     			{
     				dt[curr_dt].text = items[item];
-    				dt[curr_dt].color = DT_COLOR_WHITE;
+    				dt[curr_dt].color = UI_COLOR_NORMAL;
     				dt[curr_dt].x = (Machine.uiwidth - Machine.uifontwidth * strlen(items[item])) / 2;
     				dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     				curr_dt++;
@@ -738,7 +736,7 @@ public class usrintrf {
     		if ((arrowize_subitem & 1)!=0)
     		{
     			dt[curr_dt].text = leftarrow;
-    			dt[curr_dt].color = DT_COLOR_WHITE;
+    			dt[curr_dt].color = UI_COLOR_NORMAL;
     			dt[curr_dt].x = leftoffs + Machine.uifontwidth * (maxlen-2 - strlen(subitems[selected])) - Machine.uifontwidth/2 - 1;
     			dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     			curr_dt++;
@@ -746,7 +744,7 @@ public class usrintrf {
     		if ((arrowize_subitem & 2)!=0)
     		{
     			dt[curr_dt].text = rightarrow;
-    			dt[curr_dt].color = DT_COLOR_WHITE;
+    			dt[curr_dt].color = UI_COLOR_NORMAL;
     			dt[curr_dt].x = leftoffs + Machine.uifontwidth * (maxlen-1) - Machine.uifontwidth/2;
     			dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     			curr_dt++;
@@ -755,13 +753,13 @@ public class usrintrf {
     	else
     	{
     		dt[curr_dt].text = righthilight;
-    		dt[curr_dt].color = DT_COLOR_WHITE;
+    		dt[curr_dt].color = UI_COLOR_NORMAL;
     		dt[curr_dt].x = leftoffs + Machine.uifontwidth * (maxlen-1) - Machine.uifontwidth/2;
     		dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     		curr_dt++;
     	}
     	dt[curr_dt].text = lefthilight;
-    	dt[curr_dt].color = DT_COLOR_WHITE;
+    	dt[curr_dt].color = UI_COLOR_NORMAL;
     	dt[curr_dt].x = leftoffs + Machine.uifontwidth/2;
     	dt[curr_dt].y = topoffs + (3*i+1)*Machine.uifontheight/2;
     	curr_dt++;
@@ -790,7 +788,7 @@ public class usrintrf {
     /*TODO*///		if (long_y + long_dy > Machine->uiheight)
     /*TODO*///			long_y = topoffs + i * 3*Machine->uifontheight/2 - long_dy;
     /*TODO*///
-    /*TODO*///		ui_multitextbox_ex(subitems[selected],subitems[selected] + strlen(subitems[selected]), long_max, long_x,long_y,long_dx,long_dy, DT_COLOR_WHITE);
+    /*TODO*///		ui_multitextbox_ex(subitems[selected],subitems[selected] + strlen(subitems[selected]), long_max, long_x,long_y,long_dx,long_dy, UI_COLOR_NORMAL);
     	}
     }
 
@@ -888,7 +886,7 @@ public class usrintrf {
                     dt[curr_dt].x = leftoffs + Machine.uifontwidth / 2;
 
                 dt[curr_dt].text = new String(textcopy).substring(c2);
-                dt[curr_dt].color = DT_COLOR_WHITE;
+                dt[curr_dt].color = UI_COLOR_NORMAL;
                 dt[curr_dt].y = topoffs + (3 * i + 1) * Machine.uifontheight / 2;
                 curr_dt++;
 
@@ -1319,7 +1317,7 @@ public class usrintrf {
     /*TODO*///	sprintf(buf,"%5d colors",total);
     /*TODO*///	l = strlen(buf);
     /*TODO*///	for (i = 0;i < l;i++)
-    /*TODO*///		drawgfx(Machine->scrbitmap,Machine->uifont,buf[i],total>256?DT_COLOR_YELLOW:DT_COLOR_WHITE,0,0,Machine->uixmin+i*Machine->uifontwidth,Machine->uiymin,0,TRANSPARENCY_NONE,0);
+    /*TODO*///		drawgfx(Machine->scrbitmap,Machine->uifont,buf[i],total>256?DT_COLOR_YELLOW:UI_COLOR_NORMAL,0,0,Machine->uixmin+i*Machine->uifontwidth,Machine->uiymin,0,TRANSPARENCY_NONE,0);
     /*TODO*///
     /*TODO*///	Machine->orientation = trueorientation;
     /*TODO*///
@@ -2443,7 +2441,7 @@ public class usrintrf {
     /*TODO*///	{
     /*TODO*///		/* indicate that scrolling upward is possible */
     /*TODO*///		dt[curr_dt].text = uparrow;
-    /*TODO*///		dt[curr_dt].color = DT_COLOR_WHITE;
+    /*TODO*///		dt[curr_dt].color = UI_COLOR_NORMAL;
     /*TODO*///		dt[curr_dt].x = (Machine->uiwidth - Machine->uifontwidth * strlen(uparrow)) / 2;
     /*TODO*///		dt[curr_dt].y = topoffs + (3*curr_dt+1)*Machine->uifontheight/2;
     /*TODO*///		curr_dt++;
@@ -2495,7 +2493,7 @@ public class usrintrf {
     /*TODO*///			dt[curr_dt].x = leftoffs + Machine->uifontwidth/2;
     /*TODO*///
     /*TODO*///		dt[curr_dt].text = copystart;
-    /*TODO*///		dt[curr_dt].color = DT_COLOR_WHITE;
+    /*TODO*///		dt[curr_dt].color = UI_COLOR_NORMAL;
     /*TODO*///		dt[curr_dt].y = topoffs + (3*curr_dt+1)*Machine->uifontheight/2;
     /*TODO*///		curr_dt++;
     /*TODO*///	}
@@ -2504,7 +2502,7 @@ public class usrintrf {
     /*TODO*///	{
     /*TODO*///		/* indicate that scrolling downward is possible */
     /*TODO*///		dt[curr_dt].text = downarrow;
-    /*TODO*///		dt[curr_dt].color = DT_COLOR_WHITE;
+    /*TODO*///		dt[curr_dt].color = UI_COLOR_NORMAL;
     /*TODO*///		dt[curr_dt].x = (Machine->uiwidth - Machine->uifontwidth * strlen(downarrow)) / 2;
     /*TODO*///		dt[curr_dt].y = topoffs + (3*curr_dt+1)*Machine->uifontheight/2;
     /*TODO*///		curr_dt++;
@@ -3013,7 +3011,7 @@ public class usrintrf {
     			percentage,default_percentage);
     
     	dt[0].text = text;
-    	dt[0].color = DT_COLOR_WHITE;
+    	dt[0].color = UI_COLOR_NORMAL;
     	dt[0].x = (Machine.uiwidth - Machine.uifontwidth * strlen(text)) / 2;
     	dt[0].y = (Machine.uiheight - 2*Machine.uifontheight) + 2;
     	dt[1].text = null; /* terminate array */
@@ -3331,7 +3329,7 @@ public class usrintrf {
     /*TODO*///			2*Machine->uifontheight);
     /*TODO*///
     /*TODO*///	dt[0].text = text;
-    /*TODO*///	dt[0].color = DT_COLOR_WHITE;
+    /*TODO*///	dt[0].color = UI_COLOR_NORMAL;
     /*TODO*///	dt[0].x = (Machine->uiwidth - Machine->uifontwidth * strlen(text)) / 2;
     /*TODO*///	dt[0].y = Machine->uiheight - 5*Machine->uifontheight/2;
     /*TODO*///	dt[1].text = 0; /* terminate array */
