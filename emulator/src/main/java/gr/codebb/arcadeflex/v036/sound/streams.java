@@ -4,7 +4,7 @@ package gr.codebb.arcadeflex.v036.sound;
  */
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.sound_scalebufferpos;
+import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v036.sound.mixer.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.MIXER_MAX_CHANNELS;
 

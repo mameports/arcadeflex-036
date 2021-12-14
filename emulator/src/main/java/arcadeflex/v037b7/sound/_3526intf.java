@@ -13,8 +13,8 @@ import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_1_w;
 import arcadeflex.v037b7.sound._3812intfH.YM3526interface;
 import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
 import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM3526;
+import arcadeflex.v037b7.mame.sndintrfH;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 
 import static gr.codebb.arcadeflex.v037b7.sound.fmoplH.OPL_TYPE_YM3526;
 

@@ -4,6 +4,8 @@
  */
 package arcadeflex.v037b7.sound;
 
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sound._2610intfH.MAX_2610;
 import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
 import arcadeflex.v056.mame.timer.timer_callback;
@@ -16,12 +18,6 @@ import static gr.codebb.arcadeflex.v036.mame.common.memory_region_length;
 import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
 import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
-import gr.codebb.arcadeflex.v036.mame.sndintrf.snd_interface;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.sndintf;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.sound_name;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_AY8910;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
 import static gr.codebb.arcadeflex.v036.sound.streams.stream_init_multi;
 import static gr.codebb.arcadeflex.v036.sound.streams.stream_update;
 import static gr.codebb.arcadeflex.v037b7.sound.fm.YM2610Init;

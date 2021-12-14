@@ -15,7 +15,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.superman.*;
 import static arcadeflex.v037b7.sndhrdw.rastan.*;
@@ -29,7 +29,6 @@ import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_A_r;
 import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_B_r;
 import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
 import static gr.codebb.arcadeflex.v036.machine.cchip.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;
 
 public class superman {

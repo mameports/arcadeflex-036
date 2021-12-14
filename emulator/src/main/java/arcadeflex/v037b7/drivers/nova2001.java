@@ -15,7 +15,7 @@ import static arcadeflex.v037b7.vidhrdw.nova2001.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 
 public class nova2001 {
 

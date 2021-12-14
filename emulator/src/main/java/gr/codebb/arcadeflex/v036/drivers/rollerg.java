@@ -11,6 +11,9 @@ driver by Nicola Salmoria
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
@@ -32,9 +35,6 @@ import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_K053260;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM3812;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.rollerg.*;

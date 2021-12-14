@@ -10,9 +10,9 @@ import static arcadeflex.v037b7.sound._3812intf.YM3812_sh_start;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_sh_stop;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;
 
 public class ym2413 extends snd_interface {

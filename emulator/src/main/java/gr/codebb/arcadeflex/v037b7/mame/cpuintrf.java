@@ -4,12 +4,11 @@
  */
 package gr.codebb.arcadeflex.v037b7.mame;
 
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
+import static arcadeflex.v037b7.mame.sndintrf.sound_reset;
 import gr.codebb.arcadeflex.v036.cpu.Dummy_cpu;
 import gr.codebb.arcadeflex.v036.cpu.hd6309.hd6309;
 import gr.codebb.arcadeflex.v037b7.cpu.z80.z80;
 import gr.codebb.arcadeflex.v036.cpu.i8039.i8039;
-import gr.codebb.arcadeflex.v036.cpu.i8039.i8035;
 import gr.codebb.arcadeflex.v036.cpu.i8039.i8048;
 import gr.codebb.arcadeflex.v036.cpu.i8039.n7751;
 import gr.codebb.arcadeflex.v036.cpu.m6809.m6809;
@@ -42,7 +41,6 @@ import gr.codebb.arcadeflex.v036.cpu.nec.v30;
 import gr.codebb.arcadeflex.v036.cpu.nec.v33;
 import gr.codebb.arcadeflex.v036.cpu.m6502.n2a03;
 import gr.codebb.arcadeflex.v037b7.cpu.m6805.HD63705;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.memorycontextswap;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
 

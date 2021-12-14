@@ -1,16 +1,13 @@
 package gr.codebb.arcadeflex.v036.sound;
 
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import gr.codebb.arcadeflex.common.PtrLib.ShortPtr;
-import gr.codebb.arcadeflex.v036.mame.sndintrf.snd_interface;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static gr.codebb.arcadeflex.v036.cpu.m6502.n2a03.N2A03_DEFAULTCLOCK;
 import static gr.codebb.arcadeflex.v036.cpu.m6502.n2a03.n2a03_irq;
 import static gr.codebb.arcadeflex.v036.mame.common.memory_region;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.sound_name;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.sound_scalebufferpos;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_NES;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.sound.mixer.*;
 import static gr.codebb.arcadeflex.v036.sound.nes_apuH.MAX_NESPSG;
@@ -64,36 +61,36 @@ public class nes_apu extends snd_interface {
 
     /* CONSTANTS */
 
-    /* vblank length table used for squares, triangle, noise */
+ /* vblank length table used for squares, triangle, noise */
     static int vbl_length[]
             = {
-            5, 127, 10, 1, 19, 2, 40, 3, 80, 4, 30, 5, 7, 6, 13, 7,
-            6, 8, 12, 9, 24, 10, 48, 11, 96, 12, 36, 13, 8, 14, 16, 15
-    };
+                5, 127, 10, 1, 19, 2, 40, 3, 80, 4, 30, 5, 7, 6, 13, 7,
+                6, 8, 12, 9, 24, 10, 48, 11, 96, 12, 36, 13, 8, 14, 16, 15
+            };
 
     /* frequency limit of square channels */
     static int freq_limit[]
             = {
-            0x3FF, 0x555, 0x666, 0x71C, 0x787, 0x7C1, 0x7E0, 0x7F0,};
+                0x3FF, 0x555, 0x666, 0x71C, 0x787, 0x7C1, 0x7E0, 0x7F0,};
 
     /* table of noise frequencies */
     static int noise_freq[]
             = {
-            4, 8, 16, 32, 64, 96, 128, 160, 202, 254, 380, 508, 762, 1016, 2034, 2046
-    };
+                4, 8, 16, 32, 64, 96, 128, 160, 202, 254, 380, 508, 762, 1016, 2034, 2046
+            };
 
     /* dpcm transfer freqs */
     static int dpcm_clocks[]
             = {
-            428, 380, 340, 320, 286, 254, 226, 214, 190, 160, 142, 128, 106, 85, 72, 54
-    };
+                428, 380, 340, 320, 286, 254, 226, 214, 190, 160, 142, 128, 106, 85, 72, 54
+            };
 
     /* ratios of pos/neg pulse for square waves */
-    /* 2/16 = 12.5%, 4/16 = 25%, 8/16 = 50%, 12/16 = 75% */
+ /* 2/16 = 12.5%, 4/16 = 25%, 8/16 = 50%, 12/16 = 75% */
     static int duty_lut[]
             = {
-            2, 4, 8, 12
-    };
+                2, 4, 8, 12
+            };
 
     /* Square Wave */
     class square_t {
@@ -113,7 +110,8 @@ public class nes_apu extends snd_interface {
     /* Triangle Wave */
     class triangle_t {
 
-        public int[] regs = new int[4]; /* regs[1] unused */  //unsigned 8bit
+        public int[] regs = new int[4];
+        /* regs[1] unused */  //unsigned 8bit
 
         public int linear_length;
         public int vbl_length;
@@ -124,11 +122,13 @@ public class nes_apu extends snd_interface {
         public boolean counter_started;
         public boolean enabled;
     }
+
     /* Noise Wave */
 
     class noise_t {
 
-        public int[] regs = new int[4]; /* regs[1] unused */ ////unsigned 8bit
+        public int[] regs = new int[4];
+        /* regs[1] unused */ ////unsigned 8bit
 
         public int cur_pos;
         public int vbl_length;
@@ -138,6 +138,7 @@ public class nes_apu extends snd_interface {
         public int env_vol;//unsigned 8bit
         public boolean enabled;
     }
+
     /* DPCM Wave */
 
     class dpcm_t {
@@ -154,6 +155,7 @@ public class nes_apu extends snd_interface {
         public UBytePtr cpu_mem;
         public byte vol;
     }
+
     /* APU type */
 
     class apu_t {
@@ -186,29 +188,38 @@ public class nes_apu extends snd_interface {
 
     static apu_t cur;/* Pointer to an APU */
 
-    static float apu_incsize;           /* Adjustment increment */
+    static float apu_incsize;
+    /* Adjustment increment */
 
-    static char/*uint16*/ samps_per_sync;        /* Number of samples per vsync */
+    static char/*uint16*/ samps_per_sync;
+    /* Number of samples per vsync */
 
-    static char/*uint16*/ buffer_size;           /* Actual buffer size in bytes */
+    static char/*uint16*/ buffer_size;
+    /* Actual buffer size in bytes */
 
-    static char/*uint16*/ real_rate;             /* Actual playback rate */
+    static char/*uint16*/ real_rate;
+    /* Actual playback rate */
 
-    static int/*uint16*/ chip_max;              /* Desired number of chips in use */
+    static int/*uint16*/ chip_max;
+    /* Desired number of chips in use */
 
-    static /*uint8*/ int[] noise_lut = new int[NOISE_LONG]; /* Noise sample lookup table */
+    static /*uint8*/ int[] noise_lut = new int[NOISE_LONG];
+    /* Noise sample lookup table */
 
-    static char[]/*uint16*/ vbl_times = new char[0x20];       /* VBL durations in samples */
+    static char[]/*uint16*/ vbl_times = new char[0x20];
+    /* VBL durations in samples */
 
-    static /*uint32*/ int[] sync_times1 = new int[SYNCS_MAX1]; /* Samples per sync table */
+    static /*uint32*/ int[] sync_times1 = new int[SYNCS_MAX1];
+    /* Samples per sync table */
 
-    static /*uint32*/ int[] sync_times2 = new int[SYNCS_MAX2]; /* Samples per sync table */
+    static /*uint32*/ int[] sync_times2 = new int[SYNCS_MAX2];
+    /* Samples per sync table */
 
     static int channel;
 
     /* INTERNAL FUNCTIONS */
 
-    /* INITIALIZE WAVE TIMES RELATIVE TO SAMPLE RATE */
+ /* INITIALIZE WAVE TIMES RELATIVE TO SAMPLE RATE */
     static void create_vbltimes(char[] table, int[] vbl, int rate) {
         int i;
 
@@ -216,6 +227,7 @@ public class nes_apu extends snd_interface {
             table[i] = (char) (vbl[i] * rate);
         }
     }
+
     /* INITIALIZE SAMPLE TIMES IN TERMS OF VSYNCS */
 
     static void create_syncs(/*unsigned long*/int sps) {
@@ -252,6 +264,7 @@ public class nes_apu extends snd_interface {
             buf[i] = m & 0xFF;
         }
     }
+
     /* OUTPUT SQUARE WAVE SAMPLE (VALUES FROM -16 to +15) */
 
     static byte apu_square(square_t chan) {
@@ -308,7 +321,8 @@ public class nes_apu extends snd_interface {
                 || (chan.freq >> 16) < 4) {
             return 0;
         }
-        chan.phaseacc -= (float) apu_incsize; /* # of cycles per sample */
+        chan.phaseacc -= (float) apu_incsize;
+        /* # of cycles per sample */
 
         while (chan.phaseacc < 0) {
             chan.phaseacc += (chan.freq >> 16);
@@ -327,6 +341,7 @@ public class nes_apu extends snd_interface {
 
         return (byte) output;
     }
+
     /* OUTPUT TRIANGLE WAVE SAMPLE (VALUES FROM -16 to +15) */
 
     static byte apu_triangle(triangle_t chan) {
@@ -373,7 +388,8 @@ public class nes_apu extends snd_interface {
             return 0;
         }
 
-        chan.phaseacc -= (float) apu_incsize; /* # of cycles per sample */
+        chan.phaseacc -= (float) apu_incsize;
+        /* # of cycles per sample */
 
         while (chan.phaseacc < 0) {
             chan.phaseacc += freq;
@@ -392,6 +408,7 @@ public class nes_apu extends snd_interface {
 
         return (byte) chan.output_vol;
     }
+
     /* OUTPUT NOISE WAVE SAMPLE (VALUES FROM -16 to +15) */
 
     static byte apu_noise(noise_t chan) {
@@ -435,7 +452,8 @@ public class nes_apu extends snd_interface {
         }
 
         freq = noise_freq[chan.regs[2] & 0x0F];
-        chan.phaseacc -= (float) apu_incsize; /* # of cycles per sample */
+        chan.phaseacc -= (float) apu_incsize;
+        /* # of cycles per sample */
 
         while (chan.phaseacc < 0) {
             chan.phaseacc += freq;
@@ -465,6 +483,7 @@ public class nes_apu extends snd_interface {
 
         return (byte) output;
     }
+
     /* RESET DPCM PARAMETERS */
 
     static void apu_dpcmreset(dpcm_t chan) {
@@ -473,8 +492,9 @@ public class nes_apu extends snd_interface {
         chan.bits_left = chan.length << 3;
         chan.irq_occurred = false;
     }
+
     /* OUTPUT DPCM WAVE SAMPLE (VALUES FROM -64 to +63) */
-    /* TODO: centerline naughtiness */
+ /* TODO: centerline naughtiness */
 
     static byte apu_dpcm(dpcm_t chan) {
         int freq, bit_pos;
@@ -486,7 +506,8 @@ public class nes_apu extends snd_interface {
          */
         if (chan.enabled) {
             freq = dpcm_clocks[chan.regs[0] & 0x0F];
-            chan.phaseacc -= (float) apu_incsize; /* # of cycles per sample */
+            chan.phaseacc -= (float) apu_incsize;
+            /* # of cycles per sample */
 
             while (chan.phaseacc < 0) {
                 chan.phaseacc += freq;
@@ -557,7 +578,7 @@ public class nes_apu extends snd_interface {
             //memset(cur,0,sizeof(apu_t));
 
             /* Check for buffer allocation failure and bail out if necessary */
-            /*if ((cur.buffer = malloc(buffer_size))==NULL)
+ /*if ((cur.buffer = malloc(buffer_size))==NULL)
              {
              while (--i >= 0) free(APU[i].buffer);
              return 1;
@@ -585,6 +606,7 @@ public class nes_apu extends snd_interface {
             APU[i].buffer = null;
         }
     }
+
     /* WRITE REGISTER VALUE */
 
     static void apu_regwrite(int chip, int address, /*uint8*/ int value) {
@@ -627,7 +649,8 @@ public class nes_apu extends snd_interface {
             case APU_WRC0:
                 cur.tri.regs[0] = value;
 
-                if (cur.tri.enabled) {                                          /* ??? */
+                if (cur.tri.enabled) {
+                    /* ??? */
 
                     if (false == cur.tri.counter_started) {
                         cur.tri.linear_length = sync_times2[value & 0x7F];
@@ -691,7 +714,8 @@ public class nes_apu extends snd_interface {
 
                 if (cur.noi.enabled) {
                     cur.noi.vbl_length = vbl_times[value >> 3];
-                    cur.noi.env_vol = 0; /* reset envelope */
+                    cur.noi.env_vol = 0;
+                    /* reset envelope */
 
                 }
                 break;
@@ -704,7 +728,8 @@ public class nes_apu extends snd_interface {
                 }
                 break;
 
-            case APU_WRE1: /* 7-bit DAC */
+            case APU_WRE1:
+                /* 7-bit DAC */
 
                 //cur.dpcm.regs[1] = value - 0x40;
 
@@ -768,10 +793,13 @@ public class nes_apu extends snd_interface {
 
                 break;
             default:
-                if(errorlog!=null) fprintf(errorlog,"invalid apu write: $%02X at $%04X\n", value, address);
+                if (errorlog != null) {
+                    fprintf(errorlog, "invalid apu write: $%02X at $%04X\n", value, address);
+                }
                 break;
         }
     }
+
     /* READ VALUES FROM REGISTERS */
 
     public static int apu_read(int chip, int address) {

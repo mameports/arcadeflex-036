@@ -22,7 +22,7 @@ import static gr.codebb.arcadeflex.v036.machine.ddrible.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.ddrible.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.streams.*;
 import static arcadeflex.v058.sound.vlm5030.*;
 import static arcadeflex.v058.sound.vlm5030H.*;

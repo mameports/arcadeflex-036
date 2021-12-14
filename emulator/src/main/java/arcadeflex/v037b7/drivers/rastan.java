@@ -15,7 +15,7 @@ import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static arcadeflex.v037b7.vidhrdw.rastan.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sndhrdw.rastan.*;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;

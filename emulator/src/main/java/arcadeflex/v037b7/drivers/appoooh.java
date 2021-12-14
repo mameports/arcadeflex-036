@@ -15,7 +15,7 @@ import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static arcadeflex.v058.sound.sn76496H.*;
 import static arcadeflex.v058.sound.sn76496.*;
 import static arcadeflex.v037b7.vidhrdw.appoooh.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205H.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;

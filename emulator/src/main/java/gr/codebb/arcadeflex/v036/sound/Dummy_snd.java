@@ -1,11 +1,10 @@
 
 package gr.codebb.arcadeflex.v036.sound;
 
-import gr.codebb.arcadeflex.v036.mame.sndintrf;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 
-public class Dummy_snd extends sndintrf.snd_interface
+public class Dummy_snd extends snd_interface
 {
     public Dummy_snd()
     {

@@ -21,8 +21,8 @@ import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
 import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
 import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2151;
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 
 public class jackal {
