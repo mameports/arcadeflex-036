@@ -11,37 +11,33 @@ driver by Nicola Salmoria
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
+import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound.k053260.K053260_r;
+import static arcadeflex.v037b7.sound.k053260.K053260_w;
+import arcadeflex.v037b7.sound.k053260H.K053260_interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
 import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_r;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_w;
-import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
-import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.parodius.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260H.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 
 public class parodius
@@ -151,7 +147,7 @@ public class parodius
 	{
 		/* If the sound CPU is running, read the status, otherwise
 		   just make it pass the test */
-		if (Machine.sample_rate != 0) 	return K053260_ReadReg.handler(2 + offset);
+		if (Machine.sample_rate != 0) 	return K053260_r.handler(2 + offset);
 		else return offset!=0 ? 0x00 : 0x80;
 	} };
 	
@@ -222,7 +218,7 @@ public class parodius
 		new MemoryWriteAddress( 0x3fc0, 0x3fc0, parodius_3fc0_w ),
 		new MemoryWriteAddress( 0x3fc4, 0x3fc4, parodius_videobank_w ),
 		new MemoryWriteAddress( 0x3fc8, 0x3fc8, parodius_sh_irqtrigger_w ),
-		new MemoryWriteAddress( 0x3fcc, 0x3fcd, K053260_WriteReg ),
+		new MemoryWriteAddress( 0x3fcc, 0x3fcd, K053260_w),
 		new MemoryWriteAddress( 0x2000, 0x27ff, parodius_052109_053245_w ),
 		new MemoryWriteAddress( 0x2000, 0x5fff, K052109_w ),
 		new MemoryWriteAddress( 0x6000, 0x9fff, MWA_ROM ),					/* banked ROM */
@@ -235,7 +231,7 @@ public class parodius
 		new MemoryReadAddress( 0x0000, 0xefff, MRA_ROM ),
 		new MemoryReadAddress( 0xf000, 0xf7ff, MRA_RAM ),
 		new MemoryReadAddress( 0xf801, 0xf801, YM2151_status_port_0_r ),
-		new MemoryReadAddress( 0xfc00, 0xfc2f, K053260_ReadReg ),
+		new MemoryReadAddress( 0xfc00, 0xfc2f, K053260_r ),
 		new MemoryReadAddress( -1 )	/* end of table */
 	};
 	
@@ -246,7 +242,7 @@ public class parodius
 		new MemoryWriteAddress( 0xf800, 0xf800, YM2151_register_port_0_w ),
 		new MemoryWriteAddress( 0xf801, 0xf801, YM2151_data_port_0_w ),
 		new MemoryWriteAddress( 0xfa00, 0xfa00, sound_arm_nmi ),
-		new MemoryWriteAddress( 0xfc00, 0xfc2f, K053260_WriteReg ),
+		new MemoryWriteAddress( 0xfc00, 0xfc2f, K053260_w ),
 		new MemoryWriteAddress( -1 )	/* end of table */
 	};
 	

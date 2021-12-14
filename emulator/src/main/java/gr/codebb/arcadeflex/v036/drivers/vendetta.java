@@ -17,6 +17,14 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
+import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound.k053260.K053260_r;
+import static arcadeflex.v037b7.sound.k053260.K053260_w;
+import arcadeflex.v037b7.sound.k053260H.K053260_interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -34,8 +42,6 @@ import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2151;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K053247.*;
 import static arcadeflex.v056.mame.timer.*;
@@ -48,8 +54,6 @@ import static gr.codebb.arcadeflex.v036.machine.eepromH.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_K053260;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K054000.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260H.*;
 
 public class vendetta {
 
@@ -259,7 +263,7 @@ public class vendetta {
             /* If the sound CPU is running, read the status, otherwise
              just make it pass the test */
             if (Machine.sample_rate != 0) {
-                return K053260_ReadReg.handler(2 + offset);
+                return K053260_r.handler(2 + offset);
             } else {
 
                 res = ((res + 1) & 0x07);
@@ -301,7 +305,7 @@ public class vendetta {
                 new MemoryWriteAddress(0x5fe0, 0x5fe0, vendetta_5fe0_w),
                 new MemoryWriteAddress(0x5fe2, 0x5fe2, vendetta_eeprom_w),
                 new MemoryWriteAddress(0x5fe4, 0x5fe4, z80_irq_w),
-                new MemoryWriteAddress(0x5fe6, 0x5fe7, K053260_WriteReg),
+                new MemoryWriteAddress(0x5fe6, 0x5fe7, K053260_w),
                 new MemoryWriteAddress(0x4000, 0x4fff, MWA_BANK3),
                 new MemoryWriteAddress(0x6000, 0x6fff, MWA_BANK2),
                 new MemoryWriteAddress(0x4000, 0x7fff, K052109_w),
@@ -313,7 +317,7 @@ public class vendetta {
                 new MemoryReadAddress(0x0000, 0xefff, MRA_ROM),
                 new MemoryReadAddress(0xf000, 0xf7ff, MRA_RAM),
                 new MemoryReadAddress(0xf801, 0xf801, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_ReadReg),
+                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress writemem_sound[]
@@ -323,7 +327,7 @@ public class vendetta {
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
                 new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi),
-                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_WriteReg),
+                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(-1) /* end of table */};
 
     /**

@@ -4,6 +4,16 @@
  */
 package arcadeflex.v037b7.drivers;
 
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_1_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_read_port_0_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_read_port_1_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_0_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_1_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_1_w;
+import static arcadeflex.v037b7.sound._2203intfH.YM2203_VOL;
+import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -20,8 +30,6 @@ import static arcadeflex.v037b7.vidhrdw.wc90.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
 
 public class wc90 {
 

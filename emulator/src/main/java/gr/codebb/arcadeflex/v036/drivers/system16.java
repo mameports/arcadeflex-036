@@ -4,6 +4,12 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
+import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import arcadeflex.v037b7.sound._2413intfH.YM2413interface;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
@@ -23,10 +29,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sound.ym2413.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2413intfH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.system16.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.MIXER_PAN_LEFT;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.MIXER_PAN_RIGHT;
 import static gr.codebb.arcadeflex.v036.sound.upd7759.*;

@@ -21,6 +21,14 @@ microcontroller.
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_1_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_0_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_1_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_1_w;
+import static arcadeflex.v037b7.sound._2203intfH.YM2203_VOL;
+import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -38,8 +46,6 @@ import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_w;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_OKIM6295;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2203;
 import static gr.codebb.arcadeflex.v036.vidhrdw.lastduel.*;

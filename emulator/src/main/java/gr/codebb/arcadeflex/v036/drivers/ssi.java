@@ -25,12 +25,18 @@ import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intfH.*;
 import static arcadeflex.v037b7.sndhrdw.rastan.*;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_read_port_0_r;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_A_r;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_B_r;
+import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
 import static gr.codebb.arcadeflex.v036.vidhrdw.ssi.*;
 public class ssi
 {

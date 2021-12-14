@@ -11,28 +11,27 @@ driver by Nicola Salmoria
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
+import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
+import static arcadeflex.v037b7.sound.k053260.K053260_r;
+import static arcadeflex.v037b7.sound.k053260.K053260_w;
+import arcadeflex.v037b7.sound.k053260H.K053260_interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
 import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_r;
-import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_w;
-import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
-import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_K053260;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM3812;
@@ -40,10 +39,6 @@ import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.rollerg.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260H.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 
 
@@ -97,7 +92,7 @@ public class rollerg
 	{
 		/* If the sound CPU is running, read the status, otherwise
 		   just make it pass the test */
-		if (Machine.sample_rate != 0) 	return K053260_ReadReg.handler(2 + offset);
+		if (Machine.sample_rate != 0) 	return K053260_r.handler(2 + offset);
 		else 
             return 0x00;
 	} };
@@ -146,7 +141,7 @@ public class rollerg
 	{
 		new MemoryWriteAddress( 0x0010, 0x0010, rollerg_0010_w ),
 		new MemoryWriteAddress( 0x0020, 0x0020, watchdog_reset_w ),
-		new MemoryWriteAddress( 0x0030, 0x0031, K053260_WriteReg ),
+		new MemoryWriteAddress( 0x0030, 0x0031, K053260_w ),
 		new MemoryWriteAddress( 0x0040, 0x0040, soundirq_w ),
 		new MemoryWriteAddress( 0x0200, 0x020f, K051316_ctrl_0_w ),
 		new MemoryWriteAddress( 0x0300, 0x030f, K053244_w ),
@@ -162,7 +157,7 @@ public class rollerg
 	{
 		new MemoryReadAddress( 0x0000, 0x7fff, MRA_ROM ),
 		new MemoryReadAddress( 0x8000, 0x87ff, MRA_RAM ),
-		new MemoryReadAddress( 0xa000, 0xa02f, K053260_ReadReg ),
+		new MemoryReadAddress( 0xa000, 0xa02f, K053260_r ),
 		new MemoryReadAddress( 0xc000, 0xc000, YM3812_status_port_0_r ),
 		new MemoryReadAddress( -1 )	/* end of table */
 	};
@@ -171,7 +166,7 @@ public class rollerg
 	{
 		new MemoryWriteAddress( 0x0000, 0x7fff, MWA_ROM ),
 		new MemoryWriteAddress( 0x8000, 0x87ff, MWA_RAM ),
-		new MemoryWriteAddress( 0xa000, 0xa02f, K053260_WriteReg ),
+		new MemoryWriteAddress( 0xa000, 0xa02f, K053260_w ),
 		new MemoryWriteAddress( 0xc000, 0xc000, YM3812_control_port_0_w ),
 		new MemoryWriteAddress( 0xc001, 0xc001, YM3812_write_port_0_w ),
 		new MemoryWriteAddress( 0xfc00, 0xfc00, sound_arm_nmi ),

@@ -32,6 +32,13 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;
+import static arcadeflex.v037b7.sound._2203intfH.YM2203_VOL;
+import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
+import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -42,24 +49,15 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.platform.input.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.cpu.h6280.h6280.H6280_irq_status_w;
 import static gr.codebb.arcadeflex.v036.cpu.h6280.h6280H.H6280_INT_NMI;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.cpu.m6502.m6502H.*;
-import static gr.codebb.arcadeflex.v036.cpu.m6809.m6809H.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3526intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
 import static gr.codebb.arcadeflex.v036.machine.dec0.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.dec0.*;
 import static gr.codebb.arcadeflex.v037b7.sound.okim6295.*;

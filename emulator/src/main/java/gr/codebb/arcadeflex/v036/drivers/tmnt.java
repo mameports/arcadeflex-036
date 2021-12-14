@@ -1,5 +1,13 @@
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
+import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound.k053260.K053260_r;
+import static arcadeflex.v037b7.sound.k053260.K053260_w;
+import arcadeflex.v037b7.sound.k053260H.K053260_interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -24,16 +32,12 @@ import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2151;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
 import static gr.codebb.arcadeflex.v036.sound.k007232.*;
 import static gr.codebb.arcadeflex.v036.sound.k007232H.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.tmnt.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260H.*;
 import static gr.codebb.arcadeflex.v036.machine.eeprom.*;
 import static gr.codebb.arcadeflex.v036.machine.eepromH.*;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD_MEM;
@@ -68,7 +72,7 @@ public class tmnt {
     public static ReadHandlerPtr K052109_word_noA12_r = new ReadHandlerPtr() {
         public int handler(int offset) {
             /* some games have the A12 line not connected, so the chip spans */
-            /* twice the memory range, with mirroring */
+ /* twice the memory range, with mirroring */
             offset = ((offset & 0x6000) >>> 1) | (offset & 0x0fff);
             return K052109_word_r.handler(offset);
         }
@@ -77,14 +81,14 @@ public class tmnt {
     public static WriteHandlerPtr K052109_word_noA12_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             /* some games have the A12 line not connected, so the chip spans */
-            /* twice the memory range, with mirroring */
+ /* twice the memory range, with mirroring */
             offset = ((offset & 0x6000) >>> 1) | (offset & 0x0fff);
             K052109_word_w.handler(offset, data);
         }
     };
     /* the interface with the 053245 is weird. The chip can address only 0x800 bytes */
-    /* of RAM, but they put 0x4000 there. The CPU can access them all. Address lines */
-    /* A1, A5 and A6 don't go to the 053245. */
+ /* of RAM, but they put 0x4000 there. The CPU can access them all. Address lines */
+ /* A1, A5 and A6 don't go to the 053245. */
     public static ReadHandlerPtr K053245_scattered_word_r = new ReadHandlerPtr() {
         public int handler(int offset) {
             if ((offset & 0x0062) != 0) {
@@ -121,14 +125,16 @@ public class tmnt {
 /*TODO*///
     public static ReadHandlerPtr K053244_word_noA1_r = new ReadHandlerPtr() {
         public int handler(int offset) {
-            offset &= ~2;	/* handle mirror address */
+            offset &= ~2;
+            /* handle mirror address */
 
             return K053244_r.handler(offset / 2 + 1) | (K053244_r.handler(offset / 2) << 8);
         }
     };
     public static WriteHandlerPtr K053244_word_noA1_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
-            offset &= ~2;	/* handle mirror address */
+            offset &= ~2;
+            /* handle mirror address */
 
             if ((data & 0xff000000) == 0) {
                 K053244_w.handler(offset / 2, (data >>> 8) & 0xff);
@@ -176,13 +182,17 @@ public class tmnt {
 
         }
     };
-	
-	public static InterruptPtr lgtnfght_interrupt = new InterruptPtr() { public int handler() 
-	{
-		if (K052109_is_IRQ_enabled()!=0) return m68_level5_irq.handler();
-		else return ignore_interrupt.handler();
-	
-	} };
+
+    public static InterruptPtr lgtnfght_interrupt = new InterruptPtr() {
+        public int handler() {
+            if (K052109_is_IRQ_enabled() != 0) {
+                return m68_level5_irq.handler();
+            } else {
+                return ignore_interrupt.handler();
+            }
+
+        }
+    };
     public static WriteHandlerPtr tmnt_sound_command_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             soundlatch_w.handler(0, data & 0xff);
@@ -193,7 +203,7 @@ public class tmnt {
             /* If the sound CPU is running, read the status, otherwise
              just make it pass the test */
             if (Machine.sample_rate != 0) {
-                return K053260_ReadReg.handler(2 + offset / 2);
+                return K053260_r.handler(2 + offset / 2);
             } else {
                 return 0x80;
             }
@@ -247,60 +257,61 @@ public class tmnt {
             }
 
             /* bit 2 plays the title music */
-            		if ((data & 0x04)!=0)
-		{
-			if (sample_playing(0)==0)	sample_start(0,0,0);
-		}
-		else sample_stop(0);
+            if ((data & 0x04) != 0) {
+                if (sample_playing(0) == 0) {
+                    sample_start(0, 0, 0);
+                }
+            } else {
+                sample_stop(0);
+            }
             tmnt_soundlatch = data;
         }
     };
     public static ShStartPtr tmnt_decode_sample = new ShStartPtr() {
         public int handler(MachineSound msound) {
-	int i;
-	ShortPtr dest;
-	UBytePtr source = memory_region(REGION_SOUND3);
-	GameSamples samples;
+            int i;
+            ShortPtr dest;
+            UBytePtr source = memory_region(REGION_SOUND3);
+            GameSamples samples;
 
+            Machine.samples = new GameSamples();
 
-	Machine.samples = new GameSamples();
+            //samples = Machine.samples;
+            Machine.samples.sample[0] = new GameSample(0x40000 * 2);
 
+            Machine.samples.sample[0].length = 0x40000 * 2;
+            Machine.samples.sample[0].smpfreq = 20000;
+            /* 20 kHz */
+            Machine.samples.sample[0].resolution = 16;
+            dest = new ShortPtr(Machine.samples.sample[0].data);
+            Machine.samples.total = 1;
 
-	//samples = Machine.samples;
-    Machine.samples.sample[0]=new GameSample(0x40000*2);
-
-    Machine.samples.sample[0].length = 0x40000*2;
-    Machine.samples.sample[0].smpfreq = 20000;	/* 20 kHz */
-    Machine.samples.sample[0].resolution = 16;
-	dest = new ShortPtr(Machine.samples.sample[0].data);
-	Machine.samples.total = 1;
-
-	/*	Sound sample for TMNT.D05 is stored in the following mode:
+            /*	Sound sample for TMNT.D05 is stored in the following mode:
 	 *
 	 *	Bit 15-13:	Exponent (2 ^ x)
 	 *	Bit 12-4 :	Sound data (9 bit)
 	 *
 	 *	(Sound info courtesy of Dave <dayvee@rocketmail.com>)
-	 */
+             */
+            for (i = 0; i < 0x40000; i++) {
+                int val = source.read(2 * i) + source.read(2 * i + 1) * 256;
+                int exp = val >> 13;
 
-	for (i = 0;i < 0x40000;i++)
-	{
-		int val = source.read(2*i) + source.read(2*i+1) * 256;
-		int exp = val >> 13;
+                val = (val >> 4) & (0x1ff);
+                /* 9 bit, Max Amplitude 0x200 */
+                val -= 0x100;
+                /* Centralize value	*/
 
-	  	val = (val >> 4) & (0x1ff);	/* 9 bit, Max Amplitude 0x200 */
-		val -= 0x100;					/* Centralize value	*/
+                val <<= exp;
 
-		val <<= exp;
+                dest.write(i, (short) val);
+            }
 
-		dest.write(i, (short)val);
-	}
-
-	/*	The sample is now ready to be used.  It's a 16 bit, 22khz sample.
-	 */
-
-	return 0;
-}};
+            /*	The sample is now ready to be used.  It's a 16 bit, 22khz sample.
+             */
+            return 0;
+        }
+    };
     static int sound_nmi_enabled;
 
     public static timer_callback sound_nmi_callback = new timer_callback() {
@@ -319,16 +330,17 @@ public class tmnt {
         public void handler(int offset, int data) {
             //	sound_nmi_enabled = 1;
             cpu_set_nmi_line(1, CLEAR_LINE);
-            timer_set(TIME_IN_USEC(50), 0, nmi_callback);	/* kludge until the K053260 is emulated correctly */
+            timer_set(TIME_IN_USEC(50), 0, nmi_callback);
+            /* kludge until the K053260 is emulated correctly */
 
         }
     };
     public static ReadHandlerPtr punkshot_kludge = new ReadHandlerPtr() {
         public int handler(int offset) {
             /* I don't know what's going on here; at one point, the code reads location */
-            /* 0xffffff, and returning 0 causes the game to mess up - locking up in a */
-            /* loop where the ball is continuously bouncing from the basket. Returning */
-            /* a random number seems to prevent that. */
+ /* 0xffffff, and returning 0 causes the game to mess up - locking up in a */
+ /* loop where the ball is continuously bouncing from the basket. Returning */
+ /* a random number seems to prevent that. */
             return rand();
         }
     };
@@ -343,9 +355,9 @@ public class tmnt {
 
             if (cpu_readmem24_word(cpu_get_pc()) == 0x45f9) {
                 /*TODO*///               /*data = -((cpu_get_reg(M68K_D7) & 0xff) + 32);
-  /*TODO*///              data = ((data / 8) & 0x1f) * 0x40;
-  /*TODO*///              data += (((cpu_get_reg(M68K_D6) & 0xffff) + (K052109_r(0x1a01) * 256)
-  /*TODO*///                      + K052109_r(0x1a00) + 96) / 8) & 0x3f;*/
+                /*TODO*///              data = ((data / 8) & 0x1f) * 0x40;
+                /*TODO*///              data += (((cpu_get_reg(M68K_D6) & 0xffff) + (K052109_r(0x1a01) * 256)
+                /*TODO*///                      + K052109_r(0x1a00) + 96) / 8) & 0x3f;*/
                 System.out.println("TODO");
             }
 
@@ -421,9 +433,9 @@ public class tmnt {
         public int handler(int offset) {
             int res;
             /* bit 0 is EEPROM data */
-            /* bit 1 is EEPROM ready */
-            /* bit 2 is VBLANK (???) */
-            /* bit 7 is service button */
+ /* bit 1 is EEPROM ready */
+ /* bit 2 is VBLANK (???) */
+ /* bit 7 is service button */
             res = EEPROM_read_bit() | input_port_3_r.handler(0);
             if (init_eeprom_count != 0) {
                 init_eeprom_count--;
@@ -436,8 +448,8 @@ public class tmnt {
     public static WriteHandlerPtr ssriders_eeprom_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             /* bit 0 is data */
-            /* bit 1 is cs (active low) */
-            /* bit 2 is clock (active high) */
+ /* bit 1 is cs (active low) */
+ /* bit 2 is clock (active high) */
             EEPROM_write_bit(data & 0x01);
             EEPROM_set_cs_line((data & 0x02) != 0 ? CLEAR_LINE : ASSERT_LINE);
             EEPROM_set_clock_line((data & 0x04) != 0 ? ASSERT_LINE : CLEAR_LINE);
@@ -490,9 +502,9 @@ public class tmnt {
             int res;
 
             /* bit 0 is EEPROM data */
-            /* bit 1 is EEPROM ready */
-            /* bit 3 is VBLANK (???) */
-            /* bit 7 is service button */
+ /* bit 1 is EEPROM ready */
+ /* bit 3 is VBLANK (???) */
+ /* bit 7 is service button */
             res = (EEPROM_read_bit() << 8) | input_port_1_r.handler(0);
             toggle_thndrx2 ^= 0x0800;
             return (res ^ toggle_thndrx2);
@@ -504,8 +516,8 @@ public class tmnt {
 
             if ((data & 0x00ff0000) == 0) {
                 /* bit 0 is data */
-                /* bit 1 is cs (active low) */
-                /* bit 2 is clock (active high) */
+ /* bit 1 is cs (active low) */
+ /* bit 2 is clock (active high) */
                 EEPROM_write_bit(data & 0x01);
                 EEPROM_set_cs_line((data & 0x02) != 0 ? CLEAR_LINE : ASSERT_LINE);
                 EEPROM_set_clock_line((data & 0x04) != 0 ? ASSERT_LINE : CLEAR_LINE);
@@ -609,7 +621,7 @@ public class tmnt {
                 new MemoryWriteAddress(0x080000, 0x083fff, MWA_BANK1), /* main RAM */
                 new MemoryWriteAddress(0x090000, 0x090fff, paletteram_xBBBBBGGGGGRRRRR_word_w, paletteram),
                 new MemoryWriteAddress(0x0a0020, 0x0a0021, punkshot_0a0020_w),
-                new MemoryWriteAddress(0x0a0040, 0x0a0041, K053260_WriteReg),
+                new MemoryWriteAddress(0x0a0040, 0x0a0041, K053260_w),
                 new MemoryWriteAddress(0x0a0060, 0x0a007f, K053251_halfword_w),
                 new MemoryWriteAddress(0x0a0080, 0x0a0081, watchdog_reset_w),
                 new MemoryWriteAddress(0x100000, 0x107fff, K052109_word_noA12_w),
@@ -639,7 +651,7 @@ public class tmnt {
                 new MemoryWriteAddress(0x080000, 0x080fff, paletteram_xBBBBBGGGGGRRRRR_word_w, paletteram),
                 new MemoryWriteAddress(0x090000, 0x093fff, MWA_BANK1), /* main RAM */
                 new MemoryWriteAddress(0x0a0018, 0x0a0019, lgtnfght_0a0018_w),
-                new MemoryWriteAddress(0x0a0020, 0x0a0021, K053260_WriteReg),
+                new MemoryWriteAddress(0x0a0020, 0x0a0021, K053260_w),
                 new MemoryWriteAddress(0x0a0028, 0x0a0029, watchdog_reset_w),
                 new MemoryWriteAddress(0x0b0000, 0x0b3fff, K053245_scattered_word_w, spriteram),
                 new MemoryWriteAddress(0x0c0000, 0x0c001f, K053244_word_noA1_w),
@@ -890,7 +902,7 @@ public class tmnt {
                 new MemoryWriteAddress(0x1c0500, 0x1c057f, MWA_BANK3), /* TMNT2 only (1J); unknown */
                 //	new MemoryWriteAddress( 0x1c0800, 0x1c081f,  ),	/* protection device */
                 new MemoryWriteAddress(0x5a0000, 0x5a001f, K053244_word_noA1_w),
-                new MemoryWriteAddress(0x5c0600, 0x5c0601, K053260_WriteReg),
+                new MemoryWriteAddress(0x5c0600, 0x5c0601, K053260_w),
                 new MemoryWriteAddress(0x5c0604, 0x5c0605, ssriders_soundkludge_w),
                 new MemoryWriteAddress(0x5c0700, 0x5c071f, K053251_halfword_w),
                 new MemoryWriteAddress(0x600000, 0x603fff, K052109_word_w),
@@ -915,7 +927,7 @@ public class tmnt {
                 new MemoryWriteAddress(0x100000, 0x103fff, MWA_BANK1), /* main RAM */
                 new MemoryWriteAddress(0x200000, 0x200fff, paletteram_xBBBBBGGGGGRRRRR_word_w, paletteram),
                 new MemoryWriteAddress(0x300000, 0x30001f, K053251_halfword_w),
-                new MemoryWriteAddress(0x400000, 0x400001, K053260_WriteReg),
+                new MemoryWriteAddress(0x400000, 0x400001, K053260_w),
                 new MemoryWriteAddress(0x500000, 0x50003f, K054000_halfword_w),
                 new MemoryWriteAddress(0x500100, 0x500101, thndrx2_eeprom_w),
                 new MemoryWriteAddress(0x500300, 0x500301, MWA_NOP), /* watchdog reset? irq enable? */
@@ -969,7 +981,7 @@ public class tmnt {
                 new MemoryReadAddress(0x0000, 0x7fff, MRA_ROM),
                 new MemoryReadAddress(0xf000, 0xf7ff, MRA_RAM),
                 new MemoryReadAddress(0xf801, 0xf801, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_ReadReg),
+                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress punkshot_s_writemem[]
@@ -979,14 +991,14 @@ public class tmnt {
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
                 new MemoryWriteAddress(0xfa00, 0xfa00, sound_arm_nmi),
-                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_WriteReg),
+                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(-1) /* end of table */};
     static MemoryReadAddress lgtnfght_s_readmem[]
             = {
                 new MemoryReadAddress(0x0000, 0x7fff, MRA_ROM),
                 new MemoryReadAddress(0x8000, 0x87ff, MRA_RAM),
                 new MemoryReadAddress(0xa001, 0xa001, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xc000, 0xc02f, K053260_ReadReg),
+                new MemoryReadAddress(0xc000, 0xc02f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress lgtnfght_s_writemem[]
@@ -995,7 +1007,7 @@ public class tmnt {
                 new MemoryWriteAddress(0x8000, 0x87ff, MWA_RAM),
                 new MemoryWriteAddress(0xa000, 0xa000, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xa001, 0xa001, YM2151_data_port_0_w),
-                new MemoryWriteAddress(0xc000, 0xc02f, K053260_WriteReg),
+                new MemoryWriteAddress(0xc000, 0xc02f, K053260_w),
                 new MemoryWriteAddress(-1) /* end of table */};
     /*TODO*///
 /*TODO*///static struct MemoryReadAddress glfgreat_s_readmem[] =
@@ -1020,7 +1032,7 @@ public class tmnt {
                 new MemoryReadAddress(0x0000, 0xefff, MRA_ROM),
                 new MemoryReadAddress(0xf000, 0xf7ff, MRA_RAM),
                 new MemoryReadAddress(0xf801, 0xf801, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xfa00, 0xfa2f, K053260_ReadReg),
+                new MemoryReadAddress(0xfa00, 0xfa2f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress ssriders_s_writemem[]
@@ -1029,7 +1041,7 @@ public class tmnt {
                 new MemoryWriteAddress(0xf000, 0xf7ff, MWA_RAM),
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
-                new MemoryWriteAddress(0xfa00, 0xfa2f, K053260_WriteReg),
+                new MemoryWriteAddress(0xfa00, 0xfa2f, K053260_w),
                 new MemoryWriteAddress(0xfc00, 0xfc00, sound_arm_nmi),
                 new MemoryWriteAddress(-1) /* end of table */};
     static MemoryReadAddress thndrx2_s_readmem[]
@@ -1037,7 +1049,7 @@ public class tmnt {
                 new MemoryReadAddress(0x0000, 0xefff, MRA_ROM),
                 new MemoryReadAddress(0xf000, 0xf7ff, MRA_RAM),
                 new MemoryReadAddress(0xf801, 0xf801, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_ReadReg),
+                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress thndrx2_s_writemem[]
@@ -1048,11 +1060,12 @@ public class tmnt {
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
                 new MemoryWriteAddress(0xf811, 0xf811, YM2151_data_port_0_w), /* mirror */
                 new MemoryWriteAddress(0xfa00, 0xfa00, sound_arm_nmi),
-                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_WriteReg),
+                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(-1) /* end of table */};
     static InputPortPtr input_ports_mia = new InputPortPtr() {
         public void handler() {
-            PORT_START();       /* COINS */
+            PORT_START();
+            /* COINS */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1063,7 +1076,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_COIN3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();       /* PLAYER 1 */
+            PORT_START();
+            /* PLAYER 1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER1 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER1 | IPF_8WAY);
@@ -1074,7 +1088,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER1);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();       /* PLAYER 2 */
+            PORT_START();
+            /* PLAYER 2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER2 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER2 | IPF_8WAY);
@@ -1085,7 +1100,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER2);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x0f, 0x0f, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x02, DEF_STR("4C_1C"));
@@ -1122,7 +1138,8 @@ public class tmnt {
             PORT_DIPSETTING(0x90, DEF_STR("1C_7C"));
             //	PORT_DIPSETTING(    0x00, "Invalid" );
 
-            PORT_START(); 	/* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x03, 0x02, DEF_STR("Lives"));
             PORT_DIPSETTING(0x03, "2");
@@ -1146,7 +1163,8 @@ public class tmnt {
             PORT_DIPSETTING(0x80, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
 
-            PORT_START(); 	/* DSW3 */
+            PORT_START();
+            /* DSW3 */
 
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Flip_Screen"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
@@ -1164,7 +1182,8 @@ public class tmnt {
     };
     static InputPortPtr input_ports_tmnt = new InputPortPtr() {
         public void handler() {
-            PORT_START();       /* COINS */
+            PORT_START();
+            /* COINS */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1175,7 +1194,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_SERVICE3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_SERVICE4);
 
-            PORT_START();       /* PLAYER 1 */
+            PORT_START();
+            /* PLAYER 1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER1 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER1 | IPF_8WAY);
@@ -1187,7 +1207,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START();       /* PLAYER 2 */
+            PORT_START();
+            /* PLAYER 2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER2 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER2 | IPF_8WAY);
@@ -1199,7 +1220,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START();       /* PLAYER 3 */
+            PORT_START();
+            /* PLAYER 3 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER3 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER3 | IPF_8WAY);
@@ -1211,7 +1233,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START3);
 
-            PORT_START(); 	/* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x0f, 0x0f, DEF_STR("Coinage"));
             PORT_DIPSETTING(0x00, DEF_STR("5C_1C"));
@@ -1231,7 +1254,8 @@ public class tmnt {
             PORT_DIPSETTING(0x0a, DEF_STR("1C_6C"));
             PORT_DIPSETTING(0x09, DEF_STR("1C_7C"));
 
-            PORT_START(); 	/* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x03, 0x03, DEF_STR("Lives"));
             PORT_DIPSETTING(0x03, "1");
@@ -1256,7 +1280,8 @@ public class tmnt {
             PORT_DIPSETTING(0x80, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
 
-            PORT_START();       /* PLAYER 4 */
+            PORT_START();
+            /* PLAYER 4 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER4 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER4 | IPF_8WAY);
@@ -1268,7 +1293,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START4);
 
-            PORT_START(); 	/* DSW3 */
+            PORT_START();
+            /* DSW3 */
 
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Flip_Screen"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
@@ -1287,7 +1313,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_tmnt2p = new InputPortPtr() {
         public void handler() {
-            PORT_START();       /* COINS */
+            PORT_START();
+            /* COINS */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1298,7 +1325,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();       /* PLAYER 1 */
+            PORT_START();
+            /* PLAYER 1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER1 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER1 | IPF_8WAY);
@@ -1310,7 +1338,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START();       /* PLAYER 2 */
+            PORT_START();
+            /* PLAYER 2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER2 | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER2 | IPF_8WAY);
@@ -1322,7 +1351,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START();       /* PLAYER 3 */
+            PORT_START();
+            /* PLAYER 3 */
             //	PORT_BIT( 0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER3 | IPF_8WAY );
             //	PORT_BIT( 0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER3 | IPF_8WAY );
             //	PORT_BIT( 0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_UP | IPF_PLAYER3 | IPF_8WAY );
@@ -1332,7 +1362,8 @@ public class tmnt {
             //	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_UNKNOWN );/* button 3 - unused */
             //	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START3 );
 
-            PORT_START(); 	/* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x0f, 0x0f, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x02, DEF_STR("4C_1C"));
@@ -1369,7 +1400,8 @@ public class tmnt {
             PORT_DIPSETTING(0x90, DEF_STR("1C_7C"));
             //	PORT_DIPSETTING(    0x00, "Invalid" );
 
-            PORT_START(); 	/* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x03, 0x03, DEF_STR("Lives"));
             PORT_DIPSETTING(0x03, "1");
@@ -1394,7 +1426,8 @@ public class tmnt {
             PORT_DIPSETTING(0x80, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
 
-            PORT_START();       /* PLAYER 4 */
+            PORT_START();
+            /* PLAYER 4 */
             //	PORT_BIT( 0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_PLAYER4 | IPF_8WAY );
             //	PORT_BIT( 0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_PLAYER4 | IPF_8WAY );
             //	PORT_BIT( 0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_UP | IPF_PLAYER4 | IPF_8WAY );
@@ -1404,7 +1437,8 @@ public class tmnt {
             //	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_UNKNOWN );/* button 3 - unused */
             //	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START4 );
 
-            PORT_START(); 	/* DSW3 */
+            PORT_START();
+            /* DSW3 */
 
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Flip_Screen"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
@@ -1423,7 +1457,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_punkshot = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* DSW1/DSW2 */
+            PORT_START();
+            /* DSW1/DSW2 */
 
             PORT_DIPNAME(0x000f, 0x000f, DEF_STR("Coinage"));
             PORT_DIPSETTING(0x0000, DEF_STR("5C_1C"));
@@ -1476,7 +1511,8 @@ public class tmnt {
             PORT_DIPSETTING(0x8000, DEF_STR("Off"));
             PORT_DIPSETTING(0x0000, DEF_STR("On"));
 
-            PORT_START(); 	/* COIN/DSW3 */
+            PORT_START();
+            /* COIN/DSW3 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1501,7 +1537,8 @@ public class tmnt {
             PORT_DIPSETTING(0x8000, DEF_STR("Off"));
             PORT_DIPSETTING(0x0000, DEF_STR("On"));
 
-            PORT_START(); 	/* IN0/IN1 */
+            PORT_START();
+            /* IN0/IN1 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -1520,7 +1557,8 @@ public class tmnt {
             PORT_BIT(0x4000, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x8000, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN2/IN3 */
+            PORT_START();
+            /* IN2/IN3 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3);
@@ -1544,7 +1582,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_punksht2 = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* DSW1/DSW2 */
+            PORT_START();
+            /* DSW1/DSW2 */
 
             PORT_DIPNAME(0x000f, 0x000f, DEF_STR("Coinage"));
             PORT_DIPSETTING(0x0000, DEF_STR("5C_1C"));
@@ -1597,7 +1636,8 @@ public class tmnt {
             PORT_DIPSETTING(0x8000, DEF_STR("Off"));
             PORT_DIPSETTING(0x0000, DEF_STR("On"));
 
-            PORT_START(); 	/* COIN/DSW3 */
+            PORT_START();
+            /* COIN/DSW3 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1622,7 +1662,8 @@ public class tmnt {
             PORT_DIPSETTING(0x8000, DEF_STR("Off"));
             PORT_DIPSETTING(0x0000, DEF_STR("On"));
 
-            PORT_START(); 	/* IN0/IN1 */
+            PORT_START();
+            /* IN0/IN1 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -1645,7 +1686,8 @@ public class tmnt {
     };
     static InputPortPtr input_ports_ssridr4p = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -1656,7 +1698,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN1 */
+            PORT_START();
+            /* IN1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -1667,7 +1710,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* COIN */
+            PORT_START();
+            /* COIN */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1678,7 +1722,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_SERVICE3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_SERVICE4);
 
-            PORT_START(); 	/* EEPROM and service */
+            PORT_START();
+            /* EEPROM and service */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_UNKNOWN);/* EEPROM data */
 
@@ -1694,7 +1739,8 @@ public class tmnt {
 
             PORT_BITX(0x80, IP_ACTIVE_LOW, IPT_SERVICE, DEF_STR("Service_Mode"), KEYCODE_F2, IP_JOY_NONE);
 
-            PORT_START(); 	/* IN2 */
+            PORT_START();
+            /* IN2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3);
@@ -1705,7 +1751,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN3 */
+            PORT_START();
+            /* IN3 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER4);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER4);
@@ -1721,7 +1768,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_ssriders = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY);
@@ -1732,7 +1780,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START(); 	/* IN1 */
+            PORT_START();
+            /* IN1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -1743,7 +1792,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START(); 	/* COIN */
+            PORT_START();
+            /* COIN */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1754,7 +1804,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* EEPROM and service */
+            PORT_START();
+            /* EEPROM and service */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_UNKNOWN);/* EEPROM data */
 
@@ -1775,7 +1826,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_tmnt2a = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY);
@@ -1786,7 +1838,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START(); 	/* IN1 */
+            PORT_START();
+            /* IN1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -1797,7 +1850,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START(); 	/* COIN */
+            PORT_START();
+            /* COIN */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1808,7 +1862,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_SERVICE3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_SERVICE4);
 
-            PORT_START(); 	/* EEPROM and service */
+            PORT_START();
+            /* EEPROM and service */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_UNKNOWN);/* EEPROM data */
 
@@ -1824,7 +1879,8 @@ public class tmnt {
 
             PORT_BITX(0x80, IP_ACTIVE_LOW, IPT_SERVICE, DEF_STR("Service_Mode"), KEYCODE_F2, IP_JOY_NONE);
 
-            PORT_START(); 	/* IN2 */
+            PORT_START();
+            /* IN2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3);
@@ -1835,7 +1891,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START3);
 
-            PORT_START(); 	/* IN3 */
+            PORT_START();
+            /* IN3 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER4);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER4);
@@ -1881,7 +1938,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER2);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_BUTTON4 | IPF_PLAYER2);
 
-            PORT_START(); 	/* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x03, 0x02, DEF_STR("Lives"));
             PORT_DIPSETTING(0x03, "2");
@@ -1905,7 +1963,8 @@ public class tmnt {
             PORT_DIPSETTING(0x80, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
 
-            PORT_START(); 	/* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x0f, 0x0f, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x02, DEF_STR("4C_1C"));
@@ -1942,7 +2001,8 @@ public class tmnt {
             PORT_DIPSETTING(0x90, DEF_STR("1C_7C"));
             //	PORT_DIPSETTING(    0x00, "Invalid" );
 
-            PORT_START(); 	/* DSW3 */
+            PORT_START();
+            /* DSW3 */
 
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Flip_Screen"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
@@ -1961,7 +2021,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_detatwin = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -1972,7 +2033,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN1 */
+            PORT_START();
+            /* IN1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -1983,7 +2045,8 @@ public class tmnt {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* COIN */
+            PORT_START();
+            /* COIN */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -1995,7 +2058,8 @@ public class tmnt {
 
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* EEPROM */
+            PORT_START();
+            /* EEPROM */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_UNKNOWN);/* EEPROM data */
 
@@ -2008,7 +2072,8 @@ public class tmnt {
 
     static InputPortPtr input_ports_glfgreat = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -2027,7 +2092,8 @@ public class tmnt {
             PORT_BIT(0x4000, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER2);
             PORT_BIT(0x8000, IP_ACTIVE_LOW, IPT_BUTTON4 | IPF_PLAYER2);
 
-            PORT_START(); 	/* IN1 */
+            PORT_START();
+            /* IN1 */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3);
@@ -2155,7 +2221,8 @@ public class tmnt {
             PORT_BIT(0x4000, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x8000, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* EEPROM and service */
+            PORT_START();
+            /* EEPROM and service */
 
             PORT_BIT(0x0001, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x0002, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -2210,16 +2277,16 @@ public class tmnt {
             UPD7759_STANDALONE_MODE, /* chip mode */
             new irqcallbackPtr[]{null}
     );
-static Samplesinterface samples_interface = new Samplesinterface(
-	1,	/* 1 channel for the title music */
-	25,	/* volume */
-        null
-);
+    static Samplesinterface samples_interface = new Samplesinterface(
+            1, /* 1 channel for the title music */
+            25, /* volume */
+            null
+    );
 
     static CustomSound_interface custom_interface = new CustomSound_interface(
-	tmnt_decode_sample,
-	null,
-	null
+            tmnt_decode_sample,
+            null,
+            null
     );
     static K053260_interface k053260_interface_nmi = new K053260_interface(
             3579545,
@@ -2330,13 +2397,13 @@ static Samplesinterface samples_interface = new Samplesinterface(
                         upd7759_interface
                 ),
                 new MachineSound(
-         				SOUND_SAMPLES,
-	 			samples_interface
-	 		),
-		 	new MachineSound(
-		 		SOUND_CUSTOM,	/* actually initializes the samples */
-		 		custom_interface
-		 	)
+                        SOUND_SAMPLES,
+                        samples_interface
+                ),
+                new MachineSound(
+                        SOUND_CUSTOM, /* actually initializes the samples */
+                        custom_interface
+                )
             }
     );
     static MachineDriver machine_driver_punkshot = new MachineDriver(
@@ -2679,13 +2746,17 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x40000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_GFX_EVEN("808e12.f28", 0x000000, 0x10000, 0xd62f1fde);       /* 8x8 tiles */
+            ROM_LOAD_GFX_EVEN("808e12.f28", 0x000000, 0x10000, 0xd62f1fde);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_ODD("808e13.h28", 0x000000, 0x10000, 0x1fa708f4);       /* 8x8 tiles */
+            ROM_LOAD_GFX_ODD("808e13.h28", 0x000000, 0x10000, 0x1fa708f4);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_EVEN("808e22.i28", 0x020000, 0x10000, 0x73d758f6);       /* 8x8 tiles */
+            ROM_LOAD_GFX_EVEN("808e22.i28", 0x020000, 0x10000, 0x73d758f6);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_ODD("808e23.k28", 0x020000, 0x10000, 0x8ff08b21);       /* 8x8 tiles */
+            ROM_LOAD_GFX_ODD("808e23.k28", 0x020000, 0x10000, 0x8ff08b21);
+            /* 8x8 tiles */
 
             ROM_REGION(0x100000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
@@ -2717,13 +2788,17 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x40000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_GFX_EVEN("808e12.f28", 0x000000, 0x10000, 0xd62f1fde);       /* 8x8 tiles */
+            ROM_LOAD_GFX_EVEN("808e12.f28", 0x000000, 0x10000, 0xd62f1fde);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_ODD("808e13.h28", 0x000000, 0x10000, 0x1fa708f4);       /* 8x8 tiles */
+            ROM_LOAD_GFX_ODD("808e13.h28", 0x000000, 0x10000, 0x1fa708f4);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_EVEN("808e22.i28", 0x020000, 0x10000, 0x73d758f6);       /* 8x8 tiles */
+            ROM_LOAD_GFX_EVEN("808e22.i28", 0x020000, 0x10000, 0x73d758f6);
+            /* 8x8 tiles */
 
-            ROM_LOAD_GFX_ODD("808e23.k28", 0x020000, 0x10000, 0x8ff08b21);       /* 8x8 tiles */
+            ROM_LOAD_GFX_ODD("808e23.k28", 0x020000, 0x10000, 0x8ff08b21);
+            /* 8x8 tiles */
 
             ROM_REGION(0x100000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
@@ -2756,19 +2831,25 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);       /* 8x8 tiles */
+            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);
+            /* 8x8 tiles */
 
-            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);       /* 8x8 tiles */
+            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);
+            /* 8x8 tiles */
 
             ROM_REGION(0x200000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);       /* sprites */
+            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);
+            /* sprites */
 
-            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);       /* sprites */
+            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);
+            /* sprites */
 
-            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);       /* sprites */
+            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);
+            /* sprites */
 
-            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);       /* sprites */
+            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);
+            /* sprites */
 
             ROM_REGION(0x0200, REGION_PROMS);
             ROM_LOAD("tmnt.g7", 0x0000, 0x0100, 0xabd82680);/* sprite address decoder */
@@ -2805,19 +2886,25 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);       /* 8x8 tiles */
+            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);
+            /* 8x8 tiles */
 
-            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);       /* 8x8 tiles */
+            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);
+            /* 8x8 tiles */
 
             ROM_REGION(0x200000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);       /* sprites */
+            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);
+            /* sprites */
 
-            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);       /* sprites */
+            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);
+            /* sprites */
 
-            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);       /* sprites */
+            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);
+            /* sprites */
 
-            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);       /* sprites */
+            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);
+            /* sprites */
 
             ROM_REGION(0x0200, REGION_PROMS);
             ROM_LOAD("tmnt.g7", 0x0000, 0x0100, 0xabd82680);/* sprite address decoder */
@@ -2854,19 +2941,25 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);       /* 8x8 tiles */
+            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);
+            /* 8x8 tiles */
 
-            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);       /* 8x8 tiles */
+            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);
+            /* 8x8 tiles */
 
             ROM_REGION(0x200000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);       /* sprites */
+            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);
+            /* sprites */
 
-            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);       /* sprites */
+            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);
+            /* sprites */
 
-            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);       /* sprites */
+            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);
+            /* sprites */
 
-            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);       /* sprites */
+            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);
+            /* sprites */
 
             ROM_REGION(0x0200, REGION_PROMS);
             ROM_LOAD("tmnt.g7", 0x0000, 0x0100, 0xabd82680);/* sprite address decoder */
@@ -2903,19 +2996,25 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);       /* 8x8 tiles */
+            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);
+            /* 8x8 tiles */
 
-            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);       /* 8x8 tiles */
+            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);
+            /* 8x8 tiles */
 
             ROM_REGION(0x200000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);       /* sprites */
+            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);
+            /* sprites */
 
-            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);       /* sprites */
+            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);
+            /* sprites */
 
-            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);       /* sprites */
+            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);
+            /* sprites */
 
-            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);       /* sprites */
+            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);
+            /* sprites */
 
             ROM_REGION(0x0200, REGION_PROMS);
             ROM_LOAD("tmnt.g7", 0x0000, 0x0100, 0xabd82680);/* sprite address decoder */
@@ -2952,19 +3051,25 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);       /* 8x8 tiles */
+            ROM_LOAD("963-a28", 0x000000, 0x80000, 0xdb4769a8);
+            /* 8x8 tiles */
 
-            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);       /* 8x8 tiles */
+            ROM_LOAD("963-a29", 0x080000, 0x80000, 0x8069cd2e);
+            /* 8x8 tiles */
 
             ROM_REGION(0x200000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);       /* sprites */
+            ROM_LOAD("963-a17", 0x000000, 0x80000, 0xb5239a44);
+            /* sprites */
 
-            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);       /* sprites */
+            ROM_LOAD("963-a18", 0x080000, 0x80000, 0xdd51adef);
+            /* sprites */
 
-            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);       /* sprites */
+            ROM_LOAD("963-a15", 0x100000, 0x80000, 0x1f324eed);
+            /* sprites */
 
-            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);       /* sprites */
+            ROM_LOAD("963-a16", 0x180000, 0x80000, 0xd4bd9984);
+            /* sprites */
 
             ROM_REGION(0x0200, REGION_PROMS);
             ROM_LOAD("tmnt.g7", 0x0000, 0x0100, 0xabd82680);/* sprite address decoder */
@@ -3114,13 +3219,15 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_WIDE("060_e07.r16", 0x000000, 0x080000, 0xc400edf3); /* tiles */
+            ROM_LOAD_WIDE("060_e07.r16", 0x000000, 0x080000, 0xc400edf3);
+            /* tiles */
 
             ROM_LOAD_WIDE("060_e08.r16", 0x080000, 0x080000, 0x70dddba1);
 
             ROM_REGION(0x100000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_WIDE("060_e06.r16", 0x000000, 0x080000, 0x09381492); /* sprites */
+            ROM_LOAD_WIDE("060_e06.r16", 0x000000, 0x080000, 0x09381492);
+            /* sprites */
 
             ROM_LOAD_WIDE("060_e05.r16", 0x080000, 0x080000, 0x32454241);
 
@@ -3145,13 +3252,15 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             ROM_REGION(0x100000, REGION_GFX1);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_WIDE("060_e07.r16", 0x000000, 0x080000, 0xc400edf3); /* tiles */
+            ROM_LOAD_WIDE("060_e07.r16", 0x000000, 0x080000, 0xc400edf3);
+            /* tiles */
 
             ROM_LOAD_WIDE("060_e08.r16", 0x080000, 0x080000, 0x70dddba1);
 
             ROM_REGION(0x100000, REGION_GFX2);/* graphics (addressable by the main CPU) */
 
-            ROM_LOAD_WIDE("060_e06.r16", 0x000000, 0x080000, 0x09381492); /* sprites */
+            ROM_LOAD_WIDE("060_e06.r16", 0x000000, 0x080000, 0x09381492);
+            /* sprites */
 
             ROM_LOAD_WIDE("060_e05.r16", 0x080000, 0x080000, 0x32454241);
 
@@ -3643,7 +3752,8 @@ static Samplesinterface samples_interface = new Samplesinterface(
 
             temp = new UBytePtr(len);
             if (temp == null) {
-                return;	/* bad thing! */
+                return;
+                /* bad thing! */
 
             }
             memcpy(temp, gfxdata, len);
@@ -3753,9 +3863,9 @@ static Samplesinterface samples_interface = new Samplesinterface(
                 int CA9 = 9;
 
                 /* following table derived from the schematics. It indicates, for each of the */
-                /* 9 low bits of the sprite line address, which bit to pick it from. */
-                /* For example, when the PROM contains 4, which applies to 4x2 sprites, */
-                /* bit OA1 comes from CA5, OA2 from CA0, and so on. */
+ /* 9 low bits of the sprite line address, which bit to pick it from. */
+ /* For example, when the PROM contains 4, which applies to 4x2 sprites, */
+ /* bit OA1 comes from CA5, OA2 from CA0, and so on. */
                 int bit_pick_table[][]
                         = {
                             /*0(1x1) 1(2x1) 2(1x2) 3(2x2) 4(4x2) 5(2x4) 6(4x4) 7(8x8) */
@@ -3837,14 +3947,14 @@ static Samplesinterface samples_interface = new Samplesinterface(
     public static GameDriver driver_trigon = new GameDriver("1990", "trigon", "tmnt.java", rom_trigon, driver_lgtnfght, machine_driver_lgtnfght, input_ports_lgtnfght, init_gfx, ROT90, "Konami", "Trigon (Japan)");
 
     /*TODO*///GAME( 1991, blswhstl, 0,        detatwin, detatwin, gfx,      ROT90, "Konami", "Bells & Whistles" )
-            /*TODO*///GAME( 1991, detatwin, blswhstl, detatwin, detatwin, gfx,      ROT90, "Konami", "Detana!! Twin Bee (Japan)" )
-            /*TODO*///
-            /*TODO*///GAMEX(1991, glfgreat, 0,        glfgreat, glfgreat, glfgreat, ROT0,  "Konami", "Golfing Greats", GAME_NOT_WORKING )
-            /*TODO*///
-            /*TODO*///GAMEX(1991, tmnt2,    0,        tmnt2,    ssridr4p, gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (4 Players US)", GAME_IMPERFECT_COLORS )
-            /*TODO*///GAMEX(1991, tmnt22p,  tmnt2,    tmnt2,    ssriders, gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (2 Players US)", GAME_IMPERFECT_COLORS )
-            /*TODO*///GAMEX(1991, tmnt2a,   tmnt2,    tmnt2,    tmnt2a,   gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (4 Players Asia)", GAME_IMPERFECT_COLORS )
-            /*TODO*///
+    /*TODO*///GAME( 1991, detatwin, blswhstl, detatwin, detatwin, gfx,      ROT90, "Konami", "Detana!! Twin Bee (Japan)" )
+    /*TODO*///
+    /*TODO*///GAMEX(1991, glfgreat, 0,        glfgreat, glfgreat, glfgreat, ROT0,  "Konami", "Golfing Greats", GAME_NOT_WORKING )
+    /*TODO*///
+    /*TODO*///GAMEX(1991, tmnt2,    0,        tmnt2,    ssridr4p, gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (4 Players US)", GAME_IMPERFECT_COLORS )
+    /*TODO*///GAMEX(1991, tmnt22p,  tmnt2,    tmnt2,    ssriders, gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (2 Players US)", GAME_IMPERFECT_COLORS )
+    /*TODO*///GAMEX(1991, tmnt2a,   tmnt2,    tmnt2,    tmnt2a,   gfx,      ROT0,  "Konami", "Teenage Mutant Ninja Turtles - Turtles in Time (4 Players Asia)", GAME_IMPERFECT_COLORS )
+    /*TODO*///
     public static GameDriver driver_ssriders = new GameDriver("1991", "ssriders", "tmnt.java", rom_ssriders, null, machine_driver_ssriders, input_ports_ssridr4p, init_gfx, ROT0, "Konami", "Sunset Riders (World 4 Players ver. EAC)");
     public static GameDriver driver_ssrdrebd = new GameDriver("1991", "ssrdrebd", "tmnt.java", rom_ssrdrebd, driver_ssriders, machine_driver_ssriders, input_ports_ssriders, init_gfx, ROT0, "Konami", "Sunset Riders (World 2 Players ver. EBD)");
     public static GameDriver driver_ssrdrebc = new GameDriver("1991", "ssrdrebc", "tmnt.java", rom_ssrdrebc, driver_ssriders, machine_driver_ssriders, input_ports_ssriders, init_gfx, ROT0, "Konami", "Sunset Riders (World 2 Players ver. EBC)");

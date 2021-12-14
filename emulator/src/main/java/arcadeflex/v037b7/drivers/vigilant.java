@@ -21,9 +21,12 @@ import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_DAC;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2151;
 import static arcadeflex.v037b7.sound.dacH.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static arcadeflex.v037b7.sndhrdw.m72.*;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
+import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
+import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 
 public class vigilant {

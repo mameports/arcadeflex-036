@@ -4,6 +4,12 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_1_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_1_w;
+import static arcadeflex.v037b7.sound._2203intfH.YM2203_VOL;
+import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -17,8 +23,6 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.commando.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.memory_set_opcode_base;
 
 public class commando {

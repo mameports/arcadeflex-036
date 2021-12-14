@@ -6,26 +6,16 @@
  *
  */ 
 package gr.codebb.arcadeflex.v036.machine;
+import static arcadeflex.v037b7.sound.k053260.K053260_r;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
-import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.platform.input.*;
-import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.mame.commonH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.simpsons.*;
 import static gr.codebb.arcadeflex.v036.machine.eeprom.*;
 import static gr.codebb.arcadeflex.v036.machine.eepromH.*;
@@ -34,7 +24,6 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K053247.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
 
 public class simpsons
 {
@@ -140,7 +129,7 @@ public class simpsons
 	{
 		/* If the sound CPU is running, read the status, otherwise
 		   just make it pass the test */
-		if (Machine.sample_rate != 0) 	return K053260_ReadReg.handler(2 + offset);
+		if (Machine.sample_rate != 0) 	return K053260_r.handler(2 + offset);
 		else
 		{
 			

@@ -106,6 +106,11 @@ e000-e001	YM2203
  * using automatic conversion tool v0.08
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_0_r;
+import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;
+import static arcadeflex.v037b7.sound._2203intfH.YM2203_VOL;
+import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -122,8 +127,6 @@ import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_UPD7759;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2203;
 import static gr.codebb.arcadeflex.v036.vidhrdw.combatsc.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.upd7759.*;
 import static gr.codebb.arcadeflex.v036.sound.upd7759H.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.install_mem_read_handler;

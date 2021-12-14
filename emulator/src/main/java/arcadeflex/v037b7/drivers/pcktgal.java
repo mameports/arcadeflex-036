@@ -21,10 +21,10 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.dec8.*;
 import static arcadeflex.v037b7.vidhrdw.pcktgal.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205H.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2203intfH.*;
+import static arcadeflex.v037b7.sound._3812intfH.*;
+import static arcadeflex.v037b7.sound._3812intf.*;
+import static arcadeflex.v037b7.sound._2203intf.*;
+import static arcadeflex.v037b7.sound._2203intfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.memory_set_opcode_base;
 
 public class pcktgal {

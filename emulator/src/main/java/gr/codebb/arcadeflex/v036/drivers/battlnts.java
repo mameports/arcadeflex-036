@@ -4,6 +4,13 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_1_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_1_r;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_1_w;
+import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
@@ -17,12 +24,9 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K007342.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K007420.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.battlnts.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
 
 public class battlnts {
 

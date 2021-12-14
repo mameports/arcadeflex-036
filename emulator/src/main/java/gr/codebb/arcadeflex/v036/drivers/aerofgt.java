@@ -32,6 +32,14 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_A_r;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_B_r;
+import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -49,12 +57,9 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD_MEM;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.aerofgt.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intfH.*;
 
 public class aerofgt {
 

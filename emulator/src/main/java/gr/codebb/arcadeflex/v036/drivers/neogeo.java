@@ -91,6 +91,15 @@ Points to note, known and proven information deleted from this map:
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_A_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_data_port_0_B_w;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_read_port_0_r;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_A_r;
+import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_B_r;
+import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -107,13 +116,10 @@ import static gr.codebb.arcadeflex.v036.mame.sndintrf.soundlatch_w;
 import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2610;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._2610intfH.*;
 import static gr.codebb.arcadeflex.v036.machine.neogeo.*;
 import static gr.codebb.arcadeflex.v036.platform.video.*;
 import static gr.codebb.arcadeflex.v036.machine.pd4990a.*;

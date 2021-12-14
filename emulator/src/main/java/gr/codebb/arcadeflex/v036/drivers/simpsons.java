@@ -27,8 +27,8 @@ import static gr.codebb.arcadeflex.v036.mame.common.*;
 import gr.codebb.arcadeflex.v036.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_YM2151;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konamiic.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intf.*;
-import static gr.codebb.arcadeflex.v036.sound._2151intfH.*;
+import static arcadeflex.v037b7.sound._2151intf.*;
+import static arcadeflex.v037b7.sound._2151intfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K053247.*;
 import static arcadeflex.v056.mame.timer.*;
@@ -38,8 +38,8 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.simpsons.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
 import static gr.codebb.arcadeflex.v036.machine.simpsons.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_K053260;
-import static gr.codebb.arcadeflex.v036.sound.k053260.*;
-import static gr.codebb.arcadeflex.v036.sound.k053260H.*;
+import static arcadeflex.v037b7.sound.k053260.*;
+import static arcadeflex.v037b7.sound.k053260H.*;
 
 public class simpsons {
 
@@ -79,7 +79,7 @@ public class simpsons {
                 new MemoryWriteAddress(0x1fb0, 0x1fbf, K053251_w),
                 new MemoryWriteAddress(0x1fc0, 0x1fc0, simpsons_coin_counter_w),
                 new MemoryWriteAddress(0x1fc2, 0x1fc2, simpsons_eeprom_w),
-                new MemoryWriteAddress(0x1fc6, 0x1fc7, K053260_WriteReg),
+                new MemoryWriteAddress(0x1fc6, 0x1fc7, K053260_w),
                 new MemoryWriteAddress(0x2000, 0x3fff, MWA_BANK4),
                 new MemoryWriteAddress(0x0000, 0x3fff, K052109_w),
                 new MemoryWriteAddress(0x4000, 0x5fff, MWA_RAM),
@@ -125,7 +125,7 @@ public class simpsons {
                 new MemoryReadAddress(0x8000, 0xbfff, MRA_BANK2),
                 new MemoryReadAddress(0xf000, 0xf7ff, MRA_RAM),
                 new MemoryReadAddress(0xf801, 0xf801, YM2151_status_port_0_r),
-                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_ReadReg),
+                new MemoryReadAddress(0xfc00, 0xfc2f, K053260_r),
                 new MemoryReadAddress(-1) /* end of table */};
 
     static MemoryWriteAddress z80_writemem[]
@@ -136,7 +136,7 @@ public class simpsons {
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
                 new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi),
-                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_WriteReg),
+                new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(0xfe00, 0xfe00, z80_bankswitch_w),
                 new MemoryWriteAddress(-1) /* end of table */};
 

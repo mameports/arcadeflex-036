@@ -4,6 +4,10 @@
  */
 package arcadeflex.v037b7.drivers;
 
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
+import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
@@ -23,8 +27,6 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.spy.*;
 import static gr.codebb.arcadeflex.v036.sound.k007232.*;
 import static gr.codebb.arcadeflex.v036.sound.k007232H.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intf.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
 
 public class spy {
 

@@ -7,8 +7,8 @@
  */
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+import static arcadeflex.v037b7.sound._3812intf.YM3812_sh_reset;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.fprintf;
 import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
@@ -23,7 +23,6 @@ import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 import static gr.codebb.arcadeflex.v036.mame.tilemapC.*;
 import static gr.codebb.arcadeflex.v036.mame.tilemapH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intf.*;
 
 public class toaplan2 {
 

@@ -44,6 +44,10 @@
  */
 package gr.codebb.arcadeflex.v036.drivers;
 
+import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_status_port_0_r;
+import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
+import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
@@ -54,8 +58,6 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3812intfH.*;
-import static gr.codebb.arcadeflex.v037b7.sound._3526intf.*;
 import static gr.codebb.arcadeflex.v036.machine.toaplan1.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.toaplan1.*;
 
