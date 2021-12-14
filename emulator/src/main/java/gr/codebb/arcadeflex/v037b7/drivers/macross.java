@@ -14,7 +14,7 @@ import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.m68_level1_irq;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.m68_level4_irq;
-import static gr.codebb.arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v037b7.sound.okim6295.OKIM6295_set_bank_base;
