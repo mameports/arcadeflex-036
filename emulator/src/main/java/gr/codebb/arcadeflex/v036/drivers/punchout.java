@@ -23,8 +23,8 @@ import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_NES;
 import static gr.codebb.arcadeflex.v036.mame.sndintrfH.SOUND_VLM5030;
 import static gr.codebb.arcadeflex.v036.sound.nes_apu.*;
 import static gr.codebb.arcadeflex.v036.sound.nes_apuH.*;
-import static gr.codebb.arcadeflex.v058.sound.vlm5030.*;
-import static gr.codebb.arcadeflex.v058.sound.vlm5030H.*;
+import static arcadeflex.v058.sound.vlm5030.*;
+import static arcadeflex.v058.sound.vlm5030H.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_readmem16;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_writemem16;
 
