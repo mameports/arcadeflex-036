@@ -18,10 +18,12 @@ along with Arcadeflex.  If not, see <http://www.gnu.org/licenses/>.
  * ported to 0.37b7
  */
 package gr.codebb.arcadeflex.v036.cpu.i8039;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.CPU_I8039;
 import static gr.codebb.arcadeflex.v036.cpu.i8039.i8039H.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_setOPbase16;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;

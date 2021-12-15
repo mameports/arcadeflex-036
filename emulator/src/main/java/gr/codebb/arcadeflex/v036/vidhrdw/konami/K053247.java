@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.vidhrdw.konami;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
@@ -499,7 +503,7 @@ public class K053247 {
                                     color[0],
                                     fx, fy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
+                                    Machine.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
                             K053247_gfx.colortable.write(16 * color[0] + 15, o);
                         } else {
                             drawgfx(bitmap, K053247_gfx,
@@ -507,7 +511,7 @@ public class K053247 {
                                     color[0],
                                     fx, fy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     } else {
                         drawgfxzoom(bitmap, K053247_gfx,
@@ -515,7 +519,7 @@ public class K053247 {
                                 color[0],
                                 fx, fy,
                                 sx, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                Machine.visible_area, TRANSPARENCY_PEN, 0,
                                 (zw << 16) / 16, (zh << 16) / 16);
                     }
                     if (mirrory != 0 && h == 1) /* Simpsons shadows */ {
@@ -529,7 +533,7 @@ public class K053247 {
                                         color[0],
                                         fx, NOT(fy),
                                         sx, sy,
-                                        Machine.drv.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
+                                        Machine.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
                                 K053247_gfx.colortable.write(16 * color[0] + 15, o);
                             } else {
                                 drawgfx(bitmap, K053247_gfx,
@@ -537,7 +541,7 @@ public class K053247 {
                                         color[0],
                                         fx, NOT(fy),
                                         sx, sy,
-                                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                        Machine.visible_area, TRANSPARENCY_PEN, 0);
                             }
                         } else {
                             drawgfxzoom(bitmap, K053247_gfx,
@@ -545,7 +549,7 @@ public class K053247 {
                                     color[0],
                                     fx, NOT(fy),
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0,
                                     (zw << 16) / 16, (zh << 16) / 16);
                         }
                     }

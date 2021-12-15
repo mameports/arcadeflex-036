@@ -16,10 +16,10 @@
  */
 package gr.codebb.arcadeflex.v036.mame;
 
-/**
- *
- * @author george
- */
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import gr.codebb.arcadeflex.v036.platform.MainStream;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
@@ -85,7 +85,7 @@ public class mame {
 
         Machine.gamedrv = gamedrv = drivers[game];
         Machine.drv = drv = gamedrv.drv;
-        /*TODO TOTAL HACK TO BE REMOVED*/ Machine.visible_area = Machine.drv.visible_area;
+        /*TODO TOTAL HACK TO BE REMOVED*/ Machine.visible_area = Machine.visible_area;
         /* copy configuration */
         if (options.color_depth == 16
                 || (options.color_depth != 8 && (Machine.gamedrv.flags & GAME_REQUIRES_16BIT) != 0)) {

@@ -20,6 +20,10 @@ TODO:
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;

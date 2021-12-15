@@ -170,7 +170,7 @@ public class xmen {
             }
 
             /* note the '+1' in the background color!!! */
-            fillbitmap(bitmap, Machine.pens[16 * bg_colorbase + 1], Machine.drv.visible_area);
+            fillbitmap(bitmap, Machine.pens[16 * bg_colorbase + 1], Machine.visible_area);
             K053247_sprites_draw(bitmap, pri[0] + 1, 0x3f);
             K052109_tilemap_draw(bitmap, layer[0], 0);
             K053247_sprites_draw(bitmap, pri[1] + 1, pri[0]);

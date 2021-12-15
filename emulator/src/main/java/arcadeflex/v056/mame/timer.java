@@ -4,7 +4,10 @@
  */
 package arcadeflex.v056.mame;
 
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;

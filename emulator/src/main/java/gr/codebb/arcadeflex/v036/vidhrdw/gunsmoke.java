@@ -235,10 +235,10 @@ public class gunsmoke {
                 copyscrollbitmap(bitmap, bgbitmap,
                         1, new int[]{xscroll},
                         1, new int[]{yscroll},
-                        Machine.drv.visible_area,
+                        Machine.visible_area,
                         TRANSPARENCY_NONE, 0);
             } else {
-                fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+                fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
             }
 
             if (objon != 0) {
@@ -267,7 +267,7 @@ public class gunsmoke {
                             spriteram.read(offs + 1) & 0x0f,
                             flipx, flipy,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
 
@@ -286,7 +286,7 @@ public class gunsmoke {
                             colorram.read(offs) & 0x1f,
                             NOT(flipscreen), NOT(flipscreen),
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_COLOR, 79);
+                            Machine.visible_area, TRANSPARENCY_COLOR, 79);
                 }
             }
         }

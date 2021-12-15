@@ -4,7 +4,10 @@
  * 
  */
 package gr.codebb.arcadeflex.v036.mame;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
@@ -773,14 +776,14 @@ public class common {
 /*TODO*/ //                            struct osd_bitmap *bitmap;
 
 /*TODO*/ //                            bitmap = osd_new_bitmap(
-/*TODO*/ //                                            Machine.drv.visible_area.max_x - Machine.drv.visible_area.min_x + 1,
-/*TODO*/ //                                            Machine.drv.visible_area.max_y - Machine.drv.visible_area.min_y + 1,
+/*TODO*/ //                                            Machine.visible_area.max_x - Machine.visible_area.min_x + 1,
+/*TODO*/ //                                            Machine.visible_area.max_y - Machine.visible_area.min_y + 1,
 /*TODO*/ //                                            Machine.scrbitmap.depth);
 
 /*TODO*/ //                            if (bitmap)
 /*TODO*/ //                            {
 /*TODO*/ //                                    copybitmap(bitmap,Machine.scrbitmap,0,0,
-/*TODO*/ //                                                    -Machine.drv.visible_area.min_x,-Machine.drv.visible_area.min_y,0,TRANSPARENCY_NONE,0);
+/*TODO*/ //                                                    -Machine.visible_area.min_x,-Machine.visible_area.min_y,0,TRANSPARENCY_NONE,0);
 /*TODO*/ //                                    png_write_bitmap(fp,bitmap);
 /*TODO*/ //                                    osd_free_bitmap(bitmap);
 /*TODO*/ //                            }

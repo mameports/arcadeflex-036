@@ -15,7 +15,10 @@
  *
  */
 package gr.codebb.arcadeflex.v036.machine;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
@@ -1257,7 +1260,7 @@ public class atarigen {
                 if (result > 255) {
                     result = 255;
                 }
-                if (result > Machine.drv.visible_area.max_y) {
+                if (result > Machine.visible_area.max_y) {
                     result |= 0x4000;
                 }
 

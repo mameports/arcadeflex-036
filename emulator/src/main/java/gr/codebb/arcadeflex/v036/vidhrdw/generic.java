@@ -110,7 +110,7 @@ public class generic {
     {
 
 	if (full_refresh!=0)
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
     }};
 
     public static ReadHandlerPtr videoram_r = new ReadHandlerPtr() {

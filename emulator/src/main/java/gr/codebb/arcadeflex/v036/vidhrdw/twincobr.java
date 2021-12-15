@@ -458,7 +458,7 @@ public class twincobr {
 /*TODO*///							color,
 /*TODO*///							flipx,flipy,
 /*TODO*///							sx-32,sy-16,
-/*TODO*///							&Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+/*TODO*///							&Machine.visible_area,TRANSPARENCY_PEN,0);
 /*TODO*///					}
 /*TODO*///				}
 /*TODO*///			}
@@ -485,7 +485,7 @@ public class twincobr {
 /*TODO*///							color,
 /*TODO*///							flipx,flipy,
 /*TODO*///							sx-32,sy-16,
-/*TODO*///							&Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+/*TODO*///							&Machine.visible_area,TRANSPARENCY_PEN,0);
 /*TODO*///					}
 /*TODO*///				}
 /*TODO*///			}
@@ -688,7 +688,7 @@ public class twincobr {
 				scroll_x = (0x1c9 - bgscrollx) & 0x1ff;
 				scroll_y = (- 0x1e - bgscrolly) & 0x1ff;
 			}
-			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll_x},1,new int[]{scroll_y},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll_x},1,new int[]{scroll_y},Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 /*TODO*///	
 /*TODO*///	
@@ -722,7 +722,7 @@ public class twincobr {
 				color,
 				twincobr_flip_screen,twincobr_flip_screen,
 				xpos,ypos,
-				Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+				Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 /*TODO*///	
 /*TODO*///	/*********  Begin ugly sprite hack for Wardner when hero is in shop *********/
@@ -779,7 +779,7 @@ public class twincobr {
 				color,
 				twincobr_flip_screen,twincobr_flip_screen,
 				xpos,ypos,
-				Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+				Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 /*TODO*///		/* draw the sprites in high priority */

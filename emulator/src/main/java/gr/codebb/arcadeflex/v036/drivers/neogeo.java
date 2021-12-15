@@ -91,6 +91,10 @@ Points to note, known and proven information deleted from this map:
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_A_w;
 import static arcadeflex.v037b7.sound._2610intf.YM2610_control_port_0_B_w;

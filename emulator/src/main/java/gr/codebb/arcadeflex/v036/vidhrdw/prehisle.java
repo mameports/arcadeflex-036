@@ -168,7 +168,7 @@ public class prehisle {
 
             scrollx = -((vid_control[7] << 8 | vid_control[6]) & 0xf);
             scrolly = -(vid_control[5] << 8 | vid_control[4]);
-            copyscrollbitmap(bitmap, pf1_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copyscrollbitmap(bitmap, pf1_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Calculate tilebase for background, 64 bytes per column */
             tile_base = (((vid_control[3] << 8 | vid_control[2]) & 0xff0) >> 4) * 64;
@@ -203,7 +203,7 @@ public class prehisle {
 
             scrollx = -((vid_control[3] << 8 | vid_control[2]) & 0xf);
             scrolly = -(vid_control[1] << 8 | vid_control[0]);
-            copyscrollbitmap(bitmap, pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
 
             /* Sprites */
             for (offs = 0; offs < 0x800; offs += 8) {
@@ -236,7 +236,7 @@ public class prehisle {
                 drawgfx(bitmap, Machine.gfx[3],
                         sprite,
                         colour, fx, fy, x, y,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                        Machine.visible_area, TRANSPARENCY_PEN, 15);
             }
 
             /* Text layer */
@@ -256,7 +256,7 @@ public class prehisle {
                             color,
                             0, 0,
                             8 * mx, 8 * my,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
                 }
             }
         }

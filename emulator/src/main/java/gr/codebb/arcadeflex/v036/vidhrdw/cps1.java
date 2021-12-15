@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
@@ -1334,7 +1338,7 @@ public class cps1 {
 
         cps1_render_scroll2_bitmap(cps1_scroll2_bitmap);
 
-        copyscrollbitmap(bitmap, cps1_scroll2_bitmap, 1, new int[]{scrlx}, 1, new int[]{scrly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+        copyscrollbitmap(bitmap, cps1_scroll2_bitmap, 1, new int[]{scrlx}, 1, new int[]{scrly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
     }
 
     public static void cps1_render_scroll2_distort(osd_bitmap bitmap) {
@@ -1366,7 +1370,7 @@ public class cps1 {
 
         scrly += 0x20;
 
-        copyscrollbitmap(bitmap, cps1_scroll2_bitmap, 1024, scrollx, 1, new int[]{scrly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+        copyscrollbitmap(bitmap, cps1_scroll2_bitmap, 1024, scrollx, 1, new int[]{scrly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
     }
     
 

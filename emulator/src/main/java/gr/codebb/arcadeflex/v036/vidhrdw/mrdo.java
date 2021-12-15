@@ -210,7 +210,7 @@ public class mrdo {
                         spriteram.read(offs), spriteram.read(offs + 2) & 0x0f,
                         spriteram.read(offs + 2) & 0x10, spriteram.read(offs + 2) & 0x20,
                         spriteram.read(offs + 3), 256 - spriteram.read(offs + 1),
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
         }
     }
@@ -221,7 +221,7 @@ public class mrdo {
 
             tilemap_render(ALL_TILEMAPS);
 
-            fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+            fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
             tilemap_draw(bitmap, bg_tilemap, TILEMAP_FRONT);
             tilemap_draw(bitmap, fg_tilemap, TILEMAP_FRONT);
             draw_sprites(bitmap);

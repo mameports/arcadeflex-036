@@ -627,11 +627,11 @@ public class combatsc
 		{
 			rectangle clip;
 	
-			clip = new rectangle(Machine.drv.visible_area);
+			clip = new rectangle(Machine.visible_area);
 			clip.max_x = clip.min_x + 7;
 			fillbitmap(bitmap,Machine.pens[0],clip);
 	
-			clip = new rectangle(Machine.drv.visible_area);
+			clip = new rectangle(Machine.visible_area);
 			clip.min_x = clip.max_x - 7;
 			fillbitmap(bitmap,Machine.pens[0],clip);
 		}
@@ -668,7 +668,7 @@ public class combatsc
 	static void bootleg_draw_sprites( osd_bitmap bitmap, UBytePtr source, int circuit )
 	{
 		GfxElement gfx = Machine.gfx[circuit+2];
-		rectangle clip = Machine.drv.visible_area;
+		rectangle clip = Machine.visible_area;
 	
 		UBytePtr RAM = memory_region(REGION_CPU1);
 		int limit = ( circuit)!=0 ? (RAM.read(0xc2)*256 + RAM.read(0xc3)) : (RAM.read(0xc0)*256 + RAM.read(0xc1));

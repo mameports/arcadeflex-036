@@ -91,7 +91,7 @@ public class bagman {
             int offs;
 
             if (bagman_video_enable.read() == 0) {
-                fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+                fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
 
                 return;
             }
@@ -125,12 +125,12 @@ public class bagman {
                             colorram.read(offs) & 0x0f,
                             flipscreen[0], flipscreen[1],
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
             /* copy the character mapped graphics */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Draw the sprites. */
             for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
@@ -156,7 +156,7 @@ public class bagman {
                             spriteram.read(offs + 1) & 0x1f,
                             flipx, flipy,
                             sx, sy + 1, /* compensate misplacement */
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
         }

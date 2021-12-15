@@ -147,7 +147,7 @@ public class bottom9
 		tilemap_render(ALL_TILEMAPS);
 	
 		/* note: FIX layer is not used */
-		fillbitmap(bitmap,Machine.pens[layer_colorbase[1]],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[layer_colorbase[1]],Machine.visible_area);
 	//	if (bottom9_video_enable != 0)
 		{
 			K051960_sprites_draw(bitmap,1,1);

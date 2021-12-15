@@ -139,7 +139,7 @@ public class ssi {
                         color,
                         flipx, flipy,
                         x, y,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
         }
     };

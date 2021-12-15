@@ -199,7 +199,7 @@ public class speedbal {
                     SPTColor,
                     0, 0,
                     SPTX, SPTY,
-                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                    Machine.visible_area, TRANSPARENCY_PEN, 0);
         }
     }
 
@@ -372,11 +372,11 @@ public class speedbal {
 
             // first background
             speedbal_draw_background(bitmap_bg);
-            copybitmap(bitmap, bitmap_bg, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, bitmap_bg, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             // second characters (general)
             speedbal_draw_foreground1(bitmap_ch);
-            copybitmap(bitmap, bitmap_ch, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copybitmap(bitmap, bitmap_ch, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
 
             // thirth sprites
             speedbal_draw_sprites(bitmap);

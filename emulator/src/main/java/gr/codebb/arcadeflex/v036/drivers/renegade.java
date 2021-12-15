@@ -105,6 +105,10 @@ $8000 - $ffff	ROM
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static arcadeflex.v037b7.sound._3526intf.YM3526_control_port_0_w;
 import static arcadeflex.v037b7.sound._3526intf.YM3526_status_port_0_r;
 import static arcadeflex.v037b7.sound._3526intf.YM3526_write_port_0_w;

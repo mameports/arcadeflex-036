@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
@@ -466,7 +470,7 @@ public class tilemapC {
     
     		_tilemap.tile_get_info = tile_get_info;
     		_tilemap.enable = 1;
-    		tilemap_set_clip( _tilemap, Machine.drv.visible_area );
+    		tilemap_set_clip( _tilemap, Machine.visible_area );
     
     		if( Machine.scrbitmap.depth==16 ){
                     throw new UnsupportedOperationException("tilemap_init() 16BIT unimplemented");

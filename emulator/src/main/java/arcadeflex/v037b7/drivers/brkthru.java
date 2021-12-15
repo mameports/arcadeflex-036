@@ -5,6 +5,7 @@
  */
 package arcadeflex.v037b7.drivers;
 
+import static arcadeflex.v037b7.mame.driverH.*;
 import static arcadeflex.v037b7.sound._2203intf.YM2203_control_port_0_w;
 import static arcadeflex.v037b7.sound._2203intf.YM2203_status_port_0_r;
 import static arcadeflex.v037b7.sound._2203intf.YM2203_write_port_0_w;

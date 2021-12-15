@@ -346,7 +346,7 @@ public class dec8
 						colour,
 						fx,fy,
 						x,y - 16 * multi,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 				multi--;
 			}
 		}
@@ -387,14 +387,14 @@ public class dec8
 					color,
 					fx,flipscreen,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 	        if (multi != 0)
 	    		drawgfx(bitmap,Machine.gfx[1],
 					code+1,
 					color,
 					fx,flipscreen,
 					sx,sy2,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	}
 	
@@ -414,7 +414,7 @@ public class dec8
 	
 			drawgfx(bitmap,Machine.gfx[0],
 					tile,color,0,0,8*mx,8*my,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	}
 	
@@ -550,11 +550,11 @@ public class dec8
 			for (offs = 0;offs < 512;offs+=2)
 				rscroll[offs/2] = -( (dec8_row.read(offs)<<8) + dec8_row.read(offs+1) ) -((scroll2[0]<<8)+scroll2[1]);
 	
-			copyscrollbitmap(bitmap,pf2_bitmap,256,rscroll,1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,pf2_bitmap,256,rscroll,1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	    } else {
 			scrolly=-((scroll2[2]<<8)+scroll2[3]);
 			scrollx=-((scroll2[0]<<8)+scroll2[1]);
-			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	    }
 	
 	
@@ -600,7 +600,7 @@ public class dec8
 	        color=0;      /* Not correct! */
 	       	drawgfx(bitmap,Machine.gfx[0],
 					tile,color,flipscreen,flipscreen,8*mx,8*my,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 	    }
 	}};
 	

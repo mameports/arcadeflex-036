@@ -202,7 +202,7 @@ public class trackfld
 					scroll[offs] = -(trackfld_scroll.read(offs) + 256 * (trackfld_scroll2.read(offs) & 1));
 			}
 	
-			copyscrollbitmap(bitmap,tmpbitmap,32,scroll,0,null,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,32,scroll,0,null,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -231,7 +231,7 @@ public class trackfld
 					spriteram_2.read(offs) & 0x0f,
 					flipx,flipy,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+					Machine.visible_area,TRANSPARENCY_COLOR,0);
 	
 			/* redraw with wraparound */
 			drawgfx(bitmap,Machine.gfx[1],
@@ -239,7 +239,7 @@ public class trackfld
 					spriteram_2.read(offs) & 0x0f,
 					flipx,flipy,
 					sx-256,sy,
-					Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+					Machine.visible_area,TRANSPARENCY_COLOR,0);
 		}
 	} };
 }

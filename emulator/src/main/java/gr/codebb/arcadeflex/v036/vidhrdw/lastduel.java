@@ -307,7 +307,7 @@ public class lastduel
 				color,
 				flipx,flipy,
 				sx,sy,
-				Machine.drv.visible_area,
+				Machine.visible_area,
 				TRANSPARENCY_PEN,15);
 		}
 	
@@ -409,7 +409,7 @@ public class lastduel
 				color,
 				flipx,flipy,
 				sx,sy,
-				Machine.drv.visible_area,
+				Machine.visible_area,
 				TRANSPARENCY_PEN,15);
 		}
 	

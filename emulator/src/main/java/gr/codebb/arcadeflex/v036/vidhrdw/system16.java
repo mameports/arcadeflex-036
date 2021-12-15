@@ -753,7 +753,7 @@ public class system16
 	/***************************************************************************/
 	
 	static void get_sprite_info(  ){
-	//	const struct rectangle *clip = &Machine.drv.visible_area;
+	//	const struct rectangle *clip = &Machine.visible_area;
 		UShortArray base_pal = new UShortArray(Machine.gfx[0].colortable, 1024);
 		UBytePtr base_gfx = memory_region(REGION_GFX2);
 	
@@ -1682,7 +1682,7 @@ public class system16
 			if (freeze_counter_sys16 != 0)
 			{
 				if (sys16_clear_screen != 0)
-					fillbitmap(bitmap,palette_transparent_color,Machine.drv.visible_area);
+					fillbitmap(bitmap,palette_transparent_color,Machine.visible_area);
 				freeze_counter_sys16--;
 				return;
 			}
@@ -1898,7 +1898,7 @@ public class system16
 /*TODO*///			if (freeze_counter != 0)
 /*TODO*///			{
 /*TODO*///	//			if (sys16_clear_screen != 0)
-/*TODO*///	//				fillbitmap(bitmap,palette_transparent_color,&Machine.drv.visible_area);
+/*TODO*///	//				fillbitmap(bitmap,palette_transparent_color,&Machine.visible_area);
 /*TODO*///				freeze_counter--;
 /*TODO*///				return;
 /*TODO*///			}
@@ -2005,7 +2005,7 @@ public class system16
 /*TODO*///			if (sys18_bg2_active != 0)
 /*TODO*///				tilemap_draw( bitmap, background2, 0 );
 /*TODO*///			else
-/*TODO*///				fillbitmap(bitmap,palette_transparent_color,&Machine.drv.visible_area);
+/*TODO*///				fillbitmap(bitmap,palette_transparent_color,&Machine.visible_area);
 /*TODO*///	
 /*TODO*///			tilemap_draw( bitmap, background, TILEMAP_IGNORE_TRANSPARENCY );
 /*TODO*///			tilemap_draw( bitmap, background, TILEMAP_IGNORE_TRANSPARENCY | 1 );	//??

@@ -4,21 +4,27 @@
  */
 package arcadeflex.v037b7.drivers;
 
+//mame imports
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.driverH.*;
+//sound imports
+import static arcadeflex.v037b7.sound._2203intf.*;
+import static arcadeflex.v037b7.sound._2203intfH.*;
+//vidhrdw imports
+import static arcadeflex.v037b7.vidhrdw._1943.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;
-import static arcadeflex.v037b7.vidhrdw._1943.*;
-import static arcadeflex.v037b7.sound._2203intf.*;
-import static arcadeflex.v037b7.sound._2203intfH.*;
 
 public class _1943 {
 

@@ -109,7 +109,7 @@ public class thunderx
 		/* The background color is always from layer 1 - but it's always black anyway */
 		if (scontra_priority != 0)
 		{
-	//		fillbitmap(bitmap,Machine.pens[16 * layer_colorbase[1]],&Machine.drv.visible_area);
+	//		fillbitmap(bitmap,Machine.pens[16 * layer_colorbase[1]],&Machine.visible_area);
 	//		K051960_sprites_draw(bitmap,1,1);
 			K052109_tilemap_draw(bitmap,2,TILEMAP_IGNORE_TRANSPARENCY);
 			K051960_sprites_draw(bitmap,2,2);
@@ -119,7 +119,7 @@ public class thunderx
 		}
 		else
 		{
-	//		fillbitmap(bitmap,Machine.pens[16 * layer_colorbase[1]],&Machine.drv.visible_area);
+	//		fillbitmap(bitmap,Machine.pens[16 * layer_colorbase[1]],&Machine.visible_area);
 	//		K051960_sprites_draw(bitmap,1,1);
 			K052109_tilemap_draw(bitmap,1,TILEMAP_IGNORE_TRANSPARENCY);
 			K051960_sprites_draw(bitmap,2,2);

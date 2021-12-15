@@ -518,7 +518,7 @@ public class m72
 							color,
 							flipx,flipy,
 							sx + 16*x,sy + 16*y,
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -560,7 +560,7 @@ public class m72
 							color,
 							flipx,flipy,
 							sx + 16*x,sy + 16*y,
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -600,14 +600,14 @@ public class m72
 		/* use clip regions to split the screen */
 		rectangle clip=new rectangle();
 	
-		clip.min_x = Machine.drv.visible_area.min_x;
-		clip.max_x = Machine.drv.visible_area.max_x;
-		start = Machine.drv.visible_area.min_y - 128;
+		clip.min_x = Machine.visible_area.min_x;
+		clip.max_x = Machine.visible_area.max_x;
+		start = Machine.visible_area.min_y - 128;
 		do
 		{
 			i = start;
 			while (scrollx[i+1] == scrollx[start] && scrolly[i+1] == scrolly[start]
-					&& i < Machine.drv.visible_area.max_y - 128)
+					&& i < Machine.visible_area.max_y - 128)
                         {
 				i++;
                                 if(i==255) break;//check the boundries of table (shadow)
@@ -621,7 +621,7 @@ public class m72
 			tilemap_draw(bitmap,tilemap,priority);
 	
 			start = i+1;
-		} while (start < Machine.drv.visible_area.max_y - 128);
+		} while (start < Machine.visible_area.max_y - 128);
 	}
 	
 	static void draw_bg(osd_bitmap bitmap,int priority)

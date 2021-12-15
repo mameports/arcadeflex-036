@@ -72,7 +72,7 @@ public class commonH {
     public static final int REGIONFLAG_DISPOSE  =	0x80000000;           /* Dispose of this region when done */
     public static final int REGIONFLAG_SOUNDONLY=	0x40000000;           /* load only if sound emulation is turned on */
  
-    static RomModule[] rommodule_macro=null;
+    public static RomModule[] rommodule_macro=null;
     static ArrayList<RomModule> arload = new ArrayList<RomModule>();
     /* start of memory region */
     public static void ROM_REGION(int offset,int type){ arload.add(new RomModule( null, offset, 0,type ));}

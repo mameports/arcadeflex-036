@@ -235,7 +235,7 @@ public class gberet
 						sr.read(offs+1) & 0x0f,
 						flipx,flipy,
 						sx,sy,
-						Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+						Machine.visible_area,TRANSPARENCY_COLOR,0);
 			}
 		}
 	}
@@ -271,7 +271,7 @@ public class gberet
 						sr.read(offs+3) & 0x0f,
 						flipx,flipy,
 						sx,sy,
-						Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+						Machine.visible_area,TRANSPARENCY_COLOR,0);
 			}
 		}
 	}

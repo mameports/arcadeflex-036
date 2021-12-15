@@ -314,7 +314,7 @@ public class neogeo {
 
                 sy = 0x200 - (t1 >> 7);
                 if (clip.max_y - clip.min_y > 8
-                        || /* kludge to improve the ssideki games */ clip.min_y == Machine.drv.visible_area.min_y) {
+                        || /* kludge to improve the ssideki games */ clip.min_y == Machine.visible_area.min_y) {
                     if (sy > 0x110) {
                         sy -= 0x200;
                     }
@@ -894,7 +894,7 @@ public class neogeo {
 
 
         if (clip.max_y - clip.min_y > 8
-                || /* kludge to speed up raster effects */ clip.min_y == Machine.drv.visible_area.min_y) {
+                || /* kludge to speed up raster effects */ clip.min_y == Machine.visible_area.min_y) {
             /* Palette swap occured after last frame but before this one */
             if (palette_swap_pending != 0) {
                 swap_palettes();
@@ -1086,7 +1086,7 @@ public class neogeo {
 
     public static VhUpdatePtr neogeo_vh_screenrefresh = new VhUpdatePtr() {
         public void handler(osd_bitmap bitmap, int full_refresh) {
-            screenrefresh(bitmap, Machine.drv.visible_area);
+            screenrefresh(bitmap, Machine.visible_area);
 
         }
     };
@@ -1100,15 +1100,15 @@ public class neogeo {
             next_update_first_line = 0;
         }
 
-        clip.min_x = Machine.drv.visible_area.min_x;
-        clip.max_x = Machine.drv.visible_area.max_x;
+        clip.min_x = Machine.visible_area.min_x;
+        clip.max_x = Machine.visible_area.max_x;
         clip.min_y = next_update_first_line;
         clip.max_y = current_line;
-        if (clip.min_y < Machine.drv.visible_area.min_y) {
-            clip.min_y = Machine.drv.visible_area.min_y;
+        if (clip.min_y < Machine.visible_area.min_y) {
+            clip.min_y = Machine.visible_area.min_y;
         }
-        if (clip.max_y > Machine.drv.visible_area.max_y) {
-            clip.max_y = Machine.drv.visible_area.max_y;
+        if (clip.max_y > Machine.visible_area.max_y) {
+            clip.max_y = Machine.visible_area.max_y;
         }
 
         if (clip.max_y >= clip.min_y) {

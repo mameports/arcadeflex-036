@@ -192,7 +192,7 @@ public class shuuz {
             }
 
             /* update playfield */
-            /*TODO*///            atarigen_pf_process(pf_render_callback, bitmap,  & Machine.drv.visible_area);
+            /*TODO*///            atarigen_pf_process(pf_render_callback, bitmap,  & Machine.visible_area);
 
             /* render the motion objects */
             /*TODO*///            atarigen_mo_process(mo_render_callback, bitmap);
@@ -220,7 +220,7 @@ public class shuuz {
         palette_init_used_colors();
 
         /* update color usage for the playfield */
-        atarigen_pf_process(pf_color_callback, pf_map, Machine.drv.visible_area);
+        atarigen_pf_process(pf_color_callback, pf_map, Machine.visible_area);
 
         /* update color usage for the mo's */
         /*TODO*///        atarigen_mo_process(mo_color_callback, mo_map);

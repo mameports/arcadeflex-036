@@ -472,14 +472,14 @@ public class aerofgt {
                                     color,
                                     flipx, flipy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 15);
                         } else {
                             drawgfxzoom(bitmap, Machine.gfx[map_start >= 0x4000 ? 2 : 1],
                                     code,
                                     color,
                                     flipx, flipy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 15,
+                                    Machine.visible_area, TRANSPARENCY_PEN, 15,
                                     0x1000 * zoomx, 0x1000 * zoomy);
                         }
                         map_start += 2;
@@ -548,14 +548,14 @@ public class aerofgt {
                                     color,
                                     flipx, flipy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 15);
                         } else {
                             drawgfxzoom(bitmap, Machine.gfx[map_start >= 0x4000 ? 2 : 1],
                                     code,
                                     color,
                                     flipx, flipy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 15,
+                                    Machine.visible_area, TRANSPARENCY_PEN, 15,
                                     0x1000 * zoomx, 0x1000 * zoomy);
                         }
                         map_start += 2;
@@ -617,7 +617,7 @@ public class aerofgt {
                 for (offs = 0; offs < 256; offs++) {
                     scrollx[(offs - scrolly) & 0x0ff] = -aerofgt_rasterram.READ_WORD(2 * offs);
                 }
-                copyscrollbitmap(bitmap, tmpbitmap, 256, scrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 256, scrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             turbofrc_drawsprites(bitmap, 0);
@@ -693,7 +693,7 @@ public class aerofgt {
                 {
                     scrollx[(offs - scrolly) & 0x1ff] = -aerofgt_rasterram.READ_WORD(0xe) + 11;
                 }
-                copyscrollbitmap(bitmap, tmpbitmap, 512, scrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 512, scrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             turbofrc_drawsprites(bitmap, 0);
@@ -705,7 +705,7 @@ public class aerofgt {
                 scrollx = -bg2scrollx.READ_WORD(0) + 7;
                 scrolly = -bg2scrolly.READ_WORD(0) - 2;
                 if (drawbg2 != 0) {
-                    copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                    copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
                 }
             }
 
@@ -769,7 +769,7 @@ public class aerofgt {
 
                 scrollx = -aerofgt_rasterram.READ_WORD(0x0000) + 18;
                 scrolly = -bg1scrolly.READ_WORD(0);
-                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             aerofgt_drawsprites(bitmap, 0);
@@ -780,7 +780,7 @@ public class aerofgt {
 
                 scrollx = -aerofgt_rasterram.READ_WORD(0x0400) + 20;
                 scrolly = -bg2scrolly.READ_WORD(0);
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             }
 
             aerofgt_drawsprites(bitmap, 2);

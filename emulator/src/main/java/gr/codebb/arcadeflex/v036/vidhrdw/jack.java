@@ -66,12 +66,12 @@ public class jack {
                             colorram.read(offs) & 0x07,
                             flipscreen, flipscreen,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
             /* copy the temporary bitmap to the screen */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* draw sprites */
             for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
@@ -96,7 +96,7 @@ public class jack {
                         color,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
         }
     };

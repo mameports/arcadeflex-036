@@ -103,7 +103,7 @@ public class ddragon
 	
 		copyscrollbitmap(bitmap,tmpbitmap,
 				1,new int[]{scrollx},1,new int[]{scrolly},
-				Machine.drv.visible_area,
+				Machine.visible_area,
 				TRANSPARENCY_NONE,0);
 	}
 	
@@ -116,7 +116,7 @@ public class ddragon
         
 	static void dd_draw_sprites(osd_bitmap bitmap )
 	{
-		rectangle clip = Machine.drv.visible_area;
+		rectangle clip = Machine.visible_area;
 		GfxElement gfx = Machine.gfx[1];
 	
 		UBytePtr src = new UBytePtr(dd_spriteram,0x800 );

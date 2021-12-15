@@ -594,7 +594,7 @@ public class punchout
 			for (offs = 0;offs < BOTTOM_MONITOR_ROWS;offs++)
 				scroll[TOP_MONITOR_ROWS + offs] = -(58 + punchout_scroll.read(2*offs) + 256 * (punchout_scroll.read(2*offs + 1) & 0x01));
 	
-			copyscrollbitmap(bitmap,tmpbitmap,TOP_MONITOR_ROWS + BOTTOM_MONITOR_ROWS,scroll,0,null,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,TOP_MONITOR_ROWS + BOTTOM_MONITOR_ROWS,scroll,0,null,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 		/* copy the two big sprites */
@@ -759,7 +759,7 @@ public class punchout
 	
 	
 		/* copy the character mapped graphics */
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 	
 		/* copy the two big sprites */

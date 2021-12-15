@@ -342,7 +342,7 @@ public class ccastles
 		}
 	
 		copyscrollbitmap(bitmap,tmpbitmap,1,new int[] {scrollx},1,new int[] {scrolly},
-					     Machine.drv.visible_area,
+					     Machine.visible_area,
 			   			 TRANSPARENCY_NONE,0);
 	
 	
@@ -390,7 +390,7 @@ public class ccastles
 					}
 				}
 	
-				copybitmap(bitmap,sprite_bm,0,0,x,y,Machine.drv.visible_area,TRANSPARENCY_PEN,Machine.gfx[0].colortable.read(7));
+				copybitmap(bitmap,sprite_bm,0,0,x,y,Machine.visible_area,TRANSPARENCY_PEN,Machine.gfx[0].colortable.read(7));
 			}
 			else
 			{
@@ -398,7 +398,7 @@ public class ccastles
 						spriteaddr.read(offs),1,
 						flipscreen,flipscreen,
 						x,y,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,7);
+						Machine.visible_area,TRANSPARENCY_PEN,7);
 			}
 		}
 	} };

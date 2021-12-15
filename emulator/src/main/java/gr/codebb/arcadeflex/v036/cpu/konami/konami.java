@@ -3,7 +3,10 @@
  * and open the template in the editor.
  */
 package gr.codebb.arcadeflex.v036.cpu.konami;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.cpu_interface;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;

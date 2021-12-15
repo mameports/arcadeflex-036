@@ -152,13 +152,13 @@ public class arkanoid
 						((videoram.read(offs) & 0xf8) >> 3) + 32 * palettebank,
 						flipscreen[0],flipscreen[1],
 						8*sx,8*sy,
-						Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+						Machine.visible_area,TRANSPARENCY_NONE,0);
 			}
 		}
 	
 	
 		/* copy the temporary bitmap to the screen */
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 	
 		/* Draw the sprites. */
@@ -178,13 +178,13 @@ public class arkanoid
 					((spriteram.read(offs + 2) & 0xf8) >> 3) + 32 * palettebank,
 					flipscreen[0],flipscreen[1],
 					sx,sy + (flipscreen[1]!=0 ? 8 : -8),
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 			drawgfx(bitmap,Machine.gfx[0],
 					2 * code + 1,
 					((spriteram.read(offs + 2) & 0xf8) >> 3) + 32 * palettebank,
 					flipscreen[0],flipscreen[1],
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

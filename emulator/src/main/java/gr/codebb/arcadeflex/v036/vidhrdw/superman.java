@@ -204,7 +204,7 @@ public class superman {
                                     color,
                                     flipx, flipy,
                                     x, y,
-                                    Machine.drv.visible_area,
+                                    Machine.visible_area,
                                     TRANSPARENCY_PEN, 0);
                         }
                     }
@@ -233,7 +233,7 @@ public class superman {
                                 color,
                                 flipx, flipy,
                                 x, y,
-                                Machine.drv.visible_area,
+                                Machine.visible_area,
                                 TRANSPARENCY_PEN, 0);
                     }
                 }

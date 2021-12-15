@@ -217,7 +217,7 @@ public class commando {
                     scrolly = 256 - scrolly;
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* Draw the sprites. Note that it is important to draw them exactly in this */
@@ -245,7 +245,7 @@ public class commando {
                             (spriteram.read(offs + 1) & 0x30) >> 4,
                             flipx, flipy,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
                 }
             }
 
@@ -270,7 +270,7 @@ public class commando {
                         colorram.read(offs) & 0x0f,
                         flipx, flipy,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 3);
+                        Machine.visible_area, TRANSPARENCY_PEN, 3);
             }
         }
     };

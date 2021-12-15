@@ -220,7 +220,7 @@ public class tumblep
 						colour,
 						fx,fy,
 						x,y - 16 * multi,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 				multi--;
 			}
@@ -313,7 +313,7 @@ public class tumblep
 		/* Background */
 		scrollx=-tumblep_control_0.READ_WORD(6);
 		scrolly=-tumblep_control_0.READ_WORD(8);
-	 	copyscrollbitmap(bitmap,tumblep_pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+	 	copyscrollbitmap(bitmap,tumblep_pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		/* Foreground */
 		scrollx=-tumblep_control_0.READ_WORD(2);
@@ -321,7 +321,7 @@ public class tumblep
 	
 		/* Draw 16*16 background */
 		if (pf_bank==0)
-			copyscrollbitmap(bitmap,tumblep_pf3_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tumblep_pf3_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		/* Sprites */
 		tumblep_drawsprites(bitmap);
@@ -356,7 +356,7 @@ public class tumblep
 	
 			scrollx=-tumblep_control_0.READ_WORD(2);
 			scrolly=-tumblep_control_0.READ_WORD(4);
-			copyscrollbitmap(bitmap,tumblep_pf1_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tumblep_pf1_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 	} };
 	
@@ -374,7 +374,7 @@ public class tumblep
 		/* Background */
 		scrollx=-tumblep_control_0.READ_WORD(6)+1;
 		scrolly=-tumblep_control_0.READ_WORD(8);
-	 	copyscrollbitmap(bitmap,tumblep_pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+	 	copyscrollbitmap(bitmap,tumblep_pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		/* Foreground */
 		scrollx=-tumblep_control_0.READ_WORD(2)+5;
@@ -382,7 +382,7 @@ public class tumblep
 	
 		/* Draw 16*16 background */
 		if (pf_bank==0)
-			copyscrollbitmap(bitmap,tumblep_pf3_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tumblep_pf3_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		/* Sprites */
 		tumblep_drawsprites(bitmap);
@@ -417,7 +417,7 @@ public class tumblep
 	
 			scrollx=-tumblep_control_0.READ_WORD(2)+5;
 			scrolly=-tumblep_control_0.READ_WORD(4);
-			copyscrollbitmap(bitmap,tumblep_pf1_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tumblep_pf1_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 	} };
 	

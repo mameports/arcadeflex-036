@@ -204,7 +204,7 @@ public class citycon {
                     scroll = -((citycon_scroll.read(0) * 256 + citycon_scroll.read(1)) >> 1);
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scroll}, 0, null, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scroll}, 0, null, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* for every character in the Video RAM, check if it has been modified */
@@ -268,7 +268,7 @@ public class citycon {
                     }
                 }
                 copyscrollbitmap(bitmap, tmpbitmap, 32, scroll, 0, null,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                        Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             }
 
             for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
@@ -288,7 +288,7 @@ public class citycon {
                         spriteram.read(offs + 2) & 0x0f,
                         flipx, flipscreen,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             for (offs = 0; offs < 32; offs++) {

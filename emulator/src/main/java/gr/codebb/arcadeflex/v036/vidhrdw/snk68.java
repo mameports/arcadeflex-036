@@ -153,7 +153,7 @@ public class snk68 {
             if (palette_recalc() != null) {
                 tilemap_mark_all_pixels_dirty(ALL_TILEMAPS);
             }
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             tilemap_render(ALL_TILEMAPS);
 
@@ -301,7 +301,7 @@ public class snk68 {
             if (palette_recalc() != null) {
                 tilemap_mark_all_pixels_dirty(ALL_TILEMAPS);
             }
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             tilemap_render(ALL_TILEMAPS);
 

@@ -218,7 +218,7 @@ public class lwings {
                 scrolly = -(lwings_scrollx.read(0) + 256 * lwings_scrollx.read(1));
                 scrollx = -(lwings_scrolly.read(0) + 256 * lwings_scrolly.read(1));
 
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* Draw the sprites. */
@@ -248,7 +248,7 @@ public class lwings {
                             (spriteram.read(offs + 1) & 0x38) >> 3,
                             spriteram.read(offs + 1) & 0x02, spriteram.read(offs + 1) & 0x04,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
                 }
             }
 
@@ -264,7 +264,7 @@ public class lwings {
                         colorram.read(offs) & 0x0f,
                         colorram.read(offs) & 0x10, colorram.read(offs) & 0x20,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 3);
+                        Machine.visible_area, TRANSPARENCY_PEN, 3);
             }
         }
     };
@@ -411,14 +411,14 @@ public class lwings {
                         attribute & 0x07,
                         attribute & 0x10,
                         0,
-                        16 * sx + scrlx - 16, 16 * sy + scrly - 16, Machine.drv.visible_area, TRANSPARENCY_PENS, (attribute & 0x08) != 0 ? transp1 : transp0);
+                        16 * sx + scrlx - 16, 16 * sy + scrly - 16, Machine.visible_area, TRANSPARENCY_PENS, (attribute & 0x08) != 0 ? transp1 : transp0);
             }
             offsx += 0x20;
         }
     }
 
     static void trojan_draw_sprites(osd_bitmap bitmap) {
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
         int offs;
 
         for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
@@ -509,7 +509,7 @@ public class lwings {
                         offsy += 0x800;
                     }
                 }
-                copyscrollbitmap(bitmap, tmpbitmap3, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap3, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             scrollx = (trojan_scrollx.read(0) + 256 * trojan_scrollx.read(1));
@@ -529,7 +529,7 @@ public class lwings {
                         colorram.read(offs) & 0x0f,
                         colorram.read(offs) & 0x10, colorram.read(offs) & 0x20,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 3);
+                        Machine.visible_area, TRANSPARENCY_PEN, 3);
             }
         }
     };

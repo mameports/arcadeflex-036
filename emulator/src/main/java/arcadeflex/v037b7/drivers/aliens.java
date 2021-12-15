@@ -3,23 +3,25 @@
  * ported to v0.36
  */ 
 package arcadeflex.v037b7.drivers;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
-import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
-import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
+
+//mame imports
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
+import static arcadeflex.v037b7.mame.driverH.*;
+//sound imports
+import static arcadeflex.v037b7.sound._2151intf.*;
+import static arcadeflex.v037b7.sound._2151intfH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static arcadeflex.v037b7.mame.sndintrf.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
-import arcadeflex.v037b7.mame.sndintrfH.MachineSound;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;

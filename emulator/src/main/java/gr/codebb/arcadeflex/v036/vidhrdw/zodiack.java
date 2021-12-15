@@ -182,7 +182,7 @@ public class zodiack
 					col,
 					flipscreen, flipscreen,
 					8*sx, 8*sy,
-					Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+					Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -207,7 +207,7 @@ public class zodiack
 				}
 			}
 	
-			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.visible_area,TRANSPARENCY_COLOR,0);
 		}
 	
 	
@@ -230,7 +230,7 @@ public class zodiack
 					0,
 					0,0,
 					x,y,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 	
@@ -259,7 +259,7 @@ public class zodiack
 					sx,sy,
 					//flipscreen[0] ? &spritevisibleareaflipx : &spritevisiblearea,TRANSPARENCY_PEN,0);
 					//&spritevisiblearea,TRANSPARENCY_PEN,0);
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

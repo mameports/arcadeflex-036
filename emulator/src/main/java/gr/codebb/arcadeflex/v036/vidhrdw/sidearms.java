@@ -230,7 +230,7 @@ public class sidearms {
 		/* copy the temporary bitmap to the screen */
             /*TODO*///		scrollx = -(*sidearms_bg2_scrollx & 0x3f);
 /*TODO*///		scrolly = -(*sidearms_bg2_scrolly & 0x3f);
-            /*TODO*///		copyscrollbitmap(bitmap,tmpbitmap,1,&scrollx,1,&scrolly,&Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+            /*TODO*///		copyscrollbitmap(bitmap,tmpbitmap,1,&scrollx,1,&scrolly,&Machine.visible_area,TRANSPARENCY_NONE,0);
 /*TODO*///	#endif
             if (bgon != 0) {
                 scrollx = sidearms_bg_scrollx.read(0) + 256 * sidearms_bg_scrollx.read(1) + 64;
@@ -268,12 +268,12 @@ public class sidearms {
 
                 scrollx += 64;
                 /*TODO*///	#if IHAVETHEBACKGROUND
-/*TODO*///		copyscrollbitmap(bitmap,tmpbitmap2,1,&scrollx,1,&scrolly,&Machine.drv.visible_area,TRANSPARENCY_COLOR,1);
+/*TODO*///		copyscrollbitmap(bitmap,tmpbitmap2,1,&scrollx,1,&scrolly,&Machine.visible_area,TRANSPARENCY_COLOR,1);
 /*TODO*///	#else
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
                 /*TODO*///	#endif
             } else {
-                fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+                fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
             }
 
             /* Draw the sprites. */
@@ -291,7 +291,7 @@ public class sidearms {
                             spriteram.read(offs + 1) & 0x0f,
                             flipscreen, flipscreen,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
                 }
             }
 
@@ -310,7 +310,7 @@ public class sidearms {
                         colorram.read(offs) & 0x3f,
                         flipscreen, flipscreen,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 3);
+                        Machine.visible_area, TRANSPARENCY_PEN, 3);
             }
         }
     };

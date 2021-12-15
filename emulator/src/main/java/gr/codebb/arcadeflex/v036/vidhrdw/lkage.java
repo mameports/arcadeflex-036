@@ -142,7 +142,7 @@ public class lkage
 	} };
 	
 	static void draw_sprites( osd_bitmap bitmap, int priority ){
-	    rectangle clip = Machine.drv.visible_area;
+	    rectangle clip = Machine.visible_area;
 	    int finish = spriteram.offset;//const unsigned char *finish = spriteram;
 	    UBytePtr source = new UBytePtr(spriteram,0x60-4);//const unsigned char *source = spriteram+0x60-4;
 	    GfxElement gfx = Machine.gfx[3];

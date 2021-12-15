@@ -242,7 +242,7 @@ public class rockola {
                     if (flipscreen != 0) {
                         sx = 31 - sx;
                         /* Pioner Balloon has a visible area different from all the others */
-                        if (Machine.drv.visible_area.max_y == 28 * 8 - 1) {
+                        if (Machine.visible_area.max_y == 28 * 8 - 1) {
                             sy = 27 - sy;
                         } else {
                             sy = 31 - sy;
@@ -267,13 +267,13 @@ public class rockola {
                 if (flipscreen != 0) {
                     scrollx = -scrollx;
                     /* Pioner Balloon has a visible area different from all the others */
-                    if (Machine.drv.visible_area.max_y == 28 * 8 - 1) {
+                    if (Machine.visible_area.max_y == 28 * 8 - 1) {
                         scrolly = -scrolly - 32;
                     } else {
                         scrolly = -scrolly;
                     }
                 }
-                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* draw the frontmost playfield. They are characters, but draw them as sprites */
@@ -295,7 +295,7 @@ public class rockola {
                 if (flipscreen != 0) {
                     sx = 31 - sx;
                     /* Pioner Balloon has a visible area different from all the others */
-                    if (Machine.drv.visible_area.max_y == 28 * 8 - 1) {
+                    if (Machine.visible_area.max_y == 28 * 8 - 1) {
                         sy = 27 - sy;
                     } else {
                         sy = 31 - sy;
@@ -307,7 +307,7 @@ public class rockola {
                         colorram.read(offs) & 0x07,
                         flipscreen, flipscreen,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
         }
     };
@@ -337,12 +337,12 @@ public class rockola {
                             (colorram.read(offs) & 0x0c) >> 2,
                             flipscreen, flipscreen,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
             /* copy the temporary bitmap to the screen */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* draw the frontmost playfield. They are characters, but draw them as sprites */
             for (offs = videoram_size[0] - 1; offs >= 0; offs--) {
@@ -370,7 +370,7 @@ public class rockola {
                         colorram.read(offs) & 0x03,
                         flipscreen, flipscreen,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
 
             }
         }

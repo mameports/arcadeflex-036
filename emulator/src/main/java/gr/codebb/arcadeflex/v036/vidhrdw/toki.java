@@ -255,7 +255,7 @@ public class toki
 						SprPalette,
 						SprFlipX,0,
 						SprX,SprY-1,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,15);
+						Machine.visible_area,TRANSPARENCY_PEN,15);
 			}
 		}
 	}
@@ -442,17 +442,17 @@ public class toki
 			for (i = 0;i < 256;i++)
 				scrollx[i] = bg2_scrollx - toki_linescroll[i];
 	
-			copyscrollbitmap (bitmap,bitmap_bg1,1,new int[] {bg1_scrollx},1,new int[] {bg1_scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap (bitmap,bitmap_bg1,1,new int[] {bg1_scrollx},1,new int[] {bg1_scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 			if (bg2_scrollx!=-32768)
-				copyscrollbitmap (bitmap,bitmap_bg2,512,scrollx,1,new int[]{bg2_scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+				copyscrollbitmap (bitmap,bitmap_bg2,512,scrollx,1,new int[]{bg2_scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		} else
 		{
-			copyscrollbitmap (bitmap,bitmap_bg2,1,new int[]{bg2_scrollx},1,new int[]{bg2_scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
-			copyscrollbitmap (bitmap,bitmap_bg1,1,new int[]{bg1_scrollx},1,new int[]{bg1_scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap (bitmap,bitmap_bg2,1,new int[]{bg2_scrollx},1,new int[]{bg2_scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap (bitmap,bitmap_bg1,1,new int[]{bg1_scrollx},1,new int[]{bg1_scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 	
 		toki_render_sprites (bitmap);
-	   	copybitmap (bitmap,bitmap_frg,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+	   	copybitmap (bitmap,bitmap_frg,0,0,0,0,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	} };
 	
 	

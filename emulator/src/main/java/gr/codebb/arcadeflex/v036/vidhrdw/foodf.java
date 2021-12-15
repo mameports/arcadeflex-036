@@ -224,7 +224,7 @@ public class foodf
 						TRANSPARENCY_NONE, 0);
 			}
 		}
-		copybitmap (bitmap, playfieldbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+		copybitmap (bitmap, playfieldbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 	
 		/* walk the motion object list. */
 		for (offs = 0; offs < foodf_spriteram_size[0]; offs += 4)
@@ -244,7 +244,7 @@ public class foodf
 					color,
 					hflip,vflip,
 					xpos,ypos,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 			/* draw again with wraparound (needed to get the end of level animation right) */
 			drawgfx(bitmap,Machine.gfx[1],
@@ -252,7 +252,7 @@ public class foodf
 					color,
 					hflip,vflip,
 					xpos-256,ypos,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

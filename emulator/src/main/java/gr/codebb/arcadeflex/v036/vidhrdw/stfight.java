@@ -321,7 +321,7 @@ public class stfight {
                         color,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0x0f);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0x0f);
             }
         }
     }
@@ -368,7 +368,7 @@ public class stfight {
             if (bg_tilemap.enable != 0) {
                 tilemap_draw(bitmap, bg_tilemap, 0);
             } else {
-                fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+                fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
             }
 
             /* Draw sprites which appear behind the foreground layer */
@@ -404,7 +404,7 @@ public class stfight {
                             attr & 0x0f,
                             flipx, flipy,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_COLOR, 256);
+                            Machine.visible_area, TRANSPARENCY_COLOR, 256);
                 }
             }
         }

@@ -299,7 +299,7 @@ public class yard {
                     scroll_y = -yard_scroll_y_low.read();
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scroll_x}, 1, new int[]{scroll_y}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 1, new int[]{scroll_x}, 1, new int[]{scroll_y}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
@@ -334,22 +334,22 @@ public class yard {
                         spriteram.read(offs + 1) & 0x1f,
                         flipx, flipy,
                         sx, sy1,
-                        Machine.drv.visible_area, TRANSPARENCY_COLOR, 256);
+                        Machine.visible_area, TRANSPARENCY_COLOR, 256);
 
                 drawgfx(bitmap, Machine.gfx[1],
                         code2 + 256 * bank,
                         spriteram.read(offs + 1) & 0x1f,
                         flipx, flipy,
                         sx, sy2,
-                        Machine.drv.visible_area, TRANSPARENCY_COLOR, 256);
+                        Machine.visible_area, TRANSPARENCY_COLOR, 256);
             }
 
             /* draw the static bitmapped area to screen */
             if (yard_score_panel_disabled.read() == 0) {
                 int xpos;
 
-                xpos = flipscreen != 0 ? Machine.drv.visible_area.min_x - 8
-                        : Machine.drv.visible_area.max_x + 1 - SCROLL_PANEL_WIDTH;
+                xpos = flipscreen != 0 ? Machine.visible_area.min_x - 8
+                        : Machine.visible_area.max_x + 1 - SCROLL_PANEL_WIDTH;
 
                 copybitmap(bitmap, scroll_panel_bitmap, flipscreen, flipscreen,
                         xpos, 0,

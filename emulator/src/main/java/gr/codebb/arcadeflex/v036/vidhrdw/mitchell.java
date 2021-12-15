@@ -321,7 +321,7 @@ public class mitchell {
                     color,
                     flipscreen, flipscreen,
                     sx, sy,
-                    Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                    Machine.visible_area, TRANSPARENCY_PEN, 15);
         }
     }
 

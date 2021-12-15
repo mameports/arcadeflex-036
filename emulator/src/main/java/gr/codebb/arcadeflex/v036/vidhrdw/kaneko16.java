@@ -454,10 +454,10 @@ public class kaneko16
 	{
 		int offs,inc;
 	
-		int xmin = Machine.drv.visible_area.min_x - (16 - 1);
-		int xmax = Machine.drv.visible_area.max_x;
-		int ymin = Machine.drv.visible_area.min_y - (16 - 1);
-		int ymax = Machine.drv.visible_area.max_y;
+		int xmin = Machine.visible_area.min_x - (16 - 1);
+		int xmax = Machine.visible_area.max_x;
+		int ymin = Machine.visible_area.min_y - (16 - 1);
+		int ymax = Machine.visible_area.max_y;
 	
 		int nmax				=	Machine.gfx[0].total_elements;
 		int color_granularity	=	Machine.gfx[0].color_granularity;
@@ -591,7 +591,7 @@ public class kaneko16
 					sattr,
 					sflipx, sflipy,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 			/* let's get back to normal to support multi sprites */
 			if ((flipsprites & 2) != 0) { sx = max_x - sx;		sflipx = NOT(sflipx); }
@@ -670,7 +670,7 @@ public class kaneko16
 				bitmap, kaneko16_bg15_bitmap,
 				flip, flip,
 				-sx, -sy,
-				Machine.drv.visible_area, TRANSPARENCY_NONE,0 );
+				Machine.visible_area, TRANSPARENCY_NONE,0 );
 	
 			flag = 0;
 		}

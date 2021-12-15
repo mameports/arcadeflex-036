@@ -65,7 +65,7 @@ public class bublbobl {
             /* and sprites) are stored in the same memory region, and information on */
             /* the background character columns is stored inthe area dd00-dd3f */
             /* This clears & redraws the entire screen each pass */
-            fillbitmap(bitmap, Machine.gfx[0].colortable.read(0), Machine.drv.visible_area);
+            fillbitmap(bitmap, Machine.gfx[0].colortable.read(0), Machine.visible_area);
 
             sx = 0;
             for (offs = 0; offs < bublbobl_objectram_size[0]; offs += 4) {
@@ -116,7 +116,7 @@ public class bublbobl {
                                 color,
                                 flipx, flipy,
                                 x, y,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                Machine.visible_area, TRANSPARENCY_PEN, 0);
                     }
                 }
             }

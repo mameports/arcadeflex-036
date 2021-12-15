@@ -179,7 +179,7 @@ public class tecmo {
                             bank & 2, /* flipy */
                             spriteram.read(offs + 5) - ((flags & 0x10) << 4), /* sx */
                             spriteram.read(offs + 4) - ((flags & 0x20) << 3), /* sy */
-                            Machine.drv.visible_area,
+                            Machine.visible_area,
                             priority == 3 ? TRANSPARENCY_THROUGH : TRANSPARENCY_PEN,
                             priority == 3 ? palette_transparent_pen : 0);
                 }
@@ -386,7 +386,7 @@ public class tecmo {
                 scrolly = -tecmo_scroll.read(5);
 
                 copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly},
-                        Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                        Machine.visible_area, TRANSPARENCY_NONE, 0);
                 /* sprites will be drawn with TRANSPARENCY_THROUGH and appear behind the background */
                 tecmo_draw_sprites(bitmap, 3); /* this should never draw anything, but just in case... */
 
@@ -396,7 +396,7 @@ public class tecmo {
                 scrollx = -tecmo_scroll.read(0) - 256 * (tecmo_scroll.read(1) & 1) - 48;
                 scrolly = -tecmo_scroll.read(2);
                 copyscrollbitmap(bitmap, tmpbitmap3, 1, new int[]{scrollx}, 1, new int[]{scrolly},
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                        Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             }
 
             tecmo_draw_sprites(bitmap, 1);
@@ -411,7 +411,7 @@ public class tecmo {
                         tecmo_colorram2.read(offs) >> 4,
                         0, 0,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             tecmo_draw_sprites(bitmap, 0);

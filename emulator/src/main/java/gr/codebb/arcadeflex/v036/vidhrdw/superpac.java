@@ -52,7 +52,7 @@ public class superpac {
 
     public static void superpac_draw_sprite(osd_bitmap dest,/*unsigned*/ int code,/*unsigned*/ int color,
             int flipx, int flipy, int sx, int sy) {
-        drawgfx(dest, Machine.gfx[1], code, color, flipx, flipy, sx, sy, Machine.drv.visible_area,
+        drawgfx(dest, Machine.gfx[1], code, color, flipx, flipy, sx, sy, Machine.visible_area,
                 TRANSPARENCY_COLOR, 16);
     }
 
@@ -100,12 +100,12 @@ public class superpac {
                             videoram.read(offs),
                             colorram.read(offs),
                             0, 0, 8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
             /* copy the character mapped graphics */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Draw the sprites. */
             for (offs = 0; offs < spriteram_size[0]; offs += 2) {

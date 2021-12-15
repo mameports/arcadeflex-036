@@ -1,5 +1,9 @@
 
 package gr.codebb.arcadeflex.v036.mame;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;

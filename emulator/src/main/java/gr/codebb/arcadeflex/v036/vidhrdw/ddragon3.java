@@ -194,7 +194,7 @@ public class ddragon3 {
      *   6,7| unused
      */
     static void draw_sprites(osd_bitmap bitmap) {
-        rectangle clip =  Machine.drv.visible_area;
+        rectangle clip =  Machine.visible_area;
         GfxElement gfx = Machine.gfx[1];
         UShortPtr source = new UShortPtr(spriteram);
         UShortPtr finish = new UShortPtr(source,0x800);

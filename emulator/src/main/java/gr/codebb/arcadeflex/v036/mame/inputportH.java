@@ -231,7 +231,7 @@ public class inputportH {
     public static final int IP_JOY_NONE = CODE_NONE;
     
     /* start of table */
-    static InputPortTiny[] input_macro = null;
+    public static InputPortTiny[] input_macro = null;
     static ArrayList<InputPortTiny> inputload = new ArrayList<InputPortTiny>();
     
 

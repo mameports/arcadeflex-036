@@ -192,7 +192,7 @@ public class gaelco
 				0x10 + (attr2 & 0x0f),
 				attr & 0x40, attr & 0x80,
 				sx-8,sy-16,
-				Machine.drv.visible_area,
+				Machine.visible_area,
 				TRANSPARENCY_PEN,0);
 		}
 	}
@@ -210,7 +210,7 @@ public class gaelco
 	
 		tilemap_render(ALL_TILEMAPS);
 	
-		copybitmap(bitmap,screen2,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,screen2,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		tilemap_draw(bitmap,screen1,0);
 		draw_sprites(bitmap);

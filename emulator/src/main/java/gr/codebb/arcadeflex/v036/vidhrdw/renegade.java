@@ -111,7 +111,7 @@ public class renegade
 	} };
 	
 	static void draw_sprites(osd_bitmap bitmap ){
-	    rectangle clip = Machine.drv.visible_area;
+	    rectangle clip = Machine.visible_area;
 	
 	    UBytePtr source = new UBytePtr(spriteram,0);
 	    int finish = source.offset+96*4;//UBytePtr finish = new UBytePtr(source,96*4);

@@ -3,6 +3,8 @@
  * ported to v0.36
  */ 
 package arcadeflex.v037b7.drivers;
+
+import static arcadeflex.v037b7.mame.driverH.*;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;

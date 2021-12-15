@@ -379,7 +379,7 @@ public class pacland
 					scroll[i] = -scroll1+2;
 			}
 	
-			copyscrollbitmap( bitmap, tmpbitmap, 32, scroll, 0, null, Machine.drv.visible_area, TRANSPARENCY_NONE, 0 );
+			copyscrollbitmap( bitmap, tmpbitmap, 32, scroll, 0, null, Machine.visible_area, TRANSPARENCY_NONE, 0 );
 		}
 	
 		/* for every character in the Video RAM, check if it has been modified */
@@ -409,7 +409,7 @@ public class pacland
 		}
 	
 		/* copy scrolled contents */
-		fillbitmap(tmpbitmap3,Machine.pens[0x7f],Machine.drv.visible_area);
+		fillbitmap(tmpbitmap3,Machine.pens[0x7f],Machine.visible_area);
 		{
 			int i;
                         int[] scroll=new int[32];
@@ -422,15 +422,15 @@ public class pacland
 					scroll[i] = -scroll0;
 			}
 	
-			copyscrollbitmap( tmpbitmap3, tmpbitmap2, 32, scroll, 0, null, Machine.drv.visible_area, TRANSPARENCY_COLOR, 0xff );
+			copyscrollbitmap( tmpbitmap3, tmpbitmap2, 32, scroll, 0, null, Machine.visible_area, TRANSPARENCY_COLOR, 0xff );
 		}
 		pacland_draw_sprites(tmpbitmap3,2);
-		copybitmap(bitmap,tmpbitmap3,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_COLOR,0x7f);
+		copybitmap(bitmap,tmpbitmap3,0,0,0,0,Machine.visible_area,TRANSPARENCY_COLOR,0x7f);
 	
 		pacland_draw_sprites(bitmap,0);
 	
 		/* redraw the tiles which have priority over the sprites */
-		fillbitmap(tmpbitmap3,Machine.pens[0x7f],Machine.drv.visible_area);
+		fillbitmap(tmpbitmap3,Machine.pens[0x7f],Machine.visible_area);
 		for ( offs = 0; offs < videoram_size[0] / 2; offs += 2 )
 		{
 			if ((videoram.read(offs+1) & 0x20)!=0)
@@ -459,11 +459,11 @@ public class pacland
 						color,
 						flipx,flipy,
 						sx*8 + scroll,sy*8,
-						Machine.drv.visible_area,TRANSPARENCY_COLOR,0xff);
+						Machine.visible_area,TRANSPARENCY_COLOR,0xff);
 			}
 		}
 		pacland_draw_sprites(tmpbitmap3,2);
-		copybitmap(bitmap,tmpbitmap3,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_COLOR,0x7f);
+		copybitmap(bitmap,tmpbitmap3,0,0,0,0,Machine.visible_area,TRANSPARENCY_COLOR,0x7f);
 	
 		pacland_draw_sprites(bitmap,1);
 	} };

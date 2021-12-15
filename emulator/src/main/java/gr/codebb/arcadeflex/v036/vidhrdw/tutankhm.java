@@ -135,7 +135,7 @@ public class tutankhm
 					scroll[i] = 0;
 			}
 	
-			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	} };
 	

@@ -6,7 +6,10 @@
  *
  */
 package gr.codebb.arcadeflex.v036.vidhrdw;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
@@ -213,10 +216,10 @@ public class system1 {
         int xr, yr, spr_y1, spr_y2;
         int SprOnScreen;
 
-        if (x < Machine.drv.visible_area.min_x
-                || x > Machine.drv.visible_area.max_x
-                || y < Machine.drv.visible_area.min_y
-                || y > Machine.drv.visible_area.max_y) {
+        if (x < Machine.visible_area.min_x
+                || x > Machine.visible_area.max_x
+                || y < Machine.visible_area.min_y
+                || y > Machine.visible_area.max_y) {
             return;
         }
 
@@ -474,7 +477,7 @@ public class system1 {
                             color,
                             0, 0,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
         }
@@ -517,7 +520,7 @@ public class system1 {
             }
 
             /* copy the temporary bitmap to the screen */
-            copyscrollbitmap(bitmap, bitmap1, 1, new int[]{background_scrollx}, 1, new int[]{background_scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copyscrollbitmap(bitmap, bitmap1, 1, new int[]{background_scrollx}, 1, new int[]{background_scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
         } else {
             priority <<= 3;
 
@@ -540,14 +543,14 @@ public class system1 {
                             color,
                             0, 0,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                     if (sx > 248) {
                         drawgfx(bitmap, Machine.gfx[0],
                                 code,
                                 color,
                                 0, 0,
                                 sx - 256, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                Machine.visible_area, TRANSPARENCY_PEN, 0);
                     }
                     if (sy > 248) {
                         drawgfx(bitmap, Machine.gfx[0],
@@ -555,14 +558,14 @@ public class system1 {
                                 color,
                                 0, 0,
                                 sx, sy - 256,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                Machine.visible_area, TRANSPARENCY_PEN, 0);
                         if (sx > 248) {
                             drawgfx(bitmap, Machine.gfx[0],
                                     code,
                                     color,
                                     0, 0,
                                     sx - 256, sy - 256,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     }
                 }
@@ -588,7 +591,7 @@ public class system1 {
 
             /* even if screen is off, sprites must still be drawn to update the collision table */
             if ((system1_video_mode & 0x10) != 0) /* screen off */ {
-                fillbitmap(bitmap, palette_transparent_color, Machine.drv.visible_area);
+                fillbitmap(bitmap, palette_transparent_color, Machine.visible_area);
             }
         }
     };
@@ -635,9 +638,9 @@ public class system1 {
 
             /* copy the temporary bitmap to the screen */
             if (choplifter_scroll_x_on != 0) {
-                copyscrollbitmap(bitmap, bitmap1, 32, scrollx_row, 0, null, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, bitmap1, 32, scrollx_row, 0, null, Machine.visible_area, TRANSPARENCY_NONE, 0);
             } else {
-                copybitmap(bitmap, bitmap1, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copybitmap(bitmap, bitmap1, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         } else {
             priority <<= 3;
@@ -663,7 +666,7 @@ public class system1 {
                             color,
                             0, 0,
                             sx, sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
         }
@@ -687,7 +690,7 @@ public class system1 {
 
             /* even if screen is off, sprites must still be drawn to update the collision table */
             if ((system1_video_mode & 0x10) != 0) /* screen off */ {
-                fillbitmap(bitmap, palette_transparent_color, Machine.drv.visible_area);
+                fillbitmap(bitmap, palette_transparent_color, Machine.visible_area);
             }
 
         }
@@ -755,14 +758,14 @@ public class system1 {
                                     ((code >> 5) & 0x3f) + 64,
                                     0, 0,
                                     x, y,
-                                    Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                                    Machine.visible_area, TRANSPARENCY_NONE, 0);
                         } else if (priority != 0) {
                             drawgfx(bitmap, Machine.gfx[0],
                                     code,
                                     ((code >> 5) & 0x3f) + 64,
                                     0, 0,
                                     x, y,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     }
 
@@ -789,7 +792,7 @@ public class system1 {
                     (code >> 5) & 0x3f,
                     0, 0,
                     8 * sx, 8 * sy,
-                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                    Machine.visible_area, TRANSPARENCY_PEN, 0);
         }
     }
 
@@ -805,7 +808,7 @@ public class system1 {
 
             /* even if screen is off, sprites must still be drawn to update the collision table */
             if ((system1_video_mode & 0x10) != 0) /* screen off */ {
-                fillbitmap(bitmap, palette_transparent_color, Machine.drv.visible_area);
+                fillbitmap(bitmap, palette_transparent_color, Machine.visible_area);
             }
         }
     };

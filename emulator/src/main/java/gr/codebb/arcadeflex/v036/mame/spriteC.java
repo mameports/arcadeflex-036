@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
@@ -1020,7 +1024,7 @@ public class spriteC {
      * ******************************************************************
      */
     public static void sprite_init() {
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
         int left = clip.min_x;
         int top = clip.min_y;
         int right = clip.max_x + 1;

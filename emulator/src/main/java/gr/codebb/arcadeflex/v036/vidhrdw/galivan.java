@@ -389,7 +389,7 @@ public class galivan
 					color + 16 * (spritepalettebank.read(code >> 2) & 0x0f),
 					flipx,flipy,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,15);
+					Machine.visible_area,TRANSPARENCY_PEN,15);
 		}
 	}
 	
@@ -403,7 +403,7 @@ public class galivan
 		tilemap_render (ALL_TILEMAPS);
 	
 		if ((layers & 0x40) != 0)
-			fillbitmap(bitmap,Machine.pens[0],Machine.drv.visible_area);
+			fillbitmap(bitmap,Machine.pens[0],Machine.visible_area);
 		else
 			tilemap_draw(bitmap,bg_tilemap,0);
 	
@@ -423,7 +423,7 @@ public class galivan
 		tilemap_render(ALL_TILEMAPS);
 	
 		if (ninjemak_dispdisable != 0)
-			fillbitmap(bitmap,Machine.pens[0],Machine.drv.visible_area);
+			fillbitmap(bitmap,Machine.pens[0],Machine.visible_area);
 		else
 			tilemap_draw(bitmap,bg_tilemap,0);
 	

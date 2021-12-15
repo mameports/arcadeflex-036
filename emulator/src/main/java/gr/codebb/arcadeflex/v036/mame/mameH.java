@@ -16,6 +16,10 @@ along with Arcadeflex.  If not, see <http://www.gnu.org/licenses/>.
  */
 package gr.codebb.arcadeflex.v036.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;

@@ -174,7 +174,7 @@ public class baraduke
 	
 	static void draw_sprites(osd_bitmap bitmap, int priority)
 	{
-	/*	const struct rectangle *clip = &Machine.drv.visible_area;
+	/*	const struct rectangle *clip = &Machine.visible_area;
 	
 		const unsigned char *source = &spriteram[0];
 		const unsigned char *finish = &spriteram[0x0800-16];/* the last is NOT a sprite */
@@ -329,7 +329,7 @@ public class baraduke
 			drawgfx(bitmap,Machine.gfx[0],	baraduke_textram.read(offs),
 					(baraduke_textram.read(offs+0x400) << 2) & 0x1ff,
 					0,0,sx*8,sy*8,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,3);
+					Machine.visible_area,TRANSPARENCY_PEN,3);
 		}
 	} };
 	
@@ -368,7 +368,7 @@ public class baraduke
 			drawgfx(bitmap,Machine.gfx[0],	baraduke_textram.read(offs),
 					(baraduke_textram.read(offs+0x400) << 2) & 0x1ff,
 					0,0,sx*8,sy*8,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,3);
+					Machine.visible_area,TRANSPARENCY_PEN,3);
 		}
 	} };
 }

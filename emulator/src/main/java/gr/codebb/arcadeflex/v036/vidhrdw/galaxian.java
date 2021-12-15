@@ -845,7 +845,7 @@ public class galaxian {
                     }
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* draw the bullets */
@@ -872,7 +872,7 @@ public class galaxian {
                         color,
                         0, 0,
                         x, y,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             /* Draw the sprites */
@@ -949,8 +949,8 @@ public class galaxian {
                             x = ((stars[offs].x + stars_scroll) % 512) / 2;
                             y = (stars[offs].y + (stars_scroll + stars[offs].x) / 512) % 256;
 
-                            if (y >= Machine.drv.visible_area.min_y
-                                    && y <= Machine.drv.visible_area.max_y) {
+                            if (y >= Machine.visible_area.min_y
+                                    && y <= Machine.visible_area.max_y) {
                                 /* No stars below row (column) 64, between rows 176 and 215 or
                                  between 224 and 247 */
                                 if ((stars_type == 3)
@@ -979,8 +979,8 @@ public class galaxian {
                             x = stars[offs].x / 2;
                             y = stars[offs].y;
 
-                            if (y >= Machine.drv.visible_area.min_y
-                                    && y <= Machine.drv.visible_area.max_y) {
+                            if (y >= Machine.visible_area.min_y
+                                    && y <= Machine.visible_area.max_y) {
                                 if ((stars_type != 2 || x < 128)
                                         && /* draw only half screen in Rescue */ (((y & 1) ^ ((x >> 4) & 1)) != 0)) {
                                     /* Determine when to skip plotting */

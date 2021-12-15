@@ -1,7 +1,10 @@
 
 
 package gr.codebb.arcadeflex.v036.cpu.hd6309;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import gr.codebb.arcadeflex.v036.cpu.m6809.m6809;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;

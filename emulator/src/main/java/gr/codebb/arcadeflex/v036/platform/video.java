@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.platform;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.platform.libc.*;
@@ -665,8 +669,8 @@ public class video {
             width = Machine.drv.screen_width;
             height = Machine.drv.screen_height;
         } else {
-            width = Machine.drv.visible_area.max_x - Machine.drv.visible_area.min_x + 1;
-            height = Machine.drv.visible_area.max_y - Machine.drv.visible_area.min_y + 1;
+            width = Machine.visible_area.max_x - Machine.visible_area.min_x + 1;
+            height = Machine.visible_area.max_y - Machine.visible_area.min_y + 1;
         }
 
         if ((Machine.orientation & ORIENTATION_SWAP_XY) != 0) {
@@ -1025,7 +1029,7 @@ public class video {
         if (vector_game != 0) {
             adjust_display(0, 0, width - 1, height - 1, depth);
         } else {
-            rectangle vis = Machine.drv.visible_area;
+            rectangle vis = Machine.visible_area;
             adjust_display(vis.min_x, vis.min_y, vis.max_x, vis.max_y, depth);
         }
 
@@ -1366,7 +1370,7 @@ public class video {
         /*TODO*///	gone_to_gfx_mode = 1;
         /*TODO*///
         /*TODO*///
-        vsync_frame_rate = Machine.drv.frames_per_second;
+        vsync_frame_rate = (int)Machine.drv.frames_per_second;
         /*TODO*///
         /*TODO*///	if (video_sync)
         /*TODO*///	{
@@ -1960,7 +1964,7 @@ public class video {
             }
 
             if (frameskip_counter == 0) {
-                long divdr = (Machine.drv.frames_per_second * (curr - prev_measure) / (100L * FRAMESKIP_LEVELS));
+                long divdr = (long)(Machine.drv.frames_per_second * (curr - prev_measure) / (100L * FRAMESKIP_LEVELS));
                 speed = (int) ((TICKS_PER_SEC + divdr / 2L) / divdr);
                 prev_measure = curr;
             }
@@ -1977,7 +1981,7 @@ public class video {
 
             if (showfps != 0 || showfpstemp != 0) {
                 int divdr = 100 * FRAMESKIP_LEVELS;
-                int fps = (Machine.drv.frames_per_second * (FRAMESKIP_LEVELS - frameskip) * speed + (divdr / 2)) / divdr;
+                int fps = (int)((Machine.drv.frames_per_second * (FRAMESKIP_LEVELS - frameskip) * speed + (divdr / 2)) / divdr);
                 String buf = sprintf("%s%2d%4d%%%4d/%d fps", autoframeskip != 0 ? "auto" : "fskp", frameskip, speed, fps, (int) (Machine.drv.frames_per_second + 0.5));
                 ui_text(buf, Machine.uiwidth - buf.length() * Machine.uifontwidth, 0);
                 if (vector_game != 0) {
@@ -2196,7 +2200,7 @@ public class video {
                 int divdr;
 
                 divdr = 100 * FRAMESKIP_LEVELS;
-                fps = (Machine.drv.frames_per_second * (FRAMESKIP_LEVELS - frameskip) * speed + (divdr / 2)) / divdr;
+                fps = (int)((Machine.drv.frames_per_second * (FRAMESKIP_LEVELS - frameskip) * speed + (divdr / 2)) / divdr);
                 buf = sprintf("%s%2d%4d%%%4d/%d fps", autoframeskip != 0 ? "auto" : "fskp", frameskip, speed, fps, (int) (Machine.drv.frames_per_second + 0.5));
                 ui_text(buf, Machine.uiwidth - buf.length() * Machine.uifontwidth, 0);
                 if (vector_game != 0) {
@@ -2284,7 +2288,7 @@ public class video {
             }
             clock_counter = (clock_counter + 1) % MEMORY;
             if ((curr - prev1[clock_counter]) != 0) {
-                long divdr = Machine.drv.frames_per_second * (curr - prev1[clock_counter]) / (100L * MEMORY);
+                long divdr = (long)(Machine.drv.frames_per_second * (curr - prev1[clock_counter]) / (100L * MEMORY));
 
                 speed = (int) ((UCLOCKS_PER_SEC * (frameskip + 1) + divdr / 2L) / divdr);
             }

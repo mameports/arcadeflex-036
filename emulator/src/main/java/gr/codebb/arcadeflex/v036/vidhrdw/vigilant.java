@@ -401,8 +401,8 @@ public class vigilant
 			}
 		}
 	
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
-		draw_sprites(bitmap,Machine.drv.visible_area);
+		draw_sprites(bitmap,Machine.visible_area);
 	} };
 }

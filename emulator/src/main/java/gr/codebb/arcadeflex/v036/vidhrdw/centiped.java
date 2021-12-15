@@ -156,7 +156,7 @@ public class centiped {
                             (sy + 1) / 8, /* support midframe palette changes in test mode */
                             flipscreen, flipscreen,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 

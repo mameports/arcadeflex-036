@@ -160,7 +160,7 @@ public class alpha68k {
             palette_transparent_color = 2047;
             palette_used_colors.write(2047, PALETTE_COLOR_USED);
             palette_recalc();
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             /* This appears to be correct priority */
             draw_sprites(bitmap, 1, 0x000);
@@ -400,7 +400,7 @@ public class alpha68k {
             palette_transparent_color = 4095;
             palette_used_colors.write(4095, PALETTE_COLOR_USED);
             palette_recalc();
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             /* This appears to be correct priority */
             if (strcmp(Machine.gamedrv.name, "skyadvnt") == 0) {
@@ -493,7 +493,7 @@ public class alpha68k {
             palette_transparent_color = 4095;
             palette_used_colors.write(4095, PALETTE_COLOR_USED);
             palette_recalc();
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             /* This appears to be correct priority */
             draw_sprites_V(bitmap, 0, 0x0f80, 0x1000, 0x4000, 0x8000, 0x3fff);
@@ -528,7 +528,7 @@ public class alpha68k {
 
             palette_transparent_color = 4095;
             palette_recalc();
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             /* This appears to be correct priority */
             draw_sprites_V(bitmap, 0, 0x0f80, 0x1000, 0x8000, 0, 0x7fff);
@@ -649,8 +649,8 @@ public class alpha68k {
     }
     public static VhUpdatePtr alpha68k_I_vh_screenrefresh = new VhUpdatePtr() {
         public void handler(osd_bitmap bitmap, int full_refresh) {
-            //	fillbitmap(bitmap,palette_transparent_pen,&Machine.drv.visible_area);
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            //	fillbitmap(bitmap,palette_transparent_pen,&Machine.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             /* This appears to be correct priority */
             draw_sprites2(bitmap, 6, 0x1800);
@@ -718,7 +718,7 @@ public class alpha68k {
     }
     public static VhUpdatePtr kyros_vh_screenrefresh = new VhUpdatePtr() {
         public void handler(osd_bitmap bitmap, int full_refresh) {
-            fillbitmap(bitmap, 1, Machine.drv.visible_area);
+            fillbitmap(bitmap, 1, Machine.visible_area);
 
             /* This appears to be correct priority */
             draw_sprites3(bitmap, 4, 0x1000);

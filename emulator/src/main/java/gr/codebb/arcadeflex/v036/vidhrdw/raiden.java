@@ -201,7 +201,7 @@ public class raiden
 			drawgfx(bitmap,Machine.gfx[3],
 					sprite,
 					color,fx,fy,x,y,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,15);
+					Machine.visible_area,TRANSPARENCY_PEN,15);
 		}
 	}
 	

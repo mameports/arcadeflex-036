@@ -1,8 +1,9 @@
 package gr.codebb.arcadeflex.v036.vidhrdw.konami;
 
-/*
- used in battlnts driver. Seems to be fully functional
- */
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
@@ -167,7 +168,7 @@ public class K007420 {
                                 color[0],
                                 flipx, flipy,
                                 sx, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                Machine.visible_area, TRANSPARENCY_PEN, 0);
 
                         if ((K007342_regs[2] & 0x80) != 0) {
                             drawgfx(bitmap, K007420_gfx,
@@ -175,7 +176,7 @@ public class K007420 {
                                     color[0],
                                     flipx, flipy,
                                     sx, sy - 256,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     }
                 }
@@ -206,7 +207,7 @@ public class K007420 {
                                 color[0],
                                 flipx, flipy,
                                 sx, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                Machine.visible_area, TRANSPARENCY_PEN, 0,
                                 (zw << 16) / 8, (zh << 16) / 8);
 
                         if ((K007342_regs[2] & 0x80) != 0) {
@@ -215,7 +216,7 @@ public class K007420 {
                                     color[0],
                                     flipx, flipy,
                                     sx, sy - 256,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0,
                                     (zw << 16) / 8, (zh << 16) / 8);
                         }
                     }

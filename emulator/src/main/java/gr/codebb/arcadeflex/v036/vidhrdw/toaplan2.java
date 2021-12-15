@@ -791,7 +791,7 @@ public class toaplan2 {
 
     static void draw_sprites(osd_bitmap bitmap, int controller, int priority_to_display) {
         GfxElement gfx = Machine.gfx[((controller * 2) + 1)];
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
 
         UShortPtr source = new UShortPtr(spriteram_now[controller]);
 
@@ -915,7 +915,7 @@ public class toaplan2 {
 
             tilemap_render(ALL_TILEMAPS);
 
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             for (priority = 0; priority < 16; priority++) {
                 tilemap_draw(bitmap, bg_tilemap[0], priority);
@@ -952,7 +952,7 @@ public class toaplan2 {
 
             tilemap_render(ALL_TILEMAPS);
 
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             for (priority = 0; priority < 16; priority++) {
                 tilemap_draw(bitmap, bg_tilemap[1], priority);
@@ -997,7 +997,7 @@ public class toaplan2 {
 
             tilemap_render(ALL_TILEMAPS);
 
-            fillbitmap(bitmap, palette_transparent_pen, Machine.drv.visible_area);
+            fillbitmap(bitmap, palette_transparent_pen, Machine.visible_area);
 
             for (priority = 0; priority < 16; priority++) {
                 tilemap_draw(bitmap, bg_tilemap[1], priority);

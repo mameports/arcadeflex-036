@@ -247,12 +247,12 @@ public class galaga {
                             colorram.read(offs),
                             flipscreen, flipscreen,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
             /* copy the character mapped graphics */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0,  Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0,  Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Draw the sprites. */
             for (offs = 0; offs < spriteram_size[0]; offs += 2) {
@@ -284,35 +284,35 @@ public class galaga {
                     if ((spriteram_3.read(offs) & 0x0c) == 0x0c) /* double width, double height */ {
                         drawgfx(bitmap, Machine.gfx[1],
                                 code + 2, color, flipx, flipy, sx + sfa, sy - sfa,
-                                 Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                 Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                         drawgfx(bitmap, Machine.gfx[1],
                                 code, color, flipx, flipy, sx + sfa, sy - sfb,
-                                 Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                 Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
 
                         drawgfx(bitmap, Machine.gfx[1],
                                 code + 3, color, flipx, flipy, sx + sfb, sy - sfa,
-                                 Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                 Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                         drawgfx(bitmap, Machine.gfx[1],
                                 code + 1, color, flipx, flipy, sx + sfb, sy - sfb,
-                                 Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                 Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                     } else if ((spriteram_3.read(offs) & 8)!=0) /* double width */ {
                         drawgfx(bitmap, Machine.gfx[1],
                                 code + 2, color, flipx, flipy, sx, sy - sfa,
-                                  Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                  Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                         drawgfx(bitmap, Machine.gfx[1],
                                 code, color, flipx, flipy, sx, sy - sfb,
-                                  Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                  Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                     } else if ((spriteram_3.read(offs) & 4)!=0) /* double height */ {
                         drawgfx(bitmap, Machine.gfx[1],
                                 code, color, flipx, flipy, sx + sfa, sy,
-                                  Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                  Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                         drawgfx(bitmap, Machine.gfx[1],
                                 code + 1, color, flipx, flipy, sx + sfb, sy,
-                                  Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                  Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                     } else /* normal */ {
                         drawgfx(bitmap, Machine.gfx[1],
                                 code, color, flipx, flipy, sx, sy,
-                                  Machine.drv.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
+                                  Machine.visible_area, TRANSPARENCY_THROUGH, Machine.pens[0]);
                     }
                 }
             }
@@ -333,8 +333,8 @@ public class galaga {
                         x = ((stars[offs].x + stars_scroll) % 512) / 2 + 16;
                         y = (stars[offs].y + (stars_scroll + stars[offs].x) / 512) % 256;
 
-                        if (y >= Machine.drv.visible_area.min_y
-                                && y <= Machine.drv.visible_area.max_y) {
+                        if (y >= Machine.visible_area.min_y
+                                && y <= Machine.visible_area.max_y) {
                             if (read_pixel.handler(bitmap, x & 0xFF, y & 0xFF) == bpen) {
                                 plot_pixel.handler(bitmap, x & 0xFF, y & 0xFF, stars[offs].col);
                             }

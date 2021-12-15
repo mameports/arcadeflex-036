@@ -98,7 +98,7 @@ public class tigeroad
 							color,
 							NOT(flipx),NOT(flipy),
 							224-sx,224-sy,
-							Machine.drv.visible_area,
+							Machine.visible_area,
 							TRANSPARENCY_PENS,(attr & 0x10)!=0 ? transp1 : transp0);
 				else
 					drawgfx(bitmap,Machine.gfx[1],
@@ -106,7 +106,7 @@ public class tigeroad
 							color,
 							flipx,flipy,
 							sx,sy,
-							Machine.drv.visible_area,
+							Machine.visible_area,
 							TRANSPARENCY_PENS,(attr & 0x10)!=0 ? transp1 : transp0);
 	
 				sx+=32;
@@ -152,7 +152,7 @@ public class tigeroad
 					color,
 					flipx,flipy,
 					sx,240-sy,
-					Machine.drv.visible_area,
+					Machine.visible_area,
 					TRANSPARENCY_PEN,15);
 			}
 			source.offset-=8;
@@ -188,7 +188,7 @@ public class tigeroad
 					color,
 					flipscreen,flipy,
 					8*sx,8*sy,
-					Machine.drv.visible_area, TRANSPARENCY_PEN,3);
+					Machine.visible_area, TRANSPARENCY_PEN,3);
 		}
 	}
 	

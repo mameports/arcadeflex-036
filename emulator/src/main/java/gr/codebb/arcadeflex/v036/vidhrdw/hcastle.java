@@ -257,24 +257,24 @@ public class hcastle
 		{
 			scrolly = -K007121_ctrlram[1][2];
 			scrollx = -((K007121_ctrlram[1][1]<<8)+K007121_ctrlram[1][0]);
-			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 			draw_sprites( bitmap, buffered_spriteram, 0 );
 			draw_sprites( bitmap, buffered_spriteram_2, 1 );
 	
 			scrolly = -K007121_ctrlram[0][2];
 			scrollx = -((K007121_ctrlram[0][1]<<8)+K007121_ctrlram[0][0]);
-			copyscrollbitmap(bitmap,pf1_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,pf1_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 		else
 		{
 			scrolly = -K007121_ctrlram[1][2];
 			scrollx = -((K007121_ctrlram[1][1]<<8)+K007121_ctrlram[1][0]);
-			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,pf2_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 			scrolly = -K007121_ctrlram[0][2];
 			scrollx = -((K007121_ctrlram[0][1]<<8)+K007121_ctrlram[0][0]);
-			copyscrollbitmap(bitmap,pf1_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,pf1_bitmap,1,new int[] {scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 			draw_sprites( bitmap, buffered_spriteram, 0 );
 			draw_sprites( bitmap, buffered_spriteram_2, 1 );

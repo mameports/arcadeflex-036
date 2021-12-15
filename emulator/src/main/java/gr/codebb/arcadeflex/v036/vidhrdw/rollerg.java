@@ -125,7 +125,7 @@ public class rollerg
 	
 		tilemap_render(ALL_TILEMAPS);
 	
-		fillbitmap(bitmap,Machine.pens[16 * bg_colorbase],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[16 * bg_colorbase],Machine.visible_area);
 		K053245_sprites_draw(bitmap,0,0);
 		K051316_zoom_draw_0(bitmap);
 		K053245_sprites_draw(bitmap,1,1);

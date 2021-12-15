@@ -151,7 +151,7 @@ public class surpratk
 			t = layer[1]; layer[1] = layer[2]; layer[2] = t; 
 		}
 	
-		fillbitmap(bitmap,Machine.pens[16 * bg_colorbase],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[16 * bg_colorbase],Machine.visible_area);
 		K053245_sprites_draw(bitmap,pri[0]+1,0x3f);
 		K052109_tilemap_draw(bitmap,layer[0],0);
 		K053245_sprites_draw(bitmap,pri[1]+1,pri[0]);

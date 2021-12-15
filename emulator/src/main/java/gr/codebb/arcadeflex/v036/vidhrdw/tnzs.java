@@ -211,9 +211,9 @@ public class tnzs
 				scrolly = -tnzs_scrollram.read(column*16) + 1;
 	
 			copybitmap(bitmap,tnzs_column[column^8],0,0,scrollx,scrolly,
-					   Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+					   Machine.visible_area,TRANSPARENCY_COLOR,0);
 			copybitmap(bitmap,tnzs_column[column^8],0,0,scrollx,scrolly+(16*16),
-					   Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+					   Machine.visible_area,TRANSPARENCY_COLOR,0);
 	
 			upperbits >>= 1;
 		}
@@ -254,7 +254,7 @@ public class tnzs
 					color,
 					flipx,flipy,
 					sx,sy+2,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	}
 	
@@ -279,7 +279,7 @@ public class tnzs
 	
 	
 		/* Blank the background */
-		fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+		fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
 	
 		/* Redraw the background tiles (c400-c5ff) */
 		tnzs_vh_draw_background(bitmap, new UBytePtr(tnzs_objram,0x400));

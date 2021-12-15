@@ -6,7 +6,10 @@
  *
  */ 
 package gr.codebb.arcadeflex.v036.vidhrdw;
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
 
+//to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
@@ -335,7 +338,7 @@ public class zaxxon
 							spriteram.read(offs+2+2),
 							spriteram.read(offs+2+2) & 0x80,spriteram.read(offs+2+1) & 0x80,
 							((spriteram.read(offs+2+3) + 16) & 0xff) - 31,255 - spriteram.read(offs+2) - 15,
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -352,7 +355,7 @@ public class zaxxon
 							spriteram.read(offs+2) & 0x3f,
 							spriteram.read(offs+1) & 0x80,spriteram.read(offs+1) & 0x80,	/* ?? */
 							((spriteram.read(offs+3) + 16) & 0xff) - 32,255 - spriteram.read(offs) - 16,
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -369,7 +372,7 @@ public class zaxxon
 							spriteram.read(offs+2) & 0x3f,
 							spriteram.read(offs+1) & 0x40,spriteram.read(offs+1) & 0x80,
 							((spriteram.read(offs+3) + 16) & 0xff) - 32,255 - spriteram.read(offs) - 16,
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -399,12 +402,12 @@ public class zaxxon
 				else
 					scroll = 2048+63 - (zaxxon_background_position.read(0) + 256*(zaxxon_background_position.read(1)&7));
 	
-				skew = 128 - 512 + 2 * Machine.drv.visible_area.min_x;
+				skew = 128 - 512 + 2 * Machine.visible_area.min_x;
 	
-				clip.min_y = Machine.drv.visible_area.min_y;
-				clip.max_y = Machine.drv.visible_area.max_y;
+				clip.min_y = Machine.visible_area.min_y;
+				clip.max_y = Machine.visible_area.max_y;
 	
-				for (i = Machine.drv.visible_area.min_x;i <= Machine.drv.visible_area.max_x;i++)
+				for (i = Machine.visible_area.min_x;i <= Machine.visible_area.max_x;i++)
 				{
 					clip.min_x = i;
 					clip.max_x = i;
@@ -428,12 +431,12 @@ public class zaxxon
 					scroll = 2*(zaxxon_background_position.read(0) + 256*(zaxxon_background_position.read(1)&7))
 						- backgroundbitmap1.height + 256;
 	
-				skew = 72 - (255 - Machine.drv.visible_area.max_y);
+				skew = 72 - (255 - Machine.visible_area.max_y);
 	
-				clip.min_x = Machine.drv.visible_area.min_x;
-				clip.max_x = Machine.drv.visible_area.max_x;
+				clip.min_x = Machine.visible_area.min_x;
+				clip.max_x = Machine.visible_area.max_x;
 	
-				for (i = Machine.drv.visible_area.max_y;i >= Machine.drv.visible_area.min_y;i-=2)
+				for (i = Machine.visible_area.max_y;i >= Machine.visible_area.min_y;i-=2)
 				{
 					clip.min_y = i-1;
 					clip.max_y = i;
@@ -448,7 +451,7 @@ public class zaxxon
 				}
 			}
 		}
-		else fillbitmap(bitmap,Machine.pens[0],Machine.drv.visible_area);
+		else fillbitmap(bitmap,Machine.pens[0],Machine.visible_area);
 	
 	
 		draw_sprites(bitmap);
@@ -475,7 +478,7 @@ public class zaxxon
 					color,
 					0,0,
 					8*sx,8*sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 	
@@ -492,11 +495,11 @@ public class zaxxon
 			scroll = 2*(zaxxon_background_position.read(0) + 256*(zaxxon_background_position.read(1)&7));
 	
 			if ((zaxxon_background_color_bank.read() & 1)!=0)
-				copyscrollbitmap(bitmap,backgroundbitmap2,0,null,1,new int[] {scroll},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+				copyscrollbitmap(bitmap,backgroundbitmap2,0,null,1,new int[] {scroll},Machine.visible_area,TRANSPARENCY_NONE,0);
 			else
-				copyscrollbitmap(bitmap,backgroundbitmap1,0,null,1,new int[] {scroll},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+				copyscrollbitmap(bitmap,backgroundbitmap1,0,null,1,new int[] {scroll},Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
-		else fillbitmap(bitmap,Machine.pens[0],Machine.drv.visible_area);
+		else fillbitmap(bitmap,Machine.pens[0],Machine.visible_area);
 	
 	
 		draw_sprites(bitmap);
@@ -520,7 +523,7 @@ public class zaxxon
 					color,
 					0,0,
 					8*sx,8*sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

@@ -5,6 +5,10 @@
  */
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;

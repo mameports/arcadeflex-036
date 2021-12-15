@@ -78,7 +78,7 @@ public class snowbros
 	
 		/* This clears & redraws the entire screen each pass */
 	
-	  	fillbitmap(bitmap,Machine.gfx[0].colortable.read(0),Machine.drv.visible_area);
+	  	fillbitmap(bitmap,Machine.gfx[0].colortable.read(0),Machine.visible_area);
 	
 		for (offs = 0;offs < 0x1e00; offs += 16)
 		{
@@ -114,7 +114,7 @@ public class snowbros
 						(tilecolour & 0xf0) >> 4,
 						attr & 0x80, attr & 0x40,
 						x,y,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 			}
 		}
 	} };

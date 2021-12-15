@@ -1,4 +1,9 @@
 package gr.codebb.arcadeflex.v036.vidhrdw;
+
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
@@ -254,14 +259,14 @@ public class konamiic {
                                     color,
                                     NOT(xflip), NOT(yflip),
                                     248 - (sx + x * 8), 248 - (sy + y * 8),
-                                    Machine.drv.visible_area, trans, 0);
+                                    Machine.visible_area, trans, 0);
                         } else {
                             drawgfx(bitmap, gfx,
                                     number + x_offset[ex] + y_offset[ey],
                                     color,
                                     xflip, yflip,
                                     global_x_offset + sx + x * 8, sy + y * 8,
-                                    Machine.drv.visible_area, trans, 0);
+                                    Machine.visible_area, trans, 0);
                         }
                     }
                 }
@@ -1120,7 +1125,7 @@ public class konamiic {
                                     color[0],
                                     flipx, flipy,
                                     sx & 0x1ff, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
+                                    Machine.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
                             K051960_gfx.colortable.write(16 * color[0] + 15, o);
                         } else {
                             drawgfx(bitmap, K051960_gfx,
@@ -1128,7 +1133,7 @@ public class konamiic {
                                     color[0],
                                     flipx, flipy,
                                     sx & 0x1ff, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     }
                 }
@@ -1160,7 +1165,7 @@ public class konamiic {
                                 color[0],
                                 flipx, flipy,
                                 sx & 0x1ff, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                Machine.visible_area, TRANSPARENCY_PEN, 0,
                                 (zw << 16) / 16, (zh << 16) / 16);
                     }
                 }
@@ -1639,19 +1644,19 @@ public class konamiic {
                             drawgfx(bitmap, K053245_gfx, c, color[0],
                                     fx, fy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
+                                    Machine.visible_area, TRANSPARENCY_PENS, (cpu_getcurrentframe() & 1) != 0 ? 0x8001 : 0x0001);
                             K053245_gfx.colortable.write(16 * color[0] + 15, o);
                         } else {
                             drawgfx(bitmap, K053245_gfx, c, color[0],
                                     fx, fy,
                                     sx, sy,
-                                    Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                                    Machine.visible_area, TRANSPARENCY_PEN, 0);
                         }
                     } else {
                         drawgfxzoom(bitmap, K053245_gfx, c, color[0],
                                 fx, fy,
                                 sx, sy,
-                                Machine.drv.visible_area, TRANSPARENCY_PEN, 0,
+                                Machine.visible_area, TRANSPARENCY_PEN, 0,
                                 (zw << 16) / 16, (zh << 16) / 16);
                     }
                 }
@@ -2019,16 +2024,16 @@ public class konamiic {
         incxy = (short) (256 * K051316_ctrlram[chip][0x08] + K051316_ctrlram[chip][0x09]);
         incyy = (short) (256 * K051316_ctrlram[chip][0x0a] + K051316_ctrlram[chip][0x0b]);
 
-        startx = (startx + ((Machine.drv.visible_area.min_y - (16 + K051316_offset[chip][1])) * incyx)) & 0xFFFFFFFFL;
-        starty = (starty + ((Machine.drv.visible_area.min_y - (16 + K051316_offset[chip][1])) * incyy)) & 0xFFFFFFFFL;
+        startx = (startx + ((Machine.visible_area.min_y - (16 + K051316_offset[chip][1])) * incyx)) & 0xFFFFFFFFL;
+        starty = (starty + ((Machine.visible_area.min_y - (16 + K051316_offset[chip][1])) * incyy)) & 0xFFFFFFFFL;
 
-        startx = (startx + ((Machine.drv.visible_area.min_x - (89 + K051316_offset[chip][0])) * incxx)) & 0xFFFFFFFFL;
-        starty = (starty + ((Machine.drv.visible_area.min_x - (89 + K051316_offset[chip][0])) * incxy)) & 0xFFFFFFFFL;
+        startx = (startx + ((Machine.visible_area.min_x - (89 + K051316_offset[chip][0])) * incxx)) & 0xFFFFFFFFL;
+        starty = (starty + ((Machine.visible_area.min_x - (89 + K051316_offset[chip][0])) * incxy)) & 0xFFFFFFFFL;
 
-        sx = Machine.drv.visible_area.min_x;
-        sy = Machine.drv.visible_area.min_y;
-        ex = Machine.drv.visible_area.max_x;
-        ey = Machine.drv.visible_area.max_y;
+        sx = Machine.visible_area.min_x;
+        sy = Machine.visible_area.min_y;
+        ex = Machine.visible_area.max_x;
+        ey = Machine.visible_area.max_y;
 
         if ((Machine.orientation & ORIENTATION_SWAP_XY) != 0) {
             int t;

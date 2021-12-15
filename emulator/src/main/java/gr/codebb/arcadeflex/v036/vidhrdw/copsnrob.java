@@ -98,7 +98,7 @@ public class copsnrob {
             }
 
             /* copy the character mapped graphics */
-            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copybitmap(bitmap, tmpbitmap, 0, 0, 0, 0, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Draw the cars. Positioning was based on a screen shot */
             if (copsnrob_cary.read(0) != 0) {

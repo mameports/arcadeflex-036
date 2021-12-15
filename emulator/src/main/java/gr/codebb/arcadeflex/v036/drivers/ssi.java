@@ -11,6 +11,10 @@ driver by Richard Bush, Howie Cohen, Alex Pasadyn
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;

@@ -1,5 +1,9 @@
 package gr.codebb.arcadeflex.v036.cpu.m6809;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.cpu_interface;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;

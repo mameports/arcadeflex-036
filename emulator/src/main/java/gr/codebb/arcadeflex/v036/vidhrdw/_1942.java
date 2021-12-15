@@ -7,6 +7,10 @@
  */
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
@@ -209,7 +213,7 @@ public class _1942 {
                     scroll = 256 - scroll;
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scroll}, 0, null, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scroll}, 0, null, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* Draw the sprites. */
@@ -239,7 +243,7 @@ public class _1942 {
                             code + i, col,
                             flipscreen, flipscreen,
                             sx, sy + 16 * i * dir,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
 
                     i--;
                 } while (i >= 0);
@@ -262,7 +266,7 @@ public class _1942 {
                             colorram.read(offs) & 0x3f,
                             flipscreen, flipscreen,
                             8 * sx, 8 * sy,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
         }

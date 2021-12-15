@@ -184,7 +184,7 @@ public class cninja
 						colour,
 						fx,fy,
 						x,y + mult * multi,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 				multi--;
 			}

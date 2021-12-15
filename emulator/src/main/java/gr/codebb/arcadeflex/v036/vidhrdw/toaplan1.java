@@ -883,7 +883,7 @@ public class toaplan1 {
 /*TODO*///		tile_struct *tinfo2;
 /*TODO*///		struct rectangle sp_rect;
 /*TODO*///	
-/*TODO*///		fillbitmap (bitmap, palette_transparent_pen, &Machine.drv.visible_area);
+/*TODO*///		fillbitmap (bitmap, palette_transparent_pen, &Machine.visible_area);
 /*TODO*///	
 /*TODO*///	
 /*TODO*///	//	if (toaplan1_flipscreen != 0)
@@ -925,7 +925,7 @@ public class toaplan1 {
 /*TODO*///					(tinfo.color&0x3f),
 /*TODO*///					flip,flip,							/* flipx,flipy */
 /*TODO*///					tinfo.xpos,tinfo.ypos,
-/*TODO*///					&Machine.drv.visible_area,pen,0);
+/*TODO*///					&Machine.visible_area,pen,0);
 /*TODO*///				tinfo++ ;
 /*TODO*///			}
 /*TODO*///			priority++;
@@ -954,7 +954,7 @@ public class toaplan1 {
 /*TODO*///				(tinfo2.color&0x3f), 			/* bit 7 not for colour */
 /*TODO*///				flipx,flipy,					/* flipx,flipy */
 /*TODO*///				tinfo2.xpos,tinfo2.ypos,
-/*TODO*///				&Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+/*TODO*///				&Machine.visible_area,TRANSPARENCY_PEN,0);
 /*TODO*///	
 /*TODO*///			priority = tinfo2.priority;
 /*TODO*///			{
@@ -1057,7 +1057,7 @@ public class toaplan1 {
 /*TODO*///		int priority,pen;
 /*TODO*///		tile_struct *tinfo;
 /*TODO*///	
-/*TODO*///		fillbitmap (bitmap, palette_transparent_pen, &Machine.drv.visible_area);
+/*TODO*///		fillbitmap (bitmap, palette_transparent_pen, &Machine.visible_area);
 /*TODO*///	
 /*TODO*///		for ( priority = 0 ; priority < 16 ; priority++ )	/* draw priority layers in order */
 /*TODO*///		{
@@ -1078,7 +1078,7 @@ public class toaplan1 {
 /*TODO*///					(tinfo.color&0x3f), 			/* bit 7 not for colour */
 /*TODO*///					(tinfo.color & 0x0100),(tinfo.color & 0x0200),	/* flipx,flipy */
 /*TODO*///					tinfo.xpos,tinfo.ypos,
-/*TODO*///					&Machine.drv.visible_area,pen,0);
+/*TODO*///					&Machine.visible_area,pen,0);
 /*TODO*///				tinfo++ ;
 /*TODO*///			}
 /*TODO*///		}

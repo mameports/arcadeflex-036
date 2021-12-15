@@ -13,6 +13,10 @@
  */ 
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
@@ -904,7 +908,7 @@ public class nemesis
 								color,
 								flipx,flipy,
 								sx,sy,
-								Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+								Machine.visible_area,TRANSPARENCY_PEN,0);
 					}
 					else if(zoom>=0x80)
 					{
@@ -913,7 +917,7 @@ public class nemesis
 								color,
 								flipx,flipy,
 								sx,sy,
-								Machine.drv.visible_area,TRANSPARENCY_PEN,0,zoom);
+								Machine.visible_area,TRANSPARENCY_PEN,0,zoom);
 					}
 					else if(zoom>=0x10)
 					{
@@ -922,7 +926,7 @@ public class nemesis
 								color,
 								flipx,flipy,
 								sx,sy,
-								Machine.drv.visible_area,TRANSPARENCY_PEN,0,zoom);
+								Machine.visible_area,TRANSPARENCY_PEN,0,zoom);
 					}
 				} /* if sprite */
 			} /* for loop */
@@ -1275,7 +1279,7 @@ public class nemesis
 		setup_backgrounds();
 	
 		/* screen flash */
-		fillbitmap(bitmap,Machine.pens[paletteram.READ_WORD(0x00) & 0x7ff],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[paletteram.READ_WORD(0x00) & 0x7ff],Machine.visible_area);
 	
 		/* Copy the background bitmap */
 		yscroll = -(nemesis_yscroll.READ_WORD(0x300) & 0xff);	/* used on nemesis level 2 */
@@ -1284,7 +1288,7 @@ public class nemesis
 			xscroll2[offs] = -((nemesis_xscroll2.READ_WORD(2 * offs) & 0xff) +
 					((nemesis_xscroll2.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 		}
-		copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,1,new int[]{yscroll},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,1,new int[]{yscroll},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		/* Do the foreground */
 		for (offs = 0;offs < 256;offs++)
@@ -1292,12 +1296,12 @@ public class nemesis
 			xscroll[offs] = -((nemesis_xscroll1.READ_WORD(2 * offs) & 0xff) +
 					((nemesis_xscroll1.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 		}
-		copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		draw_sprites(bitmap);
 	
-		copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,1,new int[]{yscroll},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
-		copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,1,new int[]{yscroll},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		for (offs = 0; offs < 2048; offs++)
 		{
@@ -1325,7 +1329,7 @@ public class nemesis
 			xscroll2[offs] = -((nemesis_xscroll2.READ_WORD(2 * offs) & 0xff) +
 					((nemesis_xscroll2.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 		}
-		copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,1,new int[]{yscroll},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,1,new int[]{yscroll},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		/* Do the foreground */
 		for (offs = 0;offs < 256;offs++)
@@ -1333,7 +1337,7 @@ public class nemesis
 			xscroll[offs] = -((nemesis_xscroll1.READ_WORD(2 * offs) & 0xff) +
 					((nemesis_xscroll1.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 		}
-		copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		if ((Machine.orientation & ORIENTATION_SWAP_XY)!=0)
 			Machine.orientation ^= ORIENTATION_FLIP_X;
@@ -1347,8 +1351,8 @@ public class nemesis
 		else
 			Machine.orientation ^= ORIENTATION_FLIP_Y;
 	
-		copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,1,new int[]{yscroll},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
-		copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,1,new int[]{yscroll},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		for (offs = 0; offs < 2048; offs++)
 		{
@@ -1372,7 +1376,7 @@ public class nemesis
 		setup_backgrounds();
 	
 		/* screen flash */
-		fillbitmap(bitmap,Machine.pens[paletteram.READ_WORD(0x00) & 0x7ff],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[paletteram.READ_WORD(0x00) & 0x7ff],Machine.visible_area);
 	
 		/* Kludge - check if we need row or column scroll */
 		if (nemesis_yscroll.READ_WORD(0x780)!=0 || nemesis_yscroll.READ_WORD(0x790)!=0) {
@@ -1384,14 +1388,14 @@ public class nemesis
 				yscroll[l] = yscroll[l+64] = -nemesis_yscroll.READ_WORD(offs);
 				l++;
 			}
-			copyscrollbitmap(bitmap,tmpbitmap2,0,null,128,yscroll,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap2,0,null,128,yscroll,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		} else { /* Rowscroll */
 			for (offs = 0;offs < 256;offs++)
 			{
 				xscroll[offs] = -((nemesis_xscroll1.READ_WORD(2 * offs) & 0xff) +
 						((nemesis_xscroll1.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 			}
-			copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap2,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 	
 		/* Copy the foreground bitmap */
@@ -1403,32 +1407,32 @@ public class nemesis
 				yscroll2[l] = yscroll2[l+64] = -nemesis_yscroll.READ_WORD(offs);
 				l++;
 			}
-			copyscrollbitmap(bitmap,tmpbitmap,0,null,128,yscroll2,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap,0,null,128,yscroll2,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 			draw_sprites(bitmap);
 	
 			if (culumn_scroll != 0)
-				copyscrollbitmap(bitmap,tmpbitmap4,0,null,128,yscroll,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+				copyscrollbitmap(bitmap,tmpbitmap4,0,null,128,yscroll,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 			else
-				copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+				copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
-			copyscrollbitmap(bitmap,tmpbitmap3,0,null,128,yscroll2,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap3,0,null,128,yscroll2,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		} else { /* Rowscroll */
 			for (offs = 0;offs < 256;offs++)
 			{
 				xscroll2[offs] = -((nemesis_xscroll2.READ_WORD(2 * offs) & 0xff) +
 						((nemesis_xscroll2.READ_WORD(0x200 + 2 * offs) & 1) << 8));
 			}
-			copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap,256,xscroll2,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 			draw_sprites(bitmap);
 	
 			if (culumn_scroll != 0)
-				copyscrollbitmap(bitmap,tmpbitmap4,0,null,128,yscroll,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+				copyscrollbitmap(bitmap,tmpbitmap4,0,null,128,yscroll,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 			else
-				copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+				copyscrollbitmap(bitmap,tmpbitmap4,256,xscroll,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
-			copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,0,null,Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+			copyscrollbitmap(bitmap,tmpbitmap3,256,xscroll2,0,null,Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 		}
 	
 		for (offs = 0; offs < 2048; offs++)

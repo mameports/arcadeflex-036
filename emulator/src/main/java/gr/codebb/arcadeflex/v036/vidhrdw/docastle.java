@@ -280,7 +280,7 @@ public class docastle
 						colorram.read(offs) & 0x1f,
 						flipscreen,flipscreen,
 						8*sx,8*sy,
-						Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+						Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 				/* also draw the part of the character which has priority over the */
 				/* sprites in another bitmap */
@@ -289,13 +289,13 @@ public class docastle
 						32 + (colorram.read(offs) & 0x1f),
 						flipscreen,flipscreen,
 						8*sx,8*sy,
-						Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+						Machine.visible_area,TRANSPARENCY_NONE,0);
 			}
 		}
 	
 	
 		/* copy the character mapped graphics */
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 	
 		/* Draw the sprites. Note that it is important to draw them exactly in this */
@@ -326,7 +326,7 @@ public class docastle
 					color,
 					flipx,flipy,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_COLOR,256);
+					Machine.visible_area,TRANSPARENCY_COLOR,256);
 	
 	
 			/* sprites use color 0 for background pen and 8 for the 'under tile' pen.
@@ -349,6 +349,6 @@ public class docastle
 	
 	
 		/* now redraw the portions of the background which have priority over sprites */
-		copybitmap(bitmap,tmpbitmap1,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_COLOR,256);
+		copybitmap(bitmap,tmpbitmap1,0,0,0,0,Machine.visible_area,TRANSPARENCY_COLOR,256);
 	} };
 }

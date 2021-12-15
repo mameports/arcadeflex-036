@@ -4,6 +4,9 @@
  */
 package arcadeflex.v037b7.vidhrdw;
 
+//mame imports
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.memset;
 import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
@@ -718,7 +721,7 @@ public class rastan {
 
             scrollx = rastan_scrollx.READ_WORD(0) - 16;
             scrolly = -rastan_scrolly.READ_WORD(0);
-            copyscrollbitmap(bitmap, tmpbitmap1, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+            copyscrollbitmap(bitmap, tmpbitmap1, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
 
             /* Draw the sprites. 128 sprites in total */
             for (offs = 0x07F0; offs >= 0; offs -= 16) {
@@ -745,7 +748,7 @@ public class rastan {
                             col,
                             data1 & 0x40, data1 & 0x80,
                             sx, sy + 1,
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+                            Machine.visible_area, TRANSPARENCY_PEN, 15);
                 }
             }
 

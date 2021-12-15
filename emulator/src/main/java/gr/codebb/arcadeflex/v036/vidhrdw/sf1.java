@@ -218,7 +218,7 @@ public class sf1
 							at & 0xf,
 							at & 0x100, at & 0x200,
 							x, y,
-							Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+							Machine.visible_area, TRANSPARENCY_PEN, 15);
 				} else {
 					int c1, c2, c3, c4;
 					switch(at & 0x300) {
@@ -254,28 +254,28 @@ public class sf1
 							at & 0xf,
 							at & 0x100, at & 0x200,
 							x, y,
-							Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+							Machine.visible_area, TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,
 							Machine.gfx[2],
 							sf1_invert.handler(c2),
 							at & 0xf,
 							at & 0x100, at & 0x200,
 							x+16, y,
-							Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+							Machine.visible_area, TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,
 							Machine.gfx[2],
 							sf1_invert.handler(c3),
 							at & 0xf,
 							at & 0x100, at & 0x200,
 							x, y+16,
-							Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+							Machine.visible_area, TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,
 							Machine.gfx[2],
 							sf1_invert.handler(c4),
 							at & 0xf,
 							at & 0x100, at & 0x200,
 							x+16, y+16,
-							Machine.drv.visible_area, TRANSPARENCY_PEN, 15);
+							Machine.visible_area, TRANSPARENCY_PEN, 15);
 				}
 			}
 			pt.offset -= 0x40;
@@ -299,7 +299,7 @@ public class sf1
 		tilemap_draw(bitmap, bgb_tilemap, 0);
 	
 		if((sf1_active & 0x20)==0)
-			fillbitmap(bitmap,palette_transparent_pen,Machine.drv.visible_area);
+			fillbitmap(bitmap,palette_transparent_pen,Machine.visible_area);
 	
 		tilemap_draw(bitmap, bgm_tilemap, 0);
 	

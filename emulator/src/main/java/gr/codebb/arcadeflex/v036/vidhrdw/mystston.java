@@ -202,7 +202,7 @@ public class mystston
 			scrolly = -mystston_scroll.read();
 			if (flipscreen != 0) scrolly = 256 - scrolly;
 	
-			copyscrollbitmap(bitmap,tmpbitmap,0,null,1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,0,null,1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -231,7 +231,7 @@ public class mystston
 						(spriteram.read(offs) & 0x08) >> 3,
 						flipx,flipy,
 						sx,sy,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 			}
 		}
 	
@@ -255,7 +255,7 @@ public class mystston
 					textcolor,
 					flipscreen,flipscreen,
 					8*sx,8*sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

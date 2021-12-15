@@ -3,6 +3,10 @@
  */
 package arcadeflex.v037b7.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static gr.codebb.arcadeflex.common.libc.cstring.memset;

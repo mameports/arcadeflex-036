@@ -9,6 +9,11 @@ Based on drivers from Juno First emulator by Chris Hardy (chrish@kcbbs.gen.nz)
  * using automatic conversion tool v0.10
  */ 
 package gr.codebb.arcadeflex.v036.drivers;
+
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;

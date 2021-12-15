@@ -159,7 +159,7 @@ public class gng {
      */
     static void draw_sprites(osd_bitmap bitmap) {
         GfxElement gfx = Machine.gfx[2];
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
         int offs;
         for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
             char attributes = (char) (spriteram.read(offs + 1) & 0xFF);

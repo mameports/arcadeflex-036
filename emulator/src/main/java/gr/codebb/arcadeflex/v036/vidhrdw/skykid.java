@@ -229,7 +229,7 @@ public class skykid
 							color,
 							flipx, flipy,
 							sx+x*16,sy+y*16,
-							Machine.drv.visible_area,
+							Machine.visible_area,
 							TRANSPARENCY_COLOR,255);
 					}
 				}
@@ -278,7 +278,7 @@ public class skykid
 							color,
 							flipx, flipy,
 							sx+x*16,sy+y*16,
-							Machine.drv.visible_area,
+							Machine.visible_area,
 							TRANSPARENCY_COLOR,255);
 					}
 				}
@@ -321,7 +321,7 @@ public class skykid
 				drawgfx(bitmap,Machine.gfx[0],	skykid_textram.read(offs),
 						skykid_textram.read(offs+0x400) & 0x3f,
 						0,0,sx*8,sy*8,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 	        }
 		}
 	} };
@@ -359,7 +359,7 @@ public class skykid
 				drawgfx(bitmap,Machine.gfx[0],	skykid_textram.read(offs),
 						skykid_textram.read(offs+0x400) & 0x3f,
 						0,0,sx*8,sy*8,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 	        }
 		}
 	

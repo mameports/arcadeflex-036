@@ -677,7 +677,7 @@ public class taitosj
 							2 * ((taitosj_colorbank.read(1) >> 4) & 0x03) + ((spriteram.read(offs + 2) >> 2) & 1),
 							flipx,flipy,
 							sx[0],sy[0],
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 					/* draw with wrap around. The horizontal games (eg. sfposeid) need this */
 					drawgfx(bitmap,Machine.gfx[(spriteram.read(offs + 3) & 0x40) !=0 ? 3 : 1],
@@ -685,7 +685,7 @@ public class taitosj
 							2 * ((taitosj_colorbank.read(1) >> 4) & 0x03) + ((spriteram.read(offs + 2) >> 2) & 1),
 							flipx,flipy,
 							sx[0] - 0x100,sy[0],
-							Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+							Machine.visible_area,TRANSPARENCY_PEN,0);
 				}
 			}
 		}
@@ -720,7 +720,7 @@ public class taitosj
 					scrolly[i]    = -taitosj_colscrolly.read(32*n+i) - taitosj_scroll.read(2*n+1);
 			}
 	
-			copyscrollbitmap(bitmap,taitosj_tmpbitmap[n],1,new int[]{scrollx},32,scrolly,Machine.drv.visible_area,TRANSPARENCY_COLOR,0);
+			copyscrollbitmap(bitmap,taitosj_tmpbitmap[n],1,new int[]{scrollx},32,scrolly,Machine.visible_area,TRANSPARENCY_COLOR,0);
 	
 			/* store parts covered with sprites for sprites/playfields collision detection */
 			for (i=0x00; i<0x20; i++)
@@ -863,7 +863,7 @@ public class taitosj
 	
 		/* first of all, fill the screen with the background color */
 		fillbitmap(bitmap,Machine.gfx[0].colortable.read(8 * (taitosj_colorbank.read(1) & 0x07)),
-				Machine.drv.visible_area);
+				Machine.visible_area);
 	
 		for (i = 0;i < 4;i++)
 			drawplane(draworder[taitosj_video_priority.read() & 0x1f][i],bitmap);

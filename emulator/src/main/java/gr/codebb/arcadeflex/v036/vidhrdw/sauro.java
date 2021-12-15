@@ -140,11 +140,11 @@ public class sauro
 		if (flipscreen==0)
 		{
 			int scroll = -scroll1;
-			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll} ,0,null,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll} ,0,null,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 		else
 		{
-			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll1},0,null,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scroll1},0,null,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -176,7 +176,7 @@ public class sauro
 					color,
 					flipx,flipscreen,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		};
 	
 		/* Draw the sprites. The order is important for correct priorities */
@@ -220,7 +220,7 @@ public class sauro
 					color,
 					flipx,flipscreen,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	} };
 }

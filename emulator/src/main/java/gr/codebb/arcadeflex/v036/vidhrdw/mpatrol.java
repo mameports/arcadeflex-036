@@ -320,8 +320,8 @@ public class mpatrol {
     };
 
     static void get_clip(rectangle clip, int min_y, int max_y) {
-        clip.min_x = Machine.drv.visible_area.min_x;
-        clip.max_x = Machine.drv.visible_area.max_x;
+        clip.min_x = Machine.visible_area.min_x;
+        clip.max_x = Machine.visible_area.max_x;
 
         if (flipscreen != 0) {
             clip.min_y = Machine.drv.screen_height - 1 - max_y;
@@ -402,10 +402,10 @@ public class mpatrol {
                 fillbitmap(bitmap, Machine.pens[0], clip);
 
                 draw_background(bitmap, bg2xpos, bg2ypos, bg1ypos + BGHEIGHT - 1, 0, TRANSPARENCY_NONE);
-                draw_background(bitmap, bg1xpos, bg1ypos, Machine.drv.visible_area.max_y,
+                draw_background(bitmap, bg1xpos, bg1ypos, Machine.visible_area.max_y,
                         (bgcontrol == 0x04) ? 1 : 2, TRANSPARENCY_COLOR);
             } else {
-                fillbitmap(bitmap, Machine.pens[0], Machine.drv.visible_area);
+                fillbitmap(bitmap, Machine.pens[0], Machine.visible_area);
             }
 
             /* copy the temporary bitmap to the screen */
@@ -413,8 +413,8 @@ public class mpatrol {
                 int[] scroll = new int[32];
                 rectangle clip = new rectangle();
 
-                clip.min_x = Machine.drv.visible_area.min_x;
-                clip.max_x = Machine.drv.visible_area.max_x;
+                clip.min_x = Machine.visible_area.min_x;
+                clip.max_x = Machine.visible_area.max_x;
 
                 if (flipscreen != 0) {
                     clip.min_y = 25 * 8;
@@ -465,7 +465,7 @@ public class mpatrol {
                         spriteram_2.read(offs + 1) & 0x3f,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_COLOR, 128 + 32);
+                        Machine.visible_area, TRANSPARENCY_COLOR, 128 + 32);
             }
             for (offs = spriteram_size[0] - 4; offs >= 0; offs -= 4) {
                 int sx, sy, flipx, flipy;
@@ -486,7 +486,7 @@ public class mpatrol {
                         spriteram.read(offs + 1) & 0x3f,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_COLOR, 128 + 32);
+                        Machine.visible_area, TRANSPARENCY_COLOR, 128 + 32);
             }
         }
     };

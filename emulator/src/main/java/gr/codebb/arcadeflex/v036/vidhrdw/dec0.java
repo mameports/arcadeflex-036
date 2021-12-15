@@ -403,7 +403,7 @@ public class dec0 {
                         colour,
                         fx, fy,
                         x, y - 16 * multi,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
 
                 multi--;
             }
@@ -772,7 +772,7 @@ public class dec0 {
                 cscrolly[offs] = -dec0_pf1_control_1.READ_WORD(2) - dec0_pf1_colscroll.READ_WORD(2 * offs);
             }
 
-            copyscrollbitmap(bitmap, dec0_pf1_bitmap, 1, new int[]{scrollx}, 32, cscrolly, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, dec0_pf1_bitmap, 1, new int[]{scrollx}, 32, cscrolly, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
         } /* Row scroll enable bit (unsure if this enables/disables col scroll too) */ else if ((dec0_pf1_control_0.READ_WORD(0) & 0x4) != 0) {
             int[] rscrollx = new int[1024];
 
@@ -843,9 +843,9 @@ public class dec0 {
             for (offs = 0; offs < lines * height; offs++) {
                 rscrollx[offs] = scrollx - dec0_pf1_rowscroll.READ_WORD(offs << 1);
             }
-            copyscrollbitmap(bitmap, dec0_pf1_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, dec0_pf1_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
         } else /* Scroll registers not enabled */ {
-            copyscrollbitmap(bitmap, dec0_pf1_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+            copyscrollbitmap(bitmap, dec0_pf1_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
         }
     }
 
@@ -929,11 +929,11 @@ public class dec0 {
             }
 
             if (trans == 2) {
-                copyscrollbitmap(bitmap, dec0_tf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_tf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else if (trans == 1) {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         } else /* Column scroll enable bit */ if ((dec0_pf2_control_0.READ_WORD(0) & 0x8) != 0) {
             int[] rscrollx = new int[1024];
@@ -1007,20 +1007,20 @@ public class dec0 {
             }
 
             if (trans == 2) {
-                copyscrollbitmap(bitmap, dec0_tf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_tf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else if (trans == 1) {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, lines, rscrollx, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         } else {
             /* Scroll registers not enabled */
             if (trans == 2) {
-                copyscrollbitmap(bitmap, dec0_tf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_tf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else if (trans == 1) {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else {
-                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, dec0_pf2_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         }
     }
@@ -1105,20 +1105,20 @@ public class dec0 {
             }
 
             if (trans == 2) {
-                copyscrollbitmap(bitmap, dec0_tf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_tf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else if (trans == 1) {
-                copyscrollbitmap(bitmap, dec0_pf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_pf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else {
-                copyscrollbitmap(bitmap, dec0_pf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, dec0_pf3_bitmap, lines * height, rscrollx, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         } else {
             /* Scroll registers not enabled */
             if (trans == 2) {
-                copyscrollbitmap(bitmap, dec0_tf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_tf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else if (trans == 1) {
-                copyscrollbitmap(bitmap, dec0_pf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
+                copyscrollbitmap(bitmap, dec0_pf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_PEN, palette_transparent_pen);
             } else {
-                copyscrollbitmap(bitmap, dec0_pf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, dec0_pf3_bitmap, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
         }
     }

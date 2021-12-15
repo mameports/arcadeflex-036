@@ -222,14 +222,14 @@ public class terracre
 	
 		/* copy the background graphics */
 		if ((terrac_scrolly.READ_WORD(0) & 0x2000)!=0)	/* background disable */
-			fillbitmap(bitmap,Machine.pens[0],Machine.drv.visible_area);
+			fillbitmap(bitmap,Machine.pens[0],Machine.visible_area);
 		else
 		{
 			int scrollx;
 	
 			scrollx = -terrac_scrolly.READ_WORD(0);
 	
-			copyscrollbitmap(bitmap,tmpbitmap2,1,new int[]{scrollx},0,null,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap2,1,new int[]{scrollx},0,null,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -253,7 +253,7 @@ public class terracre
 					color + 16 * (spritepalettebank.read(code >> 1) & 0x0f),
 					flipx,flipy,
 					sx,sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 	
@@ -270,7 +270,7 @@ public class terracre
 					0,
 					0,0,
 					8*sx,8*sy,
-					Machine.drv.visible_area,TRANSPARENCY_PEN,15);
+					Machine.visible_area,TRANSPARENCY_PEN,15);
 		}
 	} };
 }

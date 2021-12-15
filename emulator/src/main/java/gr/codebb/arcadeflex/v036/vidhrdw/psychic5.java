@@ -421,7 +421,7 @@ public class psychic5
 								palette,
 								flipx,flipy,
 								sx,sy,
-								Machine.drv.visible_area,TRANSPARENCY_PEN, 15);
+								Machine.visible_area,TRANSPARENCY_PEN, 15);
 				}
 			}
 		}
@@ -476,28 +476,28 @@ public class psychic5
 								palette,
 								flipy,flipx,
 								sx,sy,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs1,
 								palette,
 								flipy,flipx,
 								sx,sy+16,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs2,
 								palette,
 								flipy,flipx,
 								sx+16,sy,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_PEN, 15);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs3,
 								palette,
 								flipy,flipx,
 								sx+16,sy+16,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_PEN, 15);
 				}
 				else
@@ -507,7 +507,7 @@ public class psychic5
 								palette,
 								flipy,flipx,
 								sx,sy,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_PEN, 15);
 				}
 			}
@@ -546,28 +546,28 @@ public class psychic5
 								palette,
 								flipy,flipx,
 								sx,sy,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_NONE, 0);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs1,
 								palette,
 								flipy,flipx,
 								sx,sy+16,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_NONE, 0);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs2,
 								palette,
 								flipy,flipx,
 								sx+16,sy,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_NONE, 0);
 					drawgfx(bitmap,Machine.gfx[0],
 								tile+tileofs3,
 								palette,
 								flipy,flipx,
 								sx+16,sy+16,
-								Machine.drv.visible_area,
+								Machine.visible_area,
 								TRANSPARENCY_NONE, 0);
 				}
 			}
@@ -705,10 +705,10 @@ public class psychic5
 				tile = spriteram.read(14);
 				sy2 = spriteram.read(11+128);	/* sprite 8 */
 	
-				clip.min_x = Machine.drv.visible_area.min_x;
-				clip.min_y = Machine.drv.visible_area.min_y;
-				clip.max_x = Machine.drv.visible_area.max_x;
-				clip.max_y = Machine.drv.visible_area.max_y;
+				clip.min_x = Machine.visible_area.min_x;
+				clip.min_y = Machine.visible_area.min_y;
+				clip.max_x = Machine.visible_area.max_x;
+				clip.max_y = Machine.visible_area.max_y;
 	
 				if (bg_clip_mode >=0 && bg_clip_mode < 3 && sy1==240) bg_clip_mode = 0;
 				if (bg_clip_mode > 2 && bg_clip_mode < 5 && sy2==240) bg_clip_mode = -10;
@@ -768,19 +768,19 @@ public class psychic5
 						clip.max_x = 0;
 						clip.max_y = 0;
 					}
-					fillbitmap(bitmap,palette_transparent_pen,Machine.drv.visible_area);
+					fillbitmap(bitmap,palette_transparent_pen,Machine.visible_area);
 					copyscrollbitmap(bitmap,bitmap_bg,1,new int[] {bg_scrollx},1,new int[] {bg_scrolly},clip,TRANSPARENCY_NONE,0);
 				} else
                                 {
-					copyscrollbitmap(bitmap,bitmap_bg,1,new int[] {bg_scrollx},1,new int[] {bg_scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+					copyscrollbitmap(bitmap,bitmap_bg,1,new int[] {bg_scrollx},1,new int[] {bg_scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
                                 }
 			} else
                         {
-				copyscrollbitmap(bitmap,bitmap_bg,1,new int[] {bg_scrollx},1,new int[] {bg_scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+				copyscrollbitmap(bitmap,bitmap_bg,1,new int[] {bg_scrollx},1,new int[] {bg_scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
                         }
                 } else
 		{
-			fillbitmap(bitmap,palette_transparent_pen,Machine.drv.visible_area);
+			fillbitmap(bitmap,palette_transparent_pen,Machine.visible_area);
 			memset(bg_dirtybuffer,1,64*32);
 		}
 	

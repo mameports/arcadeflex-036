@@ -4,6 +4,10 @@
  */
 package gr.codebb.arcadeflex.v037b7.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static arcadeflex.v037b7.mame.sndintrf.sound_reset;
 import gr.codebb.arcadeflex.v036.cpu.Dummy_cpu;
 import gr.codebb.arcadeflex.v036.cpu.hd6309.hd6309;

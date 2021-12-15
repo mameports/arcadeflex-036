@@ -244,7 +244,7 @@ public class airbustr
 						attr >> 4,
 						flipx, flipy,
 						sx,sy,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 	
 				/* let's get back to normal to support multi sprites */
 				if (flipscreen != 0)	{sx = 240 - sx;		sy = 240 - sy;}

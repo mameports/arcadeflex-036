@@ -219,13 +219,13 @@ public class xain
 						color,
 						flipx,flipscreen,
 						sx-1,flipscreen!=0?sy+16:sy-16,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 				drawgfx(bitmap,Machine.gfx[3],
 						numtile+1,
 						color,
 						flipx,flipscreen,
 						sx-1,sy,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 			}
 			else
 			{
@@ -234,7 +234,7 @@ public class xain
 						color,
 						flipx,flipscreen,
 						sx,sy,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 			}
 		}
 	}

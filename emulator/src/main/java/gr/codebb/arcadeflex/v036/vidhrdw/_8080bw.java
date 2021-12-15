@@ -394,7 +394,7 @@ public class _8080bw
 	
 		if (full_refresh!=0 && use_tmpbitmap==1)
 			/* copy the character mapped graphics */
-			copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 /*TODO*///		if (overlay != 0)
 /*TODO*///			overlay_draw(bitmap,overlay);

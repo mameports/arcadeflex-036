@@ -140,7 +140,7 @@ public class shootout
 	}
 	
 	static void draw_background(osd_bitmap bitmap ){
-		rectangle clip = Machine.drv.visible_area;
+		rectangle clip = Machine.visible_area;
 		int offs;
 		for( offs=0; offs<videoram_size[0]; offs++ ){
 			if( dirtybuffer[offs]!=0 ){
@@ -160,11 +160,11 @@ public class shootout
 				dirtybuffer[offs] = 0;
 			}
 		}
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	}
 	
 	static void draw_foreground( osd_bitmap bitmap ){
-		rectangle clip = Machine.drv.visible_area;
+		rectangle clip = Machine.visible_area;
 		GfxElement gfx = Machine.gfx[0];
 		int sx,sy;
 	

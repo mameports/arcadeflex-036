@@ -199,7 +199,7 @@ public class timeplt {
      */
     static void draw_sprites(osd_bitmap bitmap) {
         GfxElement gfx = Machine.gfx[1];
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
         int offs;
 
         for (offs = spriteram_size[0] - 2; offs >= 0; offs -= 2) {

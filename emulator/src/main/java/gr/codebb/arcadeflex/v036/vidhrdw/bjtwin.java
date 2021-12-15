@@ -172,7 +172,7 @@ public class bjtwin
 		}
 	
 		/* copy the character mapped graphics */
-		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copybitmap(bitmap,tmpbitmap,0,0,0,0,Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		for (offs = 0; offs < 256*16; offs += 16)
 		{
@@ -204,7 +204,7 @@ public class bjtwin
 								bjtwin_spriteram.READ_WORD(offs+14),//READ_WORD(&bjtwin_spriteram[offs+14]),
 								flipscreen, flipscreen,
 								sx & 0x1ff,sy & 0x1ff,
-								Machine.drv.visible_area,TRANSPARENCY_PEN,15);
+								Machine.visible_area,TRANSPARENCY_PEN,15);
 	
 						tilecode++;
 						sx += delta;

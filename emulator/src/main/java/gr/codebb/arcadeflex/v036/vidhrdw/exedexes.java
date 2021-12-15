@@ -151,7 +151,7 @@ public class exedexes {
                             BackTileMap(tile + 8 * 8),
                             BackTileMap(tile) & 0x40, BackTileMap(tile) & 0x80,
                             sy * 32 - (yo & 0x1F), sx * 32,
-                            Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                            Machine.visible_area, TRANSPARENCY_NONE, 0);
                 }
             }
 
@@ -170,7 +170,7 @@ public class exedexes {
                             0,
                             0, 0,
                             sy * 16 - (yo & 0xF), sx * 16 - (xo & 0xF),
-                            Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                            Machine.visible_area, TRANSPARENCY_PEN, 0);
                 }
             }
 
@@ -181,7 +181,7 @@ public class exedexes {
                         spriteram.read(offs + 1) & 0x0f,
                         spriteram.read(offs + 1) & 0x10, spriteram.read(offs + 1) & 0x20,
                         spriteram.read(offs + 3) - 0x10 * (spriteram.read(offs + 1) & 0x80), spriteram.read(offs + 2),
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             /* draw the frontmost playfield. They are characters, but draw them as sprites */
@@ -194,7 +194,7 @@ public class exedexes {
                         colorram.read(offs) & 0x3f,
                         0, 0,
                         8 * sx, 8 * sy,
-                        Machine.drv.visible_area, TRANSPARENCY_COLOR, 207);
+                        Machine.visible_area, TRANSPARENCY_COLOR, 207);
             }
         }
     };

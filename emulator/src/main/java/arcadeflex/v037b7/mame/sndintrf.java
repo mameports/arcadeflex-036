@@ -3,6 +3,10 @@
 */
 package arcadeflex.v037b7.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.v036.sound.Dummy_snd;
 import arcadeflex.v037b7.sound.dac;
 import gr.codebb.arcadeflex.v036.sound.samples;

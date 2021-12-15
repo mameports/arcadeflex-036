@@ -190,7 +190,7 @@ public class sbasketb
 					scroll[i] = sbasketb_scroll.read() + 1;
 			}
 	
-			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap,0,null,32,scroll,Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 		/* Draw the sprites */
@@ -221,7 +221,7 @@ public class sbasketb
 						code, color,
 						flipx, flipy,
 						sx, sy,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 			}
 		}
 	} };

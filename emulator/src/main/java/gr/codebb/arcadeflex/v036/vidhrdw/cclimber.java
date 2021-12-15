@@ -390,19 +390,19 @@ public class cclimber {
         copybitmap(bitmap, bsbitmap,
                 flipx, flipy,
                 sx, sy,
-                Machine.drv.visible_area, TRANSPARENCY_COLOR, bgpen);
+                Machine.visible_area, TRANSPARENCY_COLOR, bgpen);
         copybitmap(bitmap, bsbitmap,
                 flipx, flipy,
                 sx - 256, sy,
-                Machine.drv.visible_area, TRANSPARENCY_COLOR, bgpen);
+                Machine.visible_area, TRANSPARENCY_COLOR, bgpen);
         copybitmap(bitmap, bsbitmap,
                 flipx, flipy,
                 sx - 256, sy - 256,
-                Machine.drv.visible_area, TRANSPARENCY_COLOR, bgpen);
+                Machine.visible_area, TRANSPARENCY_COLOR, bgpen);
         copybitmap(bitmap, bsbitmap,
                 flipx, flipy,
                 sx, sy - 256,
-                Machine.drv.visible_area, TRANSPARENCY_COLOR, bgpen);
+                Machine.visible_area, TRANSPARENCY_COLOR, bgpen);
     }
 
     static int lastcol_cc;
@@ -465,7 +465,7 @@ public class cclimber {
                     }
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* update the "big sprite" */
@@ -522,7 +522,7 @@ public class cclimber {
                         spriteram.read(offs + 1) & 0x0f,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             if ((cclimber_bigspriteram.read(0) & 1) == 0) /* draw the "big sprite" over sprites */ {
@@ -595,7 +595,7 @@ public class cclimber {
                     }
                 }
 
-                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.drv.visible_area, TRANSPARENCY_NONE, 0);
+                copyscrollbitmap(bitmap, tmpbitmap, 0, null, 32, scroll, Machine.visible_area, TRANSPARENCY_NONE, 0);
             }
 
             /* update the "big sprite" */
@@ -653,7 +653,7 @@ public class cclimber {
                         (spriteram.read(offs + 1) & 0x0f) + 0x10 * palettebank,
                         flipx, flipy,
                         sx, sy,
-                        Machine.drv.visible_area, TRANSPARENCY_PEN, 0);
+                        Machine.visible_area, TRANSPARENCY_PEN, 0);
             }
 
             if ((cclimber_bigspriteram.read(0) & 1) == 0) /* draw the "big sprite" over sprites */ {

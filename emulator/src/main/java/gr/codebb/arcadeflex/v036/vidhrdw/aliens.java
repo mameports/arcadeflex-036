@@ -134,7 +134,7 @@ public class aliens
 	
 		tilemap_render(ALL_TILEMAPS);
 	
-		fillbitmap(bitmap,Machine.pens[layer_colorbase[1] * 16],Machine.drv.visible_area);
+		fillbitmap(bitmap,Machine.pens[layer_colorbase[1] * 16],Machine.visible_area);
 		K051960_sprites_draw(bitmap,3,3);
 		K052109_tilemap_draw(bitmap,1,0);
 		K051960_sprites_draw(bitmap,2,2);

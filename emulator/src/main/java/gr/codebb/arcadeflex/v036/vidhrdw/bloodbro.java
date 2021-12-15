@@ -102,7 +102,7 @@ public class bloodbro {
      * ***********************************************************************
      */
     static void draw_text(osd_bitmap bitmap) {
-        rectangle clip = Machine.drv.visible_area;
+        rectangle clip = Machine.visible_area;
         UShortPtr source = new UShortPtr(textlayoutram);
         int sx, sy;
         for (sy = 0; sy < 32; sy++) {
@@ -151,7 +151,7 @@ public class bloodbro {
 
             copyscrollbitmap(bitmap, tmpbitmap,
                     1, new int[]{scrollx}, 1, new int[]{scrolly},
-                    Machine.drv.visible_area,
+                    Machine.visible_area,
                     TRANSPARENCY_NONE, 0);
         }
     }
@@ -190,7 +190,7 @@ public class bloodbro {
             int scrollx = -bloodbro_scroll.READ_WORD(0x24);
             int scrolly = -bloodbro_scroll.READ_WORD(0x26);
 
-            copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.drv.visible_area,
+            copyscrollbitmap(bitmap, tmpbitmap2, 1, new int[]{scrollx}, 1, new int[]{scrolly}, Machine.visible_area,
                     TRANSPARENCY_PEN, 0xf);
         }
     }
@@ -360,7 +360,7 @@ static void get_sprite_info(  ){
 /*TODO*///			drawgfx(bitmap,Machine.gfx[3],
 /*TODO*///				tile_number, color, flipx,0,
 /*TODO*///				sx,sy,
-/*TODO*///				&Machine.drv.visible_area,TRANSPARENCY_PEN,0xf);
+/*TODO*///				&Machine.visible_area,TRANSPARENCY_PEN,0xf);
 /*TODO*///		}
 /*TODO*///	}
 /*TODO*///}

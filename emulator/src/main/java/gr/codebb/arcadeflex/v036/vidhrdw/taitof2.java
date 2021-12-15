@@ -499,7 +499,7 @@ public class taitof2
 			}
 		}
 	
-		copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+		copyscrollbitmap(bitmap,tmpbitmap,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 	
 		/* Do the foreground layer */
 		// This first pair seems to work only when video flip is on
@@ -536,7 +536,7 @@ public class taitof2
 			}
 		}
 	
-		copyscrollbitmap(bitmap,tmpbitmap2,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+		copyscrollbitmap(bitmap,tmpbitmap2,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 		taitof2_draw_sprites (bitmap);
 	
@@ -585,7 +585,7 @@ public class taitof2
 			}
 		}
 	
-	//	copyscrollbitmap(bitmap,tmpbitmap3,1,&scrollx,1,&scrolly,&Machine.drv.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
+	//	copyscrollbitmap(bitmap,tmpbitmap3,1,&scrollx,1,&scrolly,&Machine.visible_area,TRANSPARENCY_PEN,palette_transparent_pen);
 	
 	} };
 	

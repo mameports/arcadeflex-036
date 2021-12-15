@@ -107,7 +107,7 @@ public class spy {
 
             tilemap_render(ALL_TILEMAPS);
 
-            fillbitmap(bitmap, Machine.pens[16 * layer_colorbase[0]], Machine.drv.visible_area);
+            fillbitmap(bitmap, Machine.pens[16 * layer_colorbase[0]], Machine.visible_area);
             K051960_sprites_draw(bitmap, 1, 1);	/* are these used? */
 
             K052109_tilemap_draw(bitmap, 1, 0);

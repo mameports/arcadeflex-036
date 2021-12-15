@@ -1,9 +1,12 @@
 package gr.codebb.arcadeflex.v036.cpu.h6280;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.cpu.h6280.h6280H.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.CPU_H6280;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.cpu_readmem21;

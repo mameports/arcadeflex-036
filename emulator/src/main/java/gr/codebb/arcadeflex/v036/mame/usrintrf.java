@@ -1,6 +1,10 @@
 
 package gr.codebb.arcadeflex.v036.mame;
 
+//mame imports
+import static arcadeflex.v037b7.mame.driverH.*;
+
+//to be organized
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
@@ -2169,8 +2173,8 @@ public class usrintrf {
     	{
     		int pixelx,pixely,tmax,tmin,rem;
     
-    		pixelx = 4 * (Machine.drv.visible_area.max_y - Machine.drv.visible_area.min_y + 1);
-    		pixely = 3 * (Machine.drv.visible_area.max_x - Machine.drv.visible_area.min_x + 1);
+    		pixelx = 4 * (Machine.visible_area.max_y - Machine.visible_area.min_y + 1);
+    		pixely = 3 * (Machine.visible_area.max_x - Machine.visible_area.min_x + 1);
     
     		/* calculate MCD */
     		if (pixelx >= pixely)
@@ -2195,8 +2199,8 @@ public class usrintrf {
     
     		buf+=sprintf("\nScreen resolution:\n");
     		buf+=sprintf("%d x %d (%s) %f Hz\n",
-    				Machine.drv.visible_area.max_x - Machine.drv.visible_area.min_x + 1,
-    				Machine.drv.visible_area.max_y - Machine.drv.visible_area.min_y + 1,
+    				Machine.visible_area.max_x - Machine.visible_area.min_x + 1,
+    				Machine.visible_area.max_y - Machine.visible_area.min_y + 1,
     				((Machine.gamedrv.flags & ORIENTATION_SWAP_XY)!=0) ? "V" : "H",
     				(float)Machine.drv.frames_per_second);
     	}

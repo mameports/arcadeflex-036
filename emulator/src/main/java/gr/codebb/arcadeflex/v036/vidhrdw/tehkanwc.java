@@ -149,14 +149,14 @@ public class tehkanwc
 						0x0a,
 						0,0,
 						0,232,
-						Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+						Machine.visible_area,TRANSPARENCY_NONE,0);
 			else
 				drawgfx(bitmap,Machine.gfx[0],
 						0xc0 + i,
 						0x03,
 						1,1,
 						0,16,
-						Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+						Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	else if (errorlog != null) fprintf(errorlog,"unknown LED %02x for player %d\n",led,player);
 	}
@@ -275,7 +275,7 @@ public class tehkanwc
 		{
 			int scrolly = -scroll_y;
 			int scrollx = -(scroll_x[0] + 256 * scroll_x[1]);
-			copyscrollbitmap(bitmap,tmpbitmap1,1,new int[]{scrollx},1,new int[]{scrolly},Machine.drv.visible_area,TRANSPARENCY_NONE,0);
+			copyscrollbitmap(bitmap,tmpbitmap1,1,new int[]{scrollx},1,new int[]{scrolly},Machine.visible_area,TRANSPARENCY_NONE,0);
 		}
 	
 	
@@ -296,7 +296,7 @@ public class tehkanwc
 						colorram.read(offs) & 0x0f,
 						colorram.read(offs) & 0x40, colorram.read(offs) & 0x80,
 						sx*8,sy*8,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 	
@@ -308,7 +308,7 @@ public class tehkanwc
 					spriteram.read(offs+1) & 0x07,
 					spriteram.read(offs+1) & 0x40,spriteram.read(offs+1) & 0x80,
 					spriteram.read(offs+2) + ((spriteram.read(offs+1) & 0x20) << 3) - 0x80,spriteram.read(offs+3),
-					Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+					Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 	
@@ -329,7 +329,7 @@ public class tehkanwc
 						colorram.read(offs) & 0x0f,
 						colorram.read(offs) & 0x40, colorram.read(offs) & 0x80,
 						sx*8,sy*8,
-						Machine.drv.visible_area,TRANSPARENCY_PEN,0);
+						Machine.visible_area,TRANSPARENCY_PEN,0);
 		}
 	
 		gridiron_drawled(bitmap,led0,0);
