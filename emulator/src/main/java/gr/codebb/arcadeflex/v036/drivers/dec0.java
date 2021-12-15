@@ -43,7 +43,7 @@ import arcadeflex.v037b7.sound._2203intfH.YM2203interface;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_control_port_0_w;
 import static arcadeflex.v037b7.sound._3812intf.YM3812_write_port_0_w;
 import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

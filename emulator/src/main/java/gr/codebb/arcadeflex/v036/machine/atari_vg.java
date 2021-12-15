@@ -7,7 +7,7 @@
  *
  */ 
 package gr.codebb.arcadeflex.v036.machine;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.platform.fileio.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;

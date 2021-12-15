@@ -6,7 +6,7 @@ package arcadeflex.v058.sound;
 
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v058.sound.sn76496H.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.sound.streams.*;

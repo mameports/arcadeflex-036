@@ -9,7 +9,7 @@ package gr.codebb.arcadeflex.v036.sndhrdw;
 
 import static gr.codebb.arcadeflex.v036.sound.samplesH.*;
 import static gr.codebb.arcadeflex.v036.sound.samples.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw._8080bw.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;

@@ -4,10 +4,10 @@
  */
 package arcadeflex.v037b7.sound;
 
-import arcadeflex.v037b7.sound.ay8910H.AY8910interface;
-import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.WriteYmHandlerPtr;
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//sound imports
+import static arcadeflex.v037b7.sound.ay8910H.*;
 
 public class _2610intfH {
 

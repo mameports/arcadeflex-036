@@ -10,7 +10,7 @@ import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
 import static gr.codebb.arcadeflex.v036.mame.common.bitmap_free;
 import static gr.codebb.arcadeflex.v036.mame.common.memory_region;
 import static gr.codebb.arcadeflex.v036.mame.commonH.REGION_CPU1;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;

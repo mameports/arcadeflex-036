@@ -113,7 +113,7 @@ import static arcadeflex.v037b7.sound._3526intf.YM3526_control_port_0_w;
 import static arcadeflex.v037b7.sound._3526intf.YM3526_status_port_0_r;
 import static arcadeflex.v037b7.sound._3526intf.YM3526_write_port_0_w;
 import arcadeflex.v037b7.sound._3812intfH.YM3526interface;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

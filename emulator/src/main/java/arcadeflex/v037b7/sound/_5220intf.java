@@ -4,6 +4,9 @@
  */
 package arcadeflex.v037b7.sound;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+
 import arcadeflex.v037b7.sound._5220intfH.TMS5220interface;
 import static arcadeflex.v037b7.sound.tms5220.tms5220_data_write;
 import static arcadeflex.v037b7.sound.tms5220.tms5220_int_read;
@@ -13,8 +16,6 @@ import static arcadeflex.v037b7.sound.tms5220.tms5220_reset;
 import static arcadeflex.v037b7.sound.tms5220.tms5220_set_irq;
 import static arcadeflex.v037b7.sound.tms5220.tms5220_status_read;
 import gr.codebb.arcadeflex.common.PtrLib.ShortPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;

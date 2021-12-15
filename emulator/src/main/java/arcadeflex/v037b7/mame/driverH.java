@@ -4,22 +4,14 @@
  */
 package arcadeflex.v037b7.mame;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+
 import arcadeflex.v037b7.mame.drawgfxH.GfxDecodeInfo;
 import arcadeflex.v037b7.mame.drawgfxH.rectangle;
 import arcadeflex.v037b7.mame.sndintrfH.MachineSound;
 import gr.codebb.arcadeflex.v036.mame.commonH.RomModule;
 import static gr.codebb.arcadeflex.v036.mame.commonH.rommodule_macro;
-import gr.codebb.arcadeflex.v036.mame.driverH.InitDriverPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.InitMachinePtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.InputPortPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.InterruptPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.RomLoadPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.VhConvertColorPromPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.VhEofCallbackPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.VhStartPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.VhStopPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.VhUpdatePtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.nvramPtr;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.CopyArray;
 import gr.codebb.arcadeflex.v037b7.mame.memoryH.IOReadPort;

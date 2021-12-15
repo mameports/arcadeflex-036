@@ -2,7 +2,7 @@ package gr.codebb.arcadeflex.v036.mame;
 
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import java.util.HashMap;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.mame.input.*;

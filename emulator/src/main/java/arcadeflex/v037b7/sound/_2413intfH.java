@@ -6,7 +6,7 @@ package arcadeflex.v037b7.sound;
 
 import static arcadeflex.v037b7.sound._3812intfH.MAX_3812;
 import arcadeflex.v037b7.sound._3812intfH.YM3812interface;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 
 public class _2413intfH {
 

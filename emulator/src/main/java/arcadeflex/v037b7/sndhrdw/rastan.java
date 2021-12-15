@@ -14,7 +14,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_set_reset_line;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_spin;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.ASSERT_LINE;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.CLEAR_LINE;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.sound.adpcm.ADPCM_play;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.*;

@@ -104,7 +104,7 @@ import static arcadeflex.v037b7.sound._2610intf.YM2610_read_port_0_r;
 import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_A_r;
 import static arcadeflex.v037b7.sound._2610intf.YM2610_status_port_0_B_r;
 import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

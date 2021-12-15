@@ -4,7 +4,7 @@
  */
 package arcadeflex.v037b7.sound;
 
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 
 public class ay8910H {
 

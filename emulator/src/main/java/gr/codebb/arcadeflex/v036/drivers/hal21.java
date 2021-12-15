@@ -1,6 +1,6 @@
 package gr.codebb.arcadeflex.v036.drivers;
 
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 

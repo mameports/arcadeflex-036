@@ -14,7 +14,7 @@ import gr.codebb.arcadeflex.v036.sound.namco;
 import arcadeflex.v058.sound.sn76496;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import arcadeflex.v037b7.sound.ay8910;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;

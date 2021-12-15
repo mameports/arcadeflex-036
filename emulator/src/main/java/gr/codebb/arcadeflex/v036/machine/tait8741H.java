@@ -1,6 +1,6 @@
 package gr.codebb.arcadeflex.v036.machine;
 
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 
 public class tait8741H {
 

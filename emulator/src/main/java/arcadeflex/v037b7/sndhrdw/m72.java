@@ -10,7 +10,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_irq_line_vector_w;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_set_irq_line;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.ASSERT_LINE;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.CLEAR_LINE;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.sound.dac.*;
 import static arcadeflex.v056.mame.timer.*;

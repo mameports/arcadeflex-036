@@ -17,7 +17,7 @@ import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
 import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import arcadeflex.v037b7.sound._2413intfH.YM2413interface;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

@@ -4,6 +4,8 @@
  */
 package gr.codebb.arcadeflex.v037b7.mame;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
 
@@ -22,7 +24,6 @@ import gr.codebb.arcadeflex.v036.cpu.h6280.h6280;
 import static gr.codebb.arcadeflex.v036.cpu.h6280.h6280H.*;
 import java.util.ArrayList;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;

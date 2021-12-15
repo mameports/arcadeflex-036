@@ -16,7 +16,7 @@ import static arcadeflex.v037b7.sound._2203intfH.*;
 import static arcadeflex.v037b7.vidhrdw._1943.*;
 
 //to be organized
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

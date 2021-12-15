@@ -4,6 +4,9 @@
  */
 package arcadeflex.v037b7.sound;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import arcadeflex.v037b7.sound._5110intfH.TMS5110interface;
@@ -15,8 +18,6 @@ import static arcadeflex.v058.sound.tms5110.tms5110_reset;
 import static arcadeflex.v058.sound.tms5110.tms5110_set_M0_callback;
 import static arcadeflex.v058.sound.tms5110.tms5110_status_read;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import gr.codebb.arcadeflex.v036.sound.streams.StreamInitPtr;
 import static gr.codebb.arcadeflex.v036.sound.streams.stream_init;

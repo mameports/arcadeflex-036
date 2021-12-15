@@ -9,7 +9,6 @@ package gr.codebb.arcadeflex.v036.sound;
  *
  * @author shadow
  */
-import gr.codebb.arcadeflex.v036.mame.driverH.*;
 
 public class adpcmH {
     public static final int MAX_ADPCM =8;

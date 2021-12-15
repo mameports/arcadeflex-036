@@ -1,7 +1,7 @@
 package gr.codebb.arcadeflex.v036.platform;
 
 import java.awt.event.KeyEvent;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.platform.software_gfx.*;
 import static gr.codebb.arcadeflex.v036.platform.video.*;

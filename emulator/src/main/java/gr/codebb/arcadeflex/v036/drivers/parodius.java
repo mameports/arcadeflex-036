@@ -24,7 +24,7 @@ import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import static arcadeflex.v037b7.sound.k053260.K053260_r;
 import static arcadeflex.v037b7.sound.k053260.K053260_w;
 import arcadeflex.v037b7.sound.k053260H.K053260_interface;
-import static gr.codebb.arcadeflex.v036.mame.driverH.*;
+import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;

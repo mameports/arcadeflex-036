@@ -4,10 +4,15 @@
  */
 package arcadeflex.v037b7.sound;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//mame imports
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
-import static arcadeflex.v037b7.sound._2610intfH.MAX_2610;
-import arcadeflex.v037b7.sound._2610intfH.YM2610interface;
+//sound imports
+import static arcadeflex.v037b7.sound._2610intfH.*;
+
+//to be organized
 import arcadeflex.v056.mame.timer.timer_callback;
 import static arcadeflex.v056.mame.timer.timer_remove;
 import static arcadeflex.v056.mame.timer.timer_set;
@@ -15,8 +20,6 @@ import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstdio.*;
 import static gr.codebb.arcadeflex.v036.mame.common.memory_region;
 import static gr.codebb.arcadeflex.v036.mame.common.memory_region_length;
-import gr.codebb.arcadeflex.v036.mame.driverH.ReadHandlerPtr;
-import gr.codebb.arcadeflex.v036.mame.driverH.WriteHandlerPtr;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.sound.streams.stream_init_multi;
 import static gr.codebb.arcadeflex.v036.sound.streams.stream_update;
@@ -229,7 +232,6 @@ public class _2610intf extends snd_interface {
 /*TODO*///	/* error */
 /*TODO*///	return 1;
 /*TODO*///}
-
     @Override
     public void stop() {
         YM2610Shutdown();

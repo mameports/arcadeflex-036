@@ -1,10 +1,12 @@
 /*
  * ported to v0.37b7 
-*/
+ */
 package arcadeflex.v037b7.sound;
 
-import gr.codebb.arcadeflex.v036.mame.driverH.*;
-import arcadeflex.v037b7.sound.ay8910H.AY8910interface;
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//sound imports
+import static arcadeflex.v037b7.sound.ay8910H.*;
 
 public class _2203intfH {
 
