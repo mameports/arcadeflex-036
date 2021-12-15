@@ -1,3 +1,7 @@
+15/12/2021
+----------
+Fixed issue in vblank intterupt in cpuintrf (Berzerk,arabian,airbustr,joyfulr works!)
+
 28/12/2020
 ==========
 -Added lsr_ea_al in 68000 cpu.
