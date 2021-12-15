@@ -49,8 +49,8 @@ import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.vendetta.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
-import static gr.codebb.arcadeflex.v036.machine.eeprom.*;
-import static gr.codebb.arcadeflex.v036.machine.eepromH.*;
+import static arcadeflex.v037b7.machine.eepromH.*;
+import static arcadeflex.v037b7.machine.eeprom.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K054000.*;
 

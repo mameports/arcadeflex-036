@@ -36,7 +36,7 @@ import static arcadeflex.v056.mame.timerH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.simpsons.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
-import static gr.codebb.arcadeflex.v036.machine.simpsons.*;
+import static arcadeflex.v037b7.machine.simpsons.*;
 import static arcadeflex.v037b7.sound.k053260.*;
 import static arcadeflex.v037b7.sound.k053260H.*;
 

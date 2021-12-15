@@ -36,8 +36,8 @@ import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K053247.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.xmen.*;
-import static gr.codebb.arcadeflex.v036.machine.eeprom.*;
-import static gr.codebb.arcadeflex.v036.machine.eepromH.*;
+import static arcadeflex.v037b7.machine.eepromH.*;
+import static arcadeflex.v037b7.machine.eeprom.*;
 
 
 
