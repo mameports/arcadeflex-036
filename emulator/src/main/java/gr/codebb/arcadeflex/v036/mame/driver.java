@@ -210,7 +210,7 @@ import static gr.codebb.arcadeflex.v036.drivers.punchout.*;
 import static gr.codebb.arcadeflex.v036.drivers.astrof.*;
 import static gr.codebb.arcadeflex.v036.drivers.karnov.*;
 import static gr.codebb.arcadeflex.v036.drivers.shuuz.*;
-import static gr.codebb.arcadeflex.v036.drivers.berzerk.*;
+import static arcadeflex.v037b7.drivers.berzerk.*;
 import static gr.codebb.arcadeflex.v036.drivers.ssi.*;
 import static gr.codebb.arcadeflex.v036.drivers.taitof2.*;
 import static gr.codebb.arcadeflex.v036.drivers.galaxian.*;
@@ -774,6 +774,11 @@ public class driver {
                 /*marvins*/ driver_marvins,
                 /*marvins*/ driver_madcrash,
                 /*marvins*/ driver_vangrd2,
+                /*trackfld*/ driver_hyprolyb,
+                /*snk*/ driver_bermudat,
+                /*snk*/ driver_bermudaj,
+                /*snk*/ driver_bermudaa,
+                /*snk*/ driver_worldwar,
                 /*
            Small issues that doesn't affect playable status
                  */
@@ -889,10 +894,6 @@ public class driver {
                 /*006*//*airbustr*/ driver_airbustr,//boots but doesn't start
                 /*dec8*/ driver_oscar,//games doesn't boot and freezes emu
                 /*dec8*/ driver_oscarj,//games doesn't boot and freezes emu      		
-                /*snk*/ driver_bermudat, //boots but doesn't start
-                /*snk*/ driver_bermudaj, //boots but doesn't start
-                /*snk*/ driver_bermudaa, //boots but doesn't start
-                /*snk*/ driver_worldwar, //boots but doesn't start
                 /*tehkanwc*/ driver_gridiron,//boots but doesn't start
                 /*baraduke*/ driver_baraduke,//stops on booting
                 /*baraduke*/ driver_metrocrs,//goes to intro menu but not much after
@@ -959,12 +960,6 @@ public class driver {
                  * *************************************************************
                  * TO RECHECK
                  */
-                /**
-                 * Games that only misses sound
-                 *
-                 */
-                /*trackfld*/ driver_hyprolyb,//Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 36704 at arcadeflex.ptrlib$UBytePtr.read(ptrlib.java:100) at sound.adpcm.generate_adpcm(adpcm.java:150)
-
                 /**
                  * Small tilemap issues
                  */
