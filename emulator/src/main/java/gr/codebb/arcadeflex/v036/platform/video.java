@@ -23,7 +23,7 @@ import static gr.codebb.arcadeflex.v036.mame.version.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.usrintrf.*;
 import static gr.codebb.arcadeflex.v036.platform.blit.*;
-import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
+import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.input.*;
 import static gr.codebb.arcadeflex.v036.platform.sound.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;

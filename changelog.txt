@@ -1,3 +1,7 @@
+16/12/2021
+==========
+Input ports updated to v0.37b7
+
 15/12/2021
 ----------
 Fixed issue in vblank intterupt in cpuintrf (Berzerk,arabian,airbustr,joyfulr works!)

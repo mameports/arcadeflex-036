@@ -1,20 +1,25 @@
-package gr.codebb.arcadeflex.v036.mame;
+/*
+ * ported to v0.37b7
+ * ported to v0.37b5
+ */
+package arcadeflex.v037b7.mame;
 
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import java.util.HashMap;
-import static arcadeflex.v037b7.generic.fucPtr.*;
-import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import static gr.codebb.arcadeflex.v036.mame.input.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
+import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
+import arcadeflex.v037b7.generic.fucPtr.ReadHandlerPtr;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
+import static gr.codebb.arcadeflex.v036.mame.commonH.*;
+import static gr.codebb.arcadeflex.v036.mame.input.*;
+import static gr.codebb.arcadeflex.v036.mame.inputH.*;
+import static arcadeflex.v037b7.mame.inptportH.*;
+import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
+import static gr.codebb.arcadeflex.v036.mame.mame.options;
+import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
-import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 
+import java.util.HashMap;
 
-public class inputport {
+public class inptport {
 
     static /*unsigned short*/ char[] input_port_value = new char[MAX_INPUT_PORTS];
     static /*unsigned short*/ char[] input_vblank = new char[MAX_INPUT_PORTS];
@@ -101,8 +106,7 @@ public class inputport {
 
     public static ipd[] inputport_defaults
             = {
-                //changed to support BACKSPACE IN APPLET MODE AS WELL  new ipd( IPT_UI_CONFIGURE,         "Config Menu",       SEQ_DEF_1(KEYCODE_TAB) ),
-                new ipd(IPT_UI_CONFIGURE, "Config Menu", SEQ_DEF_3(KEYCODE_TAB, CODE_OR, KEYCODE_BACKSPACE)),
+                new ipd(IPT_UI_CONFIGURE, "Config Menu", SEQ_DEF_1(KEYCODE_TAB)),
                 new ipd(IPT_UI_ON_SCREEN_DISPLAY, "On Screen Display", SEQ_DEF_1(KEYCODE_TILDE)),
                 new ipd(IPT_UI_PAUSE, "Pause", SEQ_DEF_1(KEYCODE_P)),
                 new ipd(IPT_UI_RESET_MACHINE, "Reset Game", SEQ_DEF_1(KEYCODE_F3)),
@@ -114,7 +118,7 @@ public class inputport {
                 new ipd(IPT_UI_SHOW_PROFILER, "Show Profiler", SEQ_DEF_2(KEYCODE_F11, KEYCODE_LSHIFT)),
                 new ipd(IPT_UI_SHOW_COLORS, "Show Colors", SEQ_DEF_2(KEYCODE_F11, KEYCODE_LCONTROL)),
                 new ipd(IPT_UI_SNAPSHOT, "Save Snapshot", SEQ_DEF_1(KEYCODE_F12)),
-                new ipd(IPT_UI_TOGGLE_CHEAT, "Toggle Cheat", SEQ_DEF_1(KEYCODE_F5)),
+                new ipd(IPT_UI_TOGGLE_CHEAT, "Toggle Cheat", SEQ_DEF_1(KEYCODE_F6)),
                 new ipd(IPT_UI_UP, "UI Up", SEQ_DEF_3(KEYCODE_UP, CODE_OR, JOYCODE_1_UP)),
                 new ipd(IPT_UI_DOWN, "UI Down", SEQ_DEF_3(KEYCODE_DOWN, CODE_OR, JOYCODE_1_DOWN)),
                 new ipd(IPT_UI_LEFT, "UI Left", SEQ_DEF_3(KEYCODE_LEFT, CODE_OR, JOYCODE_1_LEFT)),
@@ -151,6 +155,7 @@ public class inputport {
                 new ipd(IPT_BUTTON7 | IPF_PLAYER1, "P1 Button 7", SEQ_DEF_1(KEYCODE_C)),
                 new ipd(IPT_BUTTON8 | IPF_PLAYER1, "P1 Button 8", SEQ_DEF_1(KEYCODE_V)),
                 new ipd(IPT_BUTTON9 | IPF_PLAYER1, "P1 Button 9", SEQ_DEF_1(KEYCODE_B)),
+                new ipd(IPT_BUTTON10 | IPF_PLAYER1, "P1 Button 10", SEQ_DEF_1(KEYCODE_N)),
                 new ipd(IPT_JOYSTICKRIGHT_UP | IPF_PLAYER1, "P1 Right/Up", SEQ_DEF_3(KEYCODE_I, CODE_OR, JOYCODE_1_BUTTON2)),
                 new ipd(IPT_JOYSTICKRIGHT_DOWN | IPF_PLAYER1, "P1 Right/Down", SEQ_DEF_3(KEYCODE_K, CODE_OR, JOYCODE_1_BUTTON3)),
                 new ipd(IPT_JOYSTICKRIGHT_LEFT | IPF_PLAYER1, "P1 Right/Left", SEQ_DEF_3(KEYCODE_J, CODE_OR, JOYCODE_1_BUTTON1)),
@@ -172,6 +177,7 @@ public class inputport {
                 new ipd(IPT_BUTTON7 | IPF_PLAYER2, "P2 Button 7", SEQ_DEF_0()),
                 new ipd(IPT_BUTTON8 | IPF_PLAYER2, "P2 Button 8", SEQ_DEF_0()),
                 new ipd(IPT_BUTTON9 | IPF_PLAYER2, "P2 Button 9", SEQ_DEF_0()),
+                new ipd(IPT_BUTTON10 | IPF_PLAYER2, "P2 Button 10", SEQ_DEF_0()),
                 new ipd(IPT_JOYSTICKRIGHT_UP | IPF_PLAYER2, "P2 Right/Up", SEQ_DEF_0()),
                 new ipd(IPT_JOYSTICKRIGHT_DOWN | IPF_PLAYER2, "P2 Right/Down", SEQ_DEF_0()),
                 new ipd(IPT_JOYSTICKRIGHT_LEFT | IPF_PLAYER2, "P2 Right/Left", SEQ_DEF_0()),
@@ -277,7 +283,7 @@ public class inputport {
      */
     /* Generic IO */
 
-    /*TODO*///   static int readint(void *f,UINT32 *num)
+ /*TODO*///   static int readint(void *f,UINT32 *num)
 /*TODO*///    {
 /*TODO*///            unsigned i;
 /*TODO*///
@@ -400,7 +406,7 @@ public class inputport {
 /*TODO*///                    int version;
 
         /* read header */
-        /*TODO*///                   if (osd_fread(f,buf,8) != 8)
+ /*TODO*///                   if (osd_fread(f,buf,8) != 8)
 /*TODO*///                            goto getout;
 /*TODO*///
 /*TODO*///                    if (memcmp(buf,MAMEDEFSTRING_V5,8) == 0)
@@ -456,7 +462,7 @@ public class inputport {
 /*TODO*///            {
 /*TODO*///                    int i;
         /* write header */
-        /*TODO*///                    osd_fwrite(f,MAMEDEFSTRING_V8,8);
+ /*TODO*///                    osd_fwrite(f,MAMEDEFSTRING_V8,8);
 
         /*TODO*///                    i = 0;
 /*TODO*///                    while (inputport_defaults[i].type != IPT_END)
@@ -538,7 +544,7 @@ public class inputport {
         /*TODO*///                    in = Machine->input_ports_default;
 
         /* calculate the size of the array */
-        /*TODO*///                    total = 0;
+ /*TODO*///                    total = 0;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            total++;
@@ -546,7 +552,7 @@ public class inputport {
 /*TODO*///                    }
 
         /* read header */
-        /*TODO*///                    if (osd_fread(f,buf,8) != 8)
+ /*TODO*///                    if (osd_fread(f,buf,8) != 8)
 /*TODO*///                            goto getout;
 
         /*TODO*///                    if (memcmp(buf,MAMECFGSTRING_V5,8) == 0)
@@ -561,13 +567,13 @@ public class inputport {
 /*TODO*///                            goto getout;	/* header invalid */
 
         /* read array size */
-        /*TODO*///                    if (readint(f,&savedtotal) != 0)
+ /*TODO*///                    if (readint(f,&savedtotal) != 0)
 /*TODO*///                            goto getout;
 /*TODO*///                    if (total != savedtotal)
 /*TODO*///                            goto getout;	/* different size */
 
         /* read the original settings and compare them with the ones defined in the driver */
-        /*TODO*///                    in = Machine->input_ports_default;
+ /*TODO*///                    in = Machine->input_ports_default;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            struct InputPort saved;
@@ -585,7 +591,7 @@ public class inputport {
 /*TODO*///                    }
 
         /* read the current settings */
-        /*TODO*///                    in = Machine->input_ports;
+ /*TODO*///                    in = Machine->input_ports;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            if (input_port_read(f,in,version) != 0)
@@ -625,8 +631,8 @@ public class inputport {
         /*TODO*///            update_input_ports();
 
         /* if we didn't find a saved config, return 0 so the main core knows that it */
-        /* is the first time the game is run and it should diplay the disclaimer. */
-        /*TODO*///            if (f) return 1;
+ /* is the first time the game is run and it should diplay the disclaimer. */
+ /*TODO*///            if (f) return 1;
 /*TODO*///            else 
         return 0;
     }
@@ -650,7 +656,7 @@ public class inputport {
         /*TODO*///                    in = Machine->input_ports_default;
 
         /* calculate the size of the array */
-        /*TODO*///                    total = 0;
+ /*TODO*///                    total = 0;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            total++;
@@ -658,26 +664,26 @@ public class inputport {
 /*TODO*///                    }
 
         /* write header */
-        /*TODO*///                    osd_fwrite(f,MAMECFGSTRING_V8,8);
-                    /* write array size */
-        /*TODO*///                    writeint(f,total);
-                    /* write the original settings as defined in the driver */
-        /*TODO*///                    in = Machine->input_ports_default;
+ /*TODO*///                    osd_fwrite(f,MAMECFGSTRING_V8,8);
+        /* write array size */
+ /*TODO*///                    writeint(f,total);
+        /* write the original settings as defined in the driver */
+ /*TODO*///                    in = Machine->input_ports_default;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            input_port_write(f,in);
 /*TODO*///                            in++;
 /*TODO*///                    }
-                    /* write the current settings */
-        /*TODO*///                    in = Machine->input_ports;
+        /* write the current settings */
+ /*TODO*///                    in = Machine->input_ports;
 /*TODO*///                    while (in[in_ptr].type != IPT_END)
 /*TODO*///                    {
 /*TODO*///                            input_port_write(f,in);
 /*TODO*///                            in++;
 /*TODO*///                    }
 
-        /* write out the coin/ticket counters for this machine - LBO 042898 */
-        /*TODO*///                    for (i = 0; i < COIN_COUNTERS; i ++)
+        /* write out the coin/ticket counters for this machine_old - LBO 042898 */
+ /*TODO*///                    for (i = 0; i < COIN_COUNTERS; i ++)
 /*TODO*///                            writeint(f,coins[i]);
 /*TODO*///                    writeint(f,dispensed_tickets);
 
@@ -727,6 +733,7 @@ public class inputport {
 
         return inputport_defaults[i].seq;
     }
+
     public static int[] ip_none = SEQ_DEF_1(CODE_NONE);
 
     public static int[] input_port_seq(InputPort[] in, int in_ptr) {
@@ -778,7 +785,7 @@ public class inputport {
         int player;
 
         /* get input definition */
-            //in = input_analog[port];
+        //in = input_analog[port];
 
         /* if we're not cheating and this is a cheat-only port, bail */
         if (options.cheat == 0 && (Machine.input_ports[input_analog[port]].type & IPF_CHEAT) != 0) {
@@ -842,9 +849,7 @@ public class inputport {
                 axis = X_AXIS;
                 is_stick = 0;
                 check_bounds = 0;
-                if (errorlog!=null)
-		    fprintf (errorlog,"Oops, polling non analog device in update_analog_port()????\n");
-
+                logerror("Oops, polling non analog device in update_analog_port()????\n");
         }
 
         sensitivity = IP_GET_SENSITIVITY(Machine.input_ports, input_analog[port]);
@@ -863,7 +868,7 @@ public class inputport {
         input_analog_previous_value[port] = input_analog_current_value[port];
 
         /* if IPF_CENTER go back to the default position */
-        /* sticks are handled later... */
+ /* sticks are handled later... */
         if ((Machine.input_ports[input_analog[port]].type & IPF_CENTER) != 0 && (is_stick == 0)) {
             input_analog_current_value[port] = Machine.input_ports[input_analog[port]].default_value * 100 / sensitivity;
         }
@@ -928,8 +933,8 @@ public class inputport {
             }
 
             /* An analog joystick which is not at zero position (or has just */
-            /* moved there) takes precedence over all other computations */
-            /* analog_x/y holds values from -128 to 128 (yes, 128, not 127) */
+ /* moved there) takes precedence over all other computations */
+ /* analog_x/y holds values from -128 to 128 (yes, 128, not 127) */
             if (axis == X_AXIS) {
                 _new = analog_current_x[player];
                 prev = analog_previous_x[player];
@@ -1000,6 +1005,7 @@ public class inputport {
 /*TODO*///             if (record)
 /*TODO*///                     writeword(record,input_port_value[port]);
     }
+
     public static final int MAX_INPUT_BITS = 1024;
     static int[] impulsecount = new int[MAX_INPUT_BITS];
     static int[] waspressed = new int[MAX_INPUT_BITS];
@@ -1023,19 +1029,20 @@ public class inputport {
         in = Machine.input_ports;
 
         if (in[in_ptr].type == IPT_END) {
-            return; 	/* nothing to do */
+            return;
+            /* nothing to do */
         }
 
         /* make sure the InputPort definition is correct */
         if (in[in_ptr].type != IPT_PORT) {
-            if (errorlog!=null) fprintf(errorlog,"Error in InputPort definition: expecting PORT_START\n");
+            logerror("Error in InputPort definition: expecting PORT_START\n");
             return;
         } else {
             in_ptr++;
         }
 
         //#ifdef MRU_JOYSTICK
-            /* scan all the joystick ports */
+        /* scan all the joystick ports */
         port = 0;
         while (in[in_ptr].type != IPT_END && port < MAX_INPUT_PORTS) {
             while (in[in_ptr].type != IPT_END && in[in_ptr].type != IPT_PORT) {
@@ -1085,7 +1092,7 @@ public class inputport {
 
         /* already made sure the InputPort definition is correct */
         in_ptr++;
-    //#endif
+        //#endif
 
 
         /* scan all the input ports */
@@ -1093,14 +1100,14 @@ public class inputport {
         ib = 0;
         int save_ptr = 0;
         while (in[in_ptr].type != IPT_END && port < MAX_INPUT_PORTS) {
-                    //InputPort start;
+            //InputPort start;
 
 
             /* first of all, scan the whole input port definition and build the */
-            /* default value. I must do it before checking for input because otherwise */
-            /* multiple keys associated with the same input bit wouldn't work (the bit */
-            /* would be reset to its default value by the second entry, regardless if */
-            /* the key associated with the first entry was pressed) */
+ /* default value. I must do it before checking for input because otherwise */
+ /* multiple keys associated with the same input bit wouldn't work (the bit */
+ /* would be reset to its default value by the second entry, regardless if */
+ /* the key associated with the first entry was pressed) */
             save_ptr = in_ptr;
             while (in[in_ptr].type != IPT_END && in[in_ptr].type != IPT_PORT) {
                 if ((in[in_ptr].type & ~IPF_MASK) != IPT_DIPSWITCH_SETTING
@@ -1121,9 +1128,9 @@ public class inputport {
                     if ((in[in_ptr].type & ~IPF_MASK) == IPT_VBLANK) {
                         input_vblank[port] ^= in[in_ptr].mask;
                         input_port_value[port] ^= in[in_ptr].mask;
-                        if (errorlog!=null && Machine.drv.vblank_duration == 0) 
-                            fprintf(errorlog,"Warning: you are using IPT_VBLANK with vblank_duration = 0. You need to increase vblank_duration for IPT_VBLANK to work.\n");
-
+                        if (Machine.drv.vblank_duration == 0) {
+                            logerror("Warning: you are using IPT_VBLANK with vblank_duration = 0. You need to increase vblank_duration for IPT_VBLANK to work.\n");
+                        }
                     } /* If it's an analog control, handle it appropriately */ else if (((in[in_ptr].type & ~IPF_MASK) > IPT_ANALOG_START)
                             && ((in[in_ptr].type & ~IPF_MASK) < IPT_ANALOG_END)) /* LBO 120897 */ {
                         input_analog[port] = in_ptr;
@@ -1152,8 +1159,8 @@ public class inputport {
                             }
 
                             if ((in[in_ptr].type & IPF_IMPULSE) != 0) {
-                                if (errorlog!=null && IP_GET_IMPULSE(in,in_ptr) == 0){
-                                    fprintf(errorlog,"error in input port definition: IPF_IMPULSE with length = 0\n");
+                                if (IP_GET_IMPULSE(in, in_ptr) == 0) {
+                                    logerror("error in input port definition: IPF_IMPULSE with length = 0\n");
                                 }
                                 if (waspressed[ib] == 0) {
                                     impulsecount[ib] = IP_GET_IMPULSE(in, in_ptr);
@@ -1245,8 +1252,9 @@ public class inputport {
 /*TODO*///                            writeword(record,input_port_value[i]);
 /*TODO*///            }
     }
+
     /* used the the CPU interface to notify that VBlank has ended, so we can update */
-    /* IPT_VBLANK input ports. */
+ /* IPT_VBLANK input ports. */
 
     public static void inputport_vblank_end() {
         int port;
@@ -1259,9 +1267,6 @@ public class inputport {
             }
         }
 
-        /* poll all the analog joysticks */
-        /*TODO*///            osd_poll_joysticks();
-
         /* update the analog devices */
         for (i = 0; i < OSD_MAX_JOY_ANALOG; i++) {
             /* update the analog joystick position */
@@ -1270,7 +1275,7 @@ public class inputport {
             /*TODO*///                    osd_analogjoy_read (i, &(analog_current_x[i]), &(analog_current_y[i]));
 
             /* update mouse/trackball position */
-            /*TODO*///                    osd_trak_read (i, &mouse_delta_x[i], &mouse_delta_y[i]);
+ /*TODO*///                    osd_trak_read (i, &mouse_delta_x[i], &mouse_delta_y[i]);
         }
 
         for (i = 0; i < MAX_INPUT_PORTS; i++) {
@@ -1291,6 +1296,7 @@ public class inputport {
 
         return input_port_value[port];
     }
+
     public static ReadHandlerPtr input_port_0_r = new ReadHandlerPtr() {
         public int handler(int offset) {
             return readinputport(0);
@@ -1371,11 +1377,31 @@ public class inputport {
             return readinputport(15);
         }
     };
+    public static ReadHandlerPtr input_port_16_r = new ReadHandlerPtr() {
+        public int handler(int offset) {
+            return readinputport(16);
+        }
+    };
+    public static ReadHandlerPtr input_port_17_r = new ReadHandlerPtr() {
+        public int handler(int offset) {
+            return readinputport(17);
+        }
+    };
+    public static ReadHandlerPtr input_port_18_r = new ReadHandlerPtr() {
+        public int handler(int offset) {
+            return readinputport(18);
+        }
+    };
+    public static ReadHandlerPtr input_port_19_r = new ReadHandlerPtr() {
+        public int handler(int offset) {
+            return readinputport(19);
+        }
+    };
+
     /**
      * ************************************************************************
      */
     /* InputPort conversion */
-
     public static int input_port_count(InputPortTiny[] src) {
         /*unsigned*/
         int total;
@@ -1391,7 +1417,8 @@ public class inputport {
             ++ptr;//++src;
         }
 
-        ++total; /* for IPT_END */
+        ++total;
+        /* for IPT_END */
 
         return total;
     }

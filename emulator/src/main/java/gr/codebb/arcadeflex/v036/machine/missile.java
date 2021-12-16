@@ -14,7 +14,7 @@ import static arcadeflex.v037b7.generic.fucPtr.*;
 //to be organized
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v036.mame.inputport.*;
+import static arcadeflex.v037b7.mame.inptport.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.missile.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;

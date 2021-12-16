@@ -17,12 +17,12 @@ import static arcadeflex.v058.sound.sn76496.*;
 //to be organized
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
-import static gr.codebb.arcadeflex.v036.mame.inputport.*;
+import static arcadeflex.v037b7.mame.inptport.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.gberet.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
+import static arcadeflex.v037b7.mame.inptportH.*;
 
 public class gberet
 {

@@ -6,7 +6,7 @@ package arcadeflex.v037b7.machine;
 
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
-import static gr.codebb.arcadeflex.v036.mame.inputport.*;
+import static arcadeflex.v037b7.mame.inptport.*;
 
 public class arkanoid {
 

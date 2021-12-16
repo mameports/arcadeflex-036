@@ -5,7 +5,7 @@
 package arcadeflex.v037b7.machine;
 
 import static arcadeflex.v037b7.generic.fucPtr.*;
-import static gr.codebb.arcadeflex.v036.mame.inputport.*;
+import static arcadeflex.v037b7.mame.inptport.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.*;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static gr.codebb.arcadeflex.v036.mame.common.*;

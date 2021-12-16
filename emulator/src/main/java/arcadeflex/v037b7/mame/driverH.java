@@ -12,7 +12,7 @@ import arcadeflex.v037b7.mame.drawgfxH.rectangle;
 import arcadeflex.v037b7.mame.sndintrfH.MachineSound;
 import gr.codebb.arcadeflex.v036.mame.commonH.RomModule;
 import static gr.codebb.arcadeflex.v036.mame.commonH.rommodule_macro;
-import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
+import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.CopyArray;
 import gr.codebb.arcadeflex.v037b7.mame.memoryH.IOReadPort;
 import gr.codebb.arcadeflex.v037b7.mame.memoryH.IOWritePort;
