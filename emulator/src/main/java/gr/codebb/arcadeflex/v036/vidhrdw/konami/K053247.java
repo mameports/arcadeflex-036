@@ -37,7 +37,7 @@ public class K053247 {
     public static int K053247_flipscreenX, K053247_flipscreenY;
     public static int K053247_spriteoffsX, K053247_spriteoffsY;
     public static UBytePtr K053247_ram;
-    public static int K053247_irq_enabled;
+    public static int K053246_irq_enabled;
 
     public static int K053247_vh_start(int gfx_memory_region, int plane0, int plane1, int plane2, int plane3, K053247_callbackProcPtr callback) {
         int gfx_index;
@@ -163,7 +163,7 @@ public class K053247 {
                 /* bit 2 = unknown */
 
                 /* bit 4 = interrupt enable */
-                K053247_irq_enabled = data & 0x10;
+                K053246_irq_enabled = data & 0x10;
 
                 /* bit 5 = unknown */
                 if (errorlog != null) {
@@ -593,7 +593,7 @@ public class K053247 {
         }
     }
 
-    public static int K053247_is_IRQ_enabled() {
-        return K053247_irq_enabled;
+    public static int K053246_is_IRQ_enabled() {
+        return K053246_irq_enabled;
     }
 }

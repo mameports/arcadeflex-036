@@ -1,27 +1,15 @@
-/**
- * *************************************************************************
- *
- * Vendetta (GX081) (c) 1991 Konami
- *
- * Preliminary driver by: Ernesto Corvi someone@secureshell.com
- *
- * Notes: - collision detection is handled by a protection chip. Its emulation
- * might not be 100% accurate.
- *
- **************************************************************************
- */
-
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.10
  */
+package arcadeflex.v037b7.drivers;
+
 package gr.codebb.arcadeflex.v036.drivers;
 
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
 import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
@@ -41,7 +29,6 @@ import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static gr.codebb.arcadeflex.v036.mame.memory.*;
@@ -56,6 +43,7 @@ import static gr.codebb.arcadeflex.v036.cpu.konami.konamiH.*;
 import static arcadeflex.v037b7.machine.eepromH.*;
 import static arcadeflex.v037b7.machine.eeprom.*;
 import static gr.codebb.arcadeflex.v036.cpu.konami.konami.*;
+import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;
 import static gr.codebb.arcadeflex.v036.vidhrdw.konami.K054000.*;
 
 public class vendetta {
@@ -65,9 +53,7 @@ public class vendetta {
             UBytePtr RAM = memory_region(REGION_CPU1);
 
             if (lines >= 0x1c) {
-                if (errorlog != null) {
-                    fprintf(errorlog, "PC = %04x : Unknown bank selected %02x\n", cpu_get_pc(), lines);
-                }
+                logerror("PC = %04x : Unknown bank selected %02x\n", cpu_get_pc(), lines);
             } else {
                 cpu_setbank(1, new UBytePtr(RAM, 0x10000 + (lines * 0x2000)));
             }
@@ -241,7 +227,7 @@ public class vendetta {
         }
     };
 
-    public static WriteHandlerPtr z80_arm_nmi = new WriteHandlerPtr() {
+    public static WriteHandlerPtr z80_arm_nmi_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             cpu_set_nmi_line(1, CLEAR_LINE);
 
@@ -329,7 +315,7 @@ public class vendetta {
                 new MemoryWriteAddress(0xf000, 0xf7ff, MWA_RAM),
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
-                new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi),
+                new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi_w),
                 new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(-1) /* end of table */};
 
@@ -446,7 +432,7 @@ public class vendetta {
             vendetta_vh_stop,
             vendetta_vh_screenrefresh,
             /* sound hardware */
-            SOUND_SUPPORTS_STEREO,0,0,0,
+            SOUND_SUPPORTS_STEREO, 0, 0, 0,
             new MachineSound[]{
                 new MachineSound(
                         SOUND_YM2151,

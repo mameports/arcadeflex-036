@@ -1,24 +1,13 @@
-/**
- * *************************************************************************
- *
- * The Simpsons (c) 1991 Konami Co. Ltd
- *
- * Preliminary driver by: Ernesto Corvi someone@secureshell.com
- *
- **************************************************************************
- */
-
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.10
  */
-package gr.codebb.arcadeflex.v036.drivers;
+package arcadeflex.v037b7.drivers;
 
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
@@ -113,11 +102,12 @@ public class simpsons {
         }
     };
 
-    public static WriteHandlerPtr z80_arm_nmi = new WriteHandlerPtr() {
+    public static WriteHandlerPtr z80_arm_nmi_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             //	sound_nmi_enabled = 1;
             cpu_set_nmi_line(1, CLEAR_LINE);
-            timer_set(TIME_IN_USEC(50), 0, nmi_callback);	/* kludge until the K053260 is emulated correctly */
+            timer_set(TIME_IN_USEC(50), 0, nmi_callback);
+            /* kludge until the K053260 is emulated correctly */
 
         }
     };
@@ -138,7 +128,7 @@ public class simpsons {
                 new MemoryWriteAddress(0xf000, 0xf7ff, MWA_RAM),
                 new MemoryWriteAddress(0xf800, 0xf800, YM2151_register_port_0_w),
                 new MemoryWriteAddress(0xf801, 0xf801, YM2151_data_port_0_w),
-                new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi),
+                new MemoryWriteAddress(0xfa00, 0xfa00, z80_arm_nmi_w),
                 new MemoryWriteAddress(0xfc00, 0xfc2f, K053260_w),
                 new MemoryWriteAddress(0xfe00, 0xfe00, z80_bankswitch_w),
                 new MemoryWriteAddress(-1) /* end of table */};
@@ -152,7 +142,8 @@ public class simpsons {
      */
     static InputPortPtr input_ports_simpsons = new InputPortPtr() {
         public void handler() {
-            PORT_START();  /* IN0 - Player 1 */
+            PORT_START();
+            /* IN0 - Player 1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -163,7 +154,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START(); 	/* IN1 - Player 2 */
+            PORT_START();
+            /* IN1 - Player 2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -174,7 +166,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER2);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START(); 	/* IN2 - Player 3 - Used on the 4p version */
+            PORT_START();
+            /* IN2 - Player 3 - Used on the 4p version */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3);
@@ -185,7 +178,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START3);
 
-            PORT_START(); 	/* IN3 - Player 4 - Used on the 4p version */
+            PORT_START();
+            /* IN3 - Player 4 - Used on the 4p version */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER4);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER4);
@@ -196,7 +190,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER4);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START4);
 
-            PORT_START();  /* IN4 */
+            PORT_START();
+            /* IN4 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -207,7 +202,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();  /* IN5 */
+            PORT_START();
+            /* IN5 */
 
             PORT_BITX(0x01, IP_ACTIVE_LOW, IPT_SERVICE, DEF_STR("Service_Mode"), KEYCODE_F2, IP_JOY_NONE);
             PORT_BIT(0xfe, IP_ACTIVE_LOW, IPT_UNKNOWN);
@@ -217,7 +213,8 @@ public class simpsons {
 
     static InputPortPtr input_ports_simpsn2p = new InputPortPtr() {
         public void handler() {
-            PORT_START();  /* IN0 - Player 1 */
+            PORT_START();
+            /* IN0 - Player 1 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -228,7 +225,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START1);
 
-            PORT_START(); 	/* IN1 - Player 2 */
+            PORT_START();
+            /* IN1 - Player 2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -239,7 +237,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER2);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_START2);
 
-            PORT_START(); 	/* IN2 - Player 3 - Used on the 4p version */
+            PORT_START();
+            /* IN2 - Player 3 - Used on the 4p version */
             //	PORT_BIT( 0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER3 );
             //	PORT_BIT( 0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER3 );
             //	PORT_BIT( 0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_UP | IPF_8WAY | IPF_PLAYER3 );
@@ -249,7 +248,8 @@ public class simpsons {
             //	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER3 );
             //	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START3 );
 
-            PORT_START(); 	/* IN3 - Player 4 - Used on the 4p version */
+            PORT_START();
+            /* IN3 - Player 4 - Used on the 4p version */
             //	PORT_BIT( 0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER4 );
             //	PORT_BIT( 0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER4 );
             //	PORT_BIT( 0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_UP | IPF_8WAY | IPF_PLAYER4 );
@@ -259,7 +259,8 @@ public class simpsons {
             //	PORT_BIT( 0x40, IP_ACTIVE_LOW, IPT_BUTTON3 | IPF_PLAYER4 );
             //	PORT_BIT( 0x80, IP_ACTIVE_LOW, IPT_START4 );
 
-            PORT_START();  /* IN4 */
+            PORT_START();
+            /* IN4 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -270,7 +271,8 @@ public class simpsons {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();  /* IN5 */
+            PORT_START();
+            /* IN5 */
 
             PORT_BITX(0x01, IP_ACTIVE_LOW, IPT_SERVICE, DEF_STR("Service_Mode"), KEYCODE_F2, IP_JOY_NONE);
             PORT_BIT(0xfe, IP_ACTIVE_LOW, IPT_UNKNOWN);
@@ -301,7 +303,7 @@ public class simpsons {
     public static InterruptPtr simpsons_irq = new InterruptPtr() {
         public int handler() {
             if (cpu_getiloops() == 0) {
-                if (simpsons_firq_enabled != 0 && K053247_is_IRQ_enabled() != 0) {
+                if (simpsons_firq_enabled != 0 && K053246_is_IRQ_enabled() != 0) {
                     return KONAMI_INT_FIRQ;
                 }
             } else {

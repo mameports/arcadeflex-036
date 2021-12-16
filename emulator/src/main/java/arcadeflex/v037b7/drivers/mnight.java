@@ -1,7 +1,9 @@
 /*
- * ported to v0.36
- * using automatic conversion tool v0.10
+ * ported to v0.37b7
+ * using automatic conversion tool v0.01
  */
+package arcadeflex.v037b7.drivers;
+
 package gr.codebb.arcadeflex.v036.drivers;
 
 //mame imports
@@ -40,8 +42,8 @@ public class mnight {
 
     public static InterruptPtr mnight_interrupt = new InterruptPtr() {
         public int handler() {
-            return 0x00d7;	/* RST 10h */
-
+            return 0x00d7;
+            /* RST 10h */
         }
     };
 
@@ -53,15 +55,15 @@ public class mnight {
 
     public static WriteHandlerPtr mnight_bankselect_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
-            UBytePtr RAM = new UBytePtr(memory_region(REGION_CPU1),main_cpu_num);
+            UBytePtr RAM = memory_region(REGION_CPU1 + main_cpu_num);
             int bankaddress;
 
             if (data != mnight_bank_latch) {
                 mnight_bank_latch = data;
 
                 bankaddress = 0x10000 + ((data & 0x7) * 0x4000);
-                cpu_setbank(1, new UBytePtr(RAM, bankaddress));	 /* Select 8 banks of 16k */
-
+                cpu_setbank(1, new UBytePtr(RAM, bankaddress));
+                /* Select 8 banks of 16k */
             }
         }
     };
@@ -129,8 +131,8 @@ public class mnight {
 
     static InputPortPtr input_ports_mnight = new InputPortPtr() {
         public void handler() {
-            PORT_START();  /* Player 1 controls */
-
+            PORT_START();
+            /* Player 1 controls */
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY);
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_DOWN | IPF_8WAY);
@@ -140,8 +142,8 @@ public class mnight {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();  /* Player 2 controls */
-
+            PORT_START();
+            /* Player 2 controls */
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_COCKTAIL);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_COCKTAIL);
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_DOWN | IPF_8WAY | IPF_COCKTAIL);
@@ -157,13 +159,12 @@ public class mnight {
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x08, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x10, IP_ACTIVE_LOW, IPT_SERVICE);/* keep pressed during boot to enter service mode */
-
             PORT_BIT(0x20, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_COIN2);
 
-            PORT_START();  /* DSW0 */
-
+            PORT_START();
+            /* DSW0 */
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Unknown"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
@@ -188,8 +189,8 @@ public class mnight {
             PORT_DIPSETTING(0x40, "4");
             PORT_DIPSETTING(0x00, "5");
 
-            PORT_START();  /* DSW1 */
-
+            PORT_START();
+            /* DSW1 */
             PORT_SERVICE(0x01, IP_ACTIVE_LOW);
             PORT_DIPNAME(0x02, 0x02, DEF_STR("Unknown"));
             PORT_DIPSETTING(0x02, DEF_STR("Off"));
@@ -218,8 +219,8 @@ public class mnight {
 
     static InputPortPtr input_ports_arkarea = new InputPortPtr() {
         public void handler() {
-            PORT_START();  /* Player 1 controls */
-
+            PORT_START();
+            /* Player 1 controls */
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_DOWN | IPF_8WAY | IPF_PLAYER1);
@@ -229,8 +230,8 @@ public class mnight {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START();  /* Player 2 controls */
-
+            PORT_START();
+            /* Player 2 controls */
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_JOYSTICK_DOWN | IPF_8WAY | IPF_PLAYER2);
@@ -246,13 +247,12 @@ public class mnight {
             PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x08, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x10, IP_ACTIVE_LOW, IPT_SERVICE);/* keep pressed during boot to enter service mode */
-
             PORT_BIT(0x20, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_COIN2);
 
-            PORT_START();  /* DSW0 */
-
+            PORT_START();
+            /* DSW0 */
             PORT_DIPNAME(0x03, 0x03, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x00, DEF_STR("3C_1C"));
             PORT_DIPSETTING(0x01, DEF_STR("2C_1C"));
@@ -277,8 +277,8 @@ public class mnight {
             PORT_DIPSETTING(0x80, "3");
             PORT_DIPSETTING(0x00, "4");
 
-            PORT_START();  /* DSW1 */
-
+            PORT_START();
+            /* DSW1 */
             PORT_SERVICE(0x01, IP_ACTIVE_LOW);
             PORT_DIPNAME(0x02, 0x02, DEF_STR("Unknown"));
             PORT_DIPSETTING(0x02, DEF_STR("Off"));
@@ -499,5 +499,5 @@ public class mnight {
     };
 
     public static GameDriver driver_mnight = new GameDriver("1987", "mnight", "mnight.java", rom_mnight, null, machine_driver_mnight, input_ports_mnight, null, ROT0, "UPL (Kawakus license)", "Mutant Night");
-    public static GameDriver driver_arkarea = new GameDriver("1988", "arkarea", "mnight.java", rom_arkarea, null, machine_driver_mnight, input_ports_arkarea, null, ROT0, "UPL", "Ark Area");
+    public static GameDriver driver_arkarea = new GameDriver("1988?", "arkarea", "mnight.java", rom_arkarea, null, machine_driver_mnight, input_ports_arkarea, null, ROT0, "UPL", "Ark Area");
 }

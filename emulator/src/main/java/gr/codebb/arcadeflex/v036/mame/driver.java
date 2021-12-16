@@ -126,19 +126,19 @@ import static arcadeflex.v037b7.drivers.bladestl.*;
 import static arcadeflex.v037b7.drivers.rockrage.*;
 import static gr.codebb.arcadeflex.v036.drivers.thunderx.*;
 import static arcadeflex.v037b7.drivers.aliens.*;
-import static gr.codebb.arcadeflex.v036.drivers.crimfght.*;
+import static arcadeflex.v037b7.drivers.crimfght.*;
 import static gr.codebb.arcadeflex.v036.drivers.gbusters.*;
-import static gr.codebb.arcadeflex.v036.drivers.blockhl.*;
+import static arcadeflex.v037b7.drivers.blockhl.*;
 import static arcadeflex.v037b7.drivers.surpratk.*;
-import static gr.codebb.arcadeflex.v036.drivers.rollerg.*;
-import static gr.codebb.arcadeflex.v036.drivers._88games.*;
+import static arcadeflex.v037b7.drivers.rollerg.*;
+import static arcadeflex.v037b7.drivers._88games.*;
 import static arcadeflex.v037b7.drivers.bottom9.*;
 import static gr.codebb.arcadeflex.v036.drivers.cheekyms.*;
 import static gr.codebb.arcadeflex.v036.drivers.slapfght.*;
 import static gr.codebb.arcadeflex.v036.drivers.marvins.*;
 import static gr.codebb.arcadeflex.v036.drivers.gladiatr.*;
 import static gr.codebb.arcadeflex.v036.drivers.snowbros.*;
-import static gr.codebb.arcadeflex.v036.drivers.mnight.*;
+import static arcadeflex.v037b7.drivers.mnight.*;
 import static gr.codebb.arcadeflex.v036.drivers.bublbobl.*;
 import static arcadeflex.v037b7.drivers.zaxxon.*;
 import static arcadeflex.v037b7.drivers.rallyx.*;
@@ -146,8 +146,8 @@ import static gr.codebb.arcadeflex.v036.drivers.z80bw.*;
 import static gr.codebb.arcadeflex.v036.drivers.arkanoid.*;
 import static arcadeflex.v037b7.drivers.congo.*;
 import static arcadeflex.v037b7.drivers.skydiver.*;
-import static gr.codebb.arcadeflex.v036.drivers.simpsons.*;
-import static gr.codebb.arcadeflex.v036.drivers.vendetta.*;
+import static arcadeflex.v037b7.drivers.simpsons.*;
+import static arcadeflex.v037b7.drivers.vendetta.*;
 import static arcadeflex.v037b7.drivers.missile.*;
 import static arcadeflex.v037b7.drivers.yiear.*;
 import static gr.codebb.arcadeflex.v036.drivers.pacland.*;
@@ -222,6 +222,7 @@ import static gr.codebb.arcadeflex.v036.drivers.cninja.*;
 import static gr.codebb.arcadeflex.v036.drivers.gaelco.*;
 import static gr.codebb.arcadeflex.v036.drivers.gaiden.*;
 import static gr.codebb.arcadeflex.v036.drivers.system16.*;
+import static arcadeflex.v037b7.drivers.wc90b.*;
 
 import static arcadeflex.v037b7.drivers.cop01.*;
 import static gr.codebb.arcadeflex.v037b7.drivers.galspnbl.*;
@@ -2107,8 +2108,7 @@ public class driver {
                 driver_shadoww, /* 6215 - (c) 1988 Tecmo */
                 driver_tknight, /* (c) 1989 Tecmo */
                 driver_wildfang, /* (c) 1989 Tecmo */
-                /*TODO*/ //	DRIVER( wc90b )		/* bootleg */
-
+                driver_wc90b, /* bootleg */
                 /* Konami bitmap games */
                 /*TODO*/ //	DRIVER( junofrst )	/* GX310 (c) 1983 Konami */
 
