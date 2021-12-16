@@ -1,6 +1,9 @@
 package gr.codebb.arcadeflex.v037b7.mame;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
@@ -8,8 +11,6 @@ import static arcadeflex.v037b7.mame.palette.palette_recalc_8;
 import gr.codebb.arcadeflex.common.SubArrays.IntSubArray;
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.platform.video.*;

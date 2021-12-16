@@ -4,18 +4,22 @@
  */
 package arcadeflex.v037b7.vidhrdw;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.memset;
 import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
 import static gr.codebb.arcadeflex.v036.mame.common.bitmap_free;
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 
 public class wc90b {
 

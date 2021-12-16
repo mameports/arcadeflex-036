@@ -4,7 +4,7 @@
 package arcadeflex.v037b7.mame;
 
 //mame imports
-import static arcadeflex.v037b7.mame.driverH.*;
+import static arcadeflex.v037b7.mame.paletteH.*;
 
 //to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
@@ -28,10 +28,6 @@ import static gr.codebb.arcadeflex.v037b7.mame.palette.pen_usage_count;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.rgb6_to_pen;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.shrinked_palette;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.shrinked_pens;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.DYNAMIC_MAX_PENS;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.PALETTE_COLOR_CACHED;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.PALETTE_COLOR_TRANSPARENT_FLAG;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.PALETTE_COLOR_VISIBLE;
 
 public class palette {
 

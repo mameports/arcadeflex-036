@@ -4,7 +4,11 @@
  */
 package arcadeflex.v037b7.vidhrdw;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
 
 //to be organized
 import static gr.codebb.arcadeflex.common.PtrLib.*;
@@ -13,9 +17,7 @@ import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
 import static gr.codebb.arcadeflex.v036.mame.common.bitmap_free;
 import static gr.codebb.arcadeflex.v036.mame.common.coin_counter_w;
 import static gr.codebb.arcadeflex.v036.mame.common.coin_lockout_w;
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD_MEM;
@@ -25,8 +27,6 @@ import static gr.codebb.arcadeflex.v037b7.mame.palette.palette_init_used_colors;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.palette_recalc;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.palette_transparent_pen;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.palette_used_colors;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.PALETTE_COLOR_TRANSPARENT;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.PALETTE_COLOR_USED;
 
 public class rastan {
 

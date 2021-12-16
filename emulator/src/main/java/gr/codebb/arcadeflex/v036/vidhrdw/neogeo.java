@@ -1,17 +1,20 @@
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
-import static gr.codebb.arcadeflex.common.PtrLib.*;
+//generic imports
 import static arcadeflex.v037b7.generic.fucPtr.*;
+//mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+
+//to be organized
+import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.drivers.neogeo.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD_MEM;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;

@@ -1,22 +1,10 @@
 package gr.codebb.arcadeflex.v036.vidhrdw.konami;
 
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
-import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
+//generic imports
 import static arcadeflex.v037b7.generic.fucPtr.*;
-import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static gr.codebb.arcadeflex.v036.mame.tilemapC.*;
-import static gr.codebb.arcadeflex.v036.mame.tilemapH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
-import static gr.codebb.arcadeflex.v036.mame.mameH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
+
+//to be organized
+import static gr.codebb.arcadeflex.common.PtrLib.*;
 
 public class K054000 {
 

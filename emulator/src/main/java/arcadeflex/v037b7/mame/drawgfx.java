@@ -3,11 +3,10 @@
  */
 package arcadeflex.v037b7.mame;
 
-import arcadeflex.v037b7.mame.drawgfxH.GfxElement;
-import arcadeflex.v037b7.mame.drawgfxH.rectangle;
-import static arcadeflex.v037b7.mame.driverH.ORIENTATION_FLIP_X;
-import static arcadeflex.v037b7.mame.driverH.ORIENTATION_FLIP_Y;
-import static arcadeflex.v037b7.mame.driverH.ORIENTATION_SWAP_XY;
+//mame imports
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.driverH.*;
+//to be organized
 import static arcadeflex.v037b7.mame.tilemapC.priority_bitmap;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
@@ -24,7 +23,7 @@ public class drawgfx {
     public static final int WL0 = 0;
     public static final int WL1 = 1;
 
-/*TODO*///UINT8 gfx_drawmode_table[256];
+    /*TODO*///UINT8 gfx_drawmode_table[256];
 /*TODO*///plot_pixel_proc plot_pixel;
 /*TODO*///read_pixel_proc read_pixel;
 /*TODO*///plot_box_proc plot_box;
@@ -3044,10 +3043,7 @@ public class drawgfx {
 /*TODO*///	}
 /*TODO*///})
 /*TODO*///
-    public static void blockmove_8toN_transmask_pri8(
-            UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo,
-            UBytePtr dstdata, int dstmodulo,
-            UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
+    public static void blockmove_8toN_transmask_pri8(UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo, UBytePtr dstdata, int dstmodulo, UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
         int end;
         IntPtr sd4;
 
@@ -3222,11 +3218,7 @@ public class drawgfx {
 /*TODO*///	}
 /*TODO*///})
 /*TODO*///
-    public static void blockmove_8toN_transmask_pri_flipx8(
-            UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo,
-            UBytePtr dstdata, int dstmodulo,
-            UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
-
+    public static void blockmove_8toN_transmask_pri_flipx8(UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo,UBytePtr dstdata, int dstmodulo,UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
         int end;
         IntPtr sd4;
 

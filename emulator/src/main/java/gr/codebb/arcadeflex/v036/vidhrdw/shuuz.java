@@ -36,17 +36,21 @@
  */
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.sizeof;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.machine.atarigen.*;
 import static gr.codebb.arcadeflex.v036.machine.atarigenH.*;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.COMBINE_WORD;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 
 public class shuuz {

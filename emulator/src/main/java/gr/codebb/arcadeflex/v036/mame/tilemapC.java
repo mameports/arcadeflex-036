@@ -1,6 +1,10 @@
 package gr.codebb.arcadeflex.v036.mame;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
+import static arcadeflex.v037b7.mame.paletteH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
@@ -8,15 +12,11 @@ import gr.codebb.arcadeflex.common.SubArrays.UShortArray;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import gr.codebb.arcadeflex.v036.mame.tilemapH.tilemap;
 import static gr.codebb.arcadeflex.v036.mame.tilemapH.*;
 import static gr.codebb.arcadeflex.v036.platform.video.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_getactivecpu;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 
 public class tilemapC {

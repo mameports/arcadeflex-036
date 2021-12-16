@@ -7,19 +7,18 @@
  */ 
 package gr.codebb.arcadeflex.v036.vidhrdw;
 
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//mame imports
 import static arcadeflex.v037b7.mame.drawgfxH.*;
+
+//to be organized
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v036.platform.video.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.paletteH.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.tilemapC.*;
