@@ -22,7 +22,7 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.galaxian.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.zodiack.*;
+import static arcadeflex.v037b7.vidhrdw.zodiack.*;
 import static gr.codebb.arcadeflex.v036.machine.espial.*;
 
 public class zodiack {

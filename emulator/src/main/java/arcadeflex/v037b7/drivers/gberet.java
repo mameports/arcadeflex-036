@@ -1,31 +1,28 @@
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.08 + manual
  */ 
-package gr.codebb.arcadeflex.v036.drivers;
+package arcadeflex.v037b7.drivers;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
+//sound imports
+import static arcadeflex.v058.sound.sn76496H.*;
+import static arcadeflex.v058.sound.sn76496.*;
 
 //to be organized
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.gberet.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
-import static arcadeflex.v058.sound.sn76496H.*;
-import static arcadeflex.v058.sound.sn76496.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v036.platform.input.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import static gr.codebb.arcadeflex.v036.platform.libc.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 
 public class gberet
 {

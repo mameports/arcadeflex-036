@@ -1,32 +1,30 @@
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.09
  */
-package gr.codebb.arcadeflex.v036.drivers;
+package arcadeflex.v037b7.drivers;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
+//machine imports
+import static arcadeflex.v037b7.machine.jackal.*;
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
-
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
+//sound imports
+import static arcadeflex.v037b7.sound._2151intf.*;
+import static arcadeflex.v037b7.sound._2151intfH.*;
 //to be organized
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
 import static gr.codebb.arcadeflex.v036.cpu.m6809.m6809H.*;
+import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.jackal.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static arcadeflex.v037b7.machine.jackal.*;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_data_port_0_w;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_register_port_0_w;
-import static arcadeflex.v037b7.sound._2151intf.YM2151_status_port_0_r;
-import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
-import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
-import static gr.codebb.arcadeflex.v036.mame.inputH.*;
-import static arcadeflex.v037b7.mame.sndintrf.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 
 public class jackal {
@@ -117,7 +115,8 @@ public class jackal {
 
     static InputPortPtr input_ports_jackal = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x0f, 0x0f, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x02, DEF_STR("4C_1C"));
@@ -154,8 +153,9 @@ public class jackal {
             PORT_DIPSETTING(0x90, DEF_STR("1C_7C"));
             PORT_DIPSETTING(0x00, "Invalid");
 
-            PORT_START(); 	/* IN1 */
-            /* note that button 3 for player 1 and 2 are exchanged */
+            PORT_START();
+            /* IN1 */
+ /* note that button 3 for player 1 and 2 are exchanged */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER1);
@@ -166,7 +166,8 @@ public class jackal {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN2 */
+            PORT_START();
+            /* IN2 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_JOYSTICK_LEFT | IPF_8WAY | IPF_PLAYER2);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_JOYSTICK_RIGHT | IPF_8WAY | IPF_PLAYER2);
@@ -177,7 +178,8 @@ public class jackal {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* IN0 */
+            PORT_START();
+            /* IN0 */
 
             PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_COIN1);
             PORT_BIT(0x02, IP_ACTIVE_LOW, IPT_COIN2);
@@ -188,7 +190,8 @@ public class jackal {
             PORT_BIT(0x40, IP_ACTIVE_LOW, IPT_UNKNOWN);
             PORT_BIT(0x80, IP_ACTIVE_LOW, IPT_UNKNOWN);
 
-            PORT_START(); 	/* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x03, 0x02, DEF_STR("Lives"));
             PORT_DIPSETTING(0x03, "2");
@@ -212,7 +215,8 @@ public class jackal {
             PORT_DIPSETTING(0x80, DEF_STR("Off"));
             PORT_DIPSETTING(0x00, DEF_STR("On"));
 
-            PORT_START(); 	/* DSW3 */
+            PORT_START();
+            /* DSW3 */
 
             PORT_DIPNAME(0x01, 0x01, DEF_STR("Flip_Screen"));
             PORT_DIPSETTING(0x01, DEF_STR("Off"));
@@ -228,11 +232,13 @@ public class jackal {
             PORT_DIPSETTING(0x08, DEF_STR("Cocktail"));
 
             /* the rotary controls work in topgunbl only */
-            PORT_START(); 	/* player 1 8-way rotary control - converted in rotary_0_r() */
+            PORT_START();
+            /* player 1 8-way rotary control - converted in rotary_0_r() */
 
             PORT_ANALOGX(0xff, 0x00, IPT_DIAL, 25, 10, 0, 0, KEYCODE_Z, KEYCODE_X, 0, 0);
 
-            PORT_START(); 	/* player 2 8-way rotary control - converted in rotary_1_r() */
+            PORT_START();
+            /* player 2 8-way rotary control - converted in rotary_1_r() */
 
             PORT_ANALOGX(0xff, 0x00, IPT_DIAL | IPF_PLAYER2, 25, 10, 0, 0, KEYCODE_N, KEYCODE_M, 0, 0);
             INPUT_PORTS_END();
@@ -358,7 +364,7 @@ public class jackal {
             jackal_vh_stop,
             jackal_vh_screenrefresh,
             /* sound hardware */
-            SOUND_SUPPORTS_STEREO,0,0,0,
+            SOUND_SUPPORTS_STEREO, 0, 0, 0,
             new MachineSound[]{
                 new MachineSound(
                         SOUND_YM2151,
@@ -398,7 +404,7 @@ public class jackal {
             jackal_vh_stop,
             jackal_vh_screenrefresh,
             /* sound hardware */
-            SOUND_SUPPORTS_STEREO,0,0,0,
+            SOUND_SUPPORTS_STEREO, 0, 0, 0,
             new MachineSound[]{
                 new MachineSound(
                         SOUND_YM2151,
@@ -422,7 +428,8 @@ public class jackal {
             ROM_CONTINUE(0x14000, 0x8000);
             ROM_LOAD("j-v03.rom", 0x0c000, 0x4000, 0x3e0dfb83);
 
-            ROM_REGION(0x10000, REGION_CPU2);    /* 64k for 2nd cpu (Graphics & Sound)*/
+            ROM_REGION(0x10000, REGION_CPU2);
+            /* 64k for 2nd cpu (Graphics & Sound)*/
 
             ROM_LOAD("631t01.bin", 0x8000, 0x8000, 0xb189af6a);
 
@@ -448,7 +455,8 @@ public class jackal {
             ROM_CONTINUE(0x14000, 0x8000);
             ROM_LOAD("tgnr16d.bin", 0x0c000, 0x4000, 0xc086844e);
 
-            ROM_REGION(0x10000, REGION_CPU2);    /* 64k for 2nd cpu (Graphics & Sound)*/
+            ROM_REGION(0x10000, REGION_CPU2);
+            /* 64k for 2nd cpu (Graphics & Sound)*/
 
             ROM_LOAD("631t01.bin", 0x8000, 0x8000, 0xb189af6a);
 
@@ -474,7 +482,8 @@ public class jackal {
             ROM_CONTINUE(0x14000, 0x8000);
             ROM_LOAD("631t03.bin", 0x0c000, 0x4000, 0xfd5f9624);
 
-            ROM_REGION(0x10000, REGION_CPU2);    /* 64k for 2nd cpu (Graphics & Sound)*/
+            ROM_REGION(0x10000, REGION_CPU2);
+            /* 64k for 2nd cpu (Graphics & Sound)*/
 
             ROM_LOAD("631t01.bin", 0x8000, 0x8000, 0xb189af6a);
 
@@ -500,7 +509,8 @@ public class jackal {
             ROM_LOAD("t-4.c4", 0x14000, 0x8000, 0x976c8431);
             ROM_LOAD("t-2.c6", 0x0c000, 0x4000, 0xd53172e5);
 
-            ROM_REGION(0x10000, REGION_CPU2);    /* 64k for 2nd cpu (Graphics & Sound)*/
+            ROM_REGION(0x10000, REGION_CPU2);
+            /* 64k for 2nd cpu (Graphics & Sound)*/
 
             ROM_LOAD("t-1.c14", 0x8000, 0x8000, 0x54aa2d29);
 

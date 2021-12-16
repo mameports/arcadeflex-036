@@ -21,7 +21,7 @@ import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static arcadeflex.v037b7.sound._3812intfH.*;
 import static arcadeflex.v037b7.sound._3812intf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.speedbal.*;
+import static arcadeflex.v037b7.vidhrdw.speedbal.*;
 
 public class speedbal {
 

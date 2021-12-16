@@ -1,12 +1,11 @@
-/*
- * ported to v0.36
- * using automatic conversion tool v0.10
- *
- *
- *
+/**
+ * ported to 0.37b7
+ * ported to 0.36
  */
-package gr.codebb.arcadeflex.v036.vidhrdw;
+package arcadeflex.v037b7.vidhrdw;
 
+//driver imports
+import static arcadeflex.v037b7.drivers.speedbal.*;
 //generic imports
 import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
@@ -16,11 +15,11 @@ import static arcadeflex.v037b7.mame.drawgfxH.*;
 //to be organized
 import static gr.codebb.arcadeflex.common.libc.cstring.*;
 import static gr.codebb.arcadeflex.v036.mame.drawgfx.*;
-import static gr.codebb.arcadeflex.v036.platform.video.*;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static arcadeflex.v037b7.drivers.speedbal.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
+import static gr.codebb.arcadeflex.v036.mame.common.bitmap_alloc;
+import static gr.codebb.arcadeflex.v036.mame.common.bitmap_free;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 
 public class speedbal {
@@ -30,15 +29,18 @@ public class speedbal {
     public static final int SPRITE_PALETTE = 2;
     public static final int SPRITE_Y = 3;
 
-    static char[] bg_dirtybuffer;	  /* background tiles */
+    static char[] bg_dirtybuffer;
+    /* background tiles */
 
-    static char[] ch_dirtybuffer;	  /* foreground char  */
+    static char[] ch_dirtybuffer;
+    /* foreground char  */
 
-    static osd_bitmap bitmap_bg;   /* background tiles */
+    static osd_bitmap bitmap_bg;
+    /* background tiles */
 
-    static osd_bitmap bitmap_ch;   /* foreground char  */
+    static osd_bitmap bitmap_ch;
 
-
+    /* foreground char  */
     static int TOTAL_COLORS(int gfxn) {
         return Machine.gfx[gfxn].total_colors * Machine.gfx[gfxn].color_granularity;
     }
@@ -56,17 +58,17 @@ public class speedbal {
                 bit0 = (color_prom.read() >> 0) & 0x01;
                 bit1 = (color_prom.read() >> 1) & 0x01;
                 bit2 = (color_prom.read() >> 2) & 0x01;
-                palette[p_inc++]=(char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
+                palette[p_inc++] = (char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
                 /* green component */
                 bit0 = (color_prom.read() >> 3) & 0x01;
                 bit1 = (color_prom.read() >> 4) & 0x01;
                 bit2 = (color_prom.read() >> 5) & 0x01;
-                palette[p_inc++]=(char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
+                palette[p_inc++] = (char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
                 /* blue component */
                 bit0 = 0;
                 bit1 = (color_prom.read() >> 6) & 0x01;
                 bit2 = (color_prom.read() >> 7) & 0x01;
-                palette[p_inc++]=(char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
+                palette[p_inc++] = (char) (0x21 * bit0 + 0x47 * bit1 + 0x97 * bit2);
 
                 color_prom.inc();
             }
@@ -105,17 +107,17 @@ public class speedbal {
             }
 
             /* foreground bitmap */
-            if ((bitmap_ch = osd_new_bitmap(Machine.drv.screen_width, Machine.drv.screen_height, Machine.scrbitmap.depth)) == null) {
+            if ((bitmap_ch = bitmap_alloc(Machine.drv.screen_width, Machine.drv.screen_height)) == null) {
                 bg_dirtybuffer = null;
                 ch_dirtybuffer = null;
                 return 1;
             }
 
             /* background bitmap */
-            if ((bitmap_bg = osd_new_bitmap(Machine.drv.screen_width * 2, Machine.drv.screen_height * 2, Machine.scrbitmap.depth)) == null) {
+            if ((bitmap_bg = bitmap_alloc(Machine.drv.screen_width * 2, Machine.drv.screen_height * 2)) == null) {
                 bg_dirtybuffer = null;
                 ch_dirtybuffer = null;
-                osd_free_bitmap(bitmap_ch);
+                bitmap_free(bitmap_ch);
                 return 1;
             }
 
@@ -128,8 +130,8 @@ public class speedbal {
 
     public static VhStopPtr speedbal_vh_stop = new VhStopPtr() {
         public void handler() {
-            osd_free_bitmap(bitmap_ch);
-            osd_free_bitmap(bitmap_bg);
+            bitmap_free(bitmap_ch);
+            bitmap_free(bitmap_bg);
             bg_dirtybuffer = null;
             ch_dirtybuffer = null;
         }

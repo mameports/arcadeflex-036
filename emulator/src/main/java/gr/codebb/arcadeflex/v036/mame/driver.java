@@ -85,16 +85,16 @@ import static arcadeflex.v037b7.drivers.hcastle.*;
 import static gr.codebb.arcadeflex.v036.drivers.exedexes.*;
 import static arcadeflex.v037b7.drivers.pkunwar.*;
 import static arcadeflex.v037b7.drivers.nova2001.*;
-import static gr.codebb.arcadeflex.v036.drivers.gsword.*;
+import static arcadeflex.v037b7.drivers.gsword.*;
 import static arcadeflex.v037b7.drivers.stfight.*;
 import static gr.codebb.arcadeflex.v037b7.drivers.jrpacman.*;
 import static arcadeflex.v037b7.drivers.mpatrol.*;
 import static arcadeflex.v037b7.drivers.yard.*;
 import static gr.codebb.arcadeflex.v036.drivers.srumbler.*;
 import static arcadeflex.v037b7.drivers.marineb.*;
-import static gr.codebb.arcadeflex.v036.drivers.jackal.*;
+import static arcadeflex.v037b7.drivers.jackal.*;
 import static gr.codebb.arcadeflex.v036.drivers.cclimber.*;
-import static gr.codebb.arcadeflex.v036.drivers.gberet.*;
+import static arcadeflex.v037b7.drivers.gberet.*;
 import static arcadeflex.v037b7.drivers.mitchell.*;
 import static gr.codebb.arcadeflex.v036.drivers.snk.*;
 import static arcadeflex.v037b7.drivers.troangel.*;
@@ -739,24 +739,24 @@ public class driver {
                 /*495*//*rockola*/ driver_pballoon, /* (c) 1982 SNK */
                 /*496*//*rockola*/ driver_nibbler, /* (c) 1982 Rock-ola */
                 /*497*//*rockola*/ driver_nibblera, /* (c) 1982 Rock-ola */
-                /*498*//*qix*/driver_qix,
-                /*499*//*qix*/driver_qixa,
-                /*500*//*qix*/driver_qixb,
-                /*501*//*qix*/driver_qix2,
+                /*498*//*qix*/ driver_qix,
+                /*499*//*qix*/ driver_qixa,
+                /*500*//*qix*/ driver_qixb,
+                /*501*//*qix*/ driver_qix2,
                 /*502*//*ddragon*/ driver_ddragonb,
                 /*503*//*ddragon*/ driver_ddragon2,
-                /*504*//*vigilant*/ driver_vigilant,	
-                /*505*//*vigilant*/ driver_vigilntu,	
-                /*506*//*vigilant*/ driver_vigilntj,	
+                /*504*//*vigilant*/ driver_vigilant,
+                /*505*//*vigilant*/ driver_vigilntu,
+                /*506*//*vigilant*/ driver_vigilntj,
                 /*507*//*vigilant*/ driver_kikcubic,
-                /*508*//*jackal*/ driver_jackal, 
+                /*508*//*jackal*/ driver_jackal,
                 /*509*//*jackal*/ driver_topgunr,
                 /*510*//*jackal*/ driver_jackalj,
                 /*511*//*aliens*/ driver_aliens,
                 /*512*//*aliens*/ driver_aliens2,
                 /*513*//*aliens*/ driver_aliensu,
                 /*514*//*aliens*/ driver_aliensj,
-                /*515*//*simpsons*/ driver_simpsons,	
+                /*515*//*simpsons*/ driver_simpsons,
                 /*516*//*simpsons*/ driver_simpsn2p,
                 /*517*//*simpsons*/ driver_simps2pj,
                 /*518*//*surpratk*/ driver_surpratk,
@@ -766,15 +766,14 @@ public class driver {
                 /*522*//*crimfght*/ driver_crimfght,
                 /*523*//*crimfght*/ driver_crimfgt2,
                 /*524*//*crimfght*/ driver_crimfgtj,
-                /*snk*/ driver_ikari, 
-                /*snk*/ driver_ikarijp,      
-                /*snk*/ driver_ikarijpb, 
-                /*snk*/ driver_victroad, 
-                /*snk*/ driver_dogosoke, 
-                /*marvins*/ driver_marvins, 
+                /*snk*/ driver_ikari,
+                /*snk*/ driver_ikarijp,
+                /*snk*/ driver_ikarijpb,
+                /*snk*/ driver_victroad,
+                /*snk*/ driver_dogosoke,
+                /*marvins*/ driver_marvins,
                 /*marvins*/ driver_madcrash,
                 /*marvins*/ driver_vangrd2,
-                
                 /*
            Small issues that doesn't affect playable status
                  */
@@ -786,19 +785,15 @@ public class driver {
                 /*006*//*atetris*/ driver_atetrisb,//no nvram support
                 /*007*//*atetris*/ driver_atetcktl,//no nvram support ,screen needs to be a bit righter
                 /*008*//*atetris*/ driver_atetckt2,//no nvram support ,screen needs to be a bit righter
-                
-                
-                
-                
-                /*m72*/ driver_bchopper, 
-                /*m72*/ driver_mrheli, 
-                /*m72*/ driver_nspirit, 
-                /*m72*/ driver_nspiritj, 
-                /*m72*/ driver_imgfight, 
-                /*m72*/ driver_rtype2, 
+
+                /*m72*/ driver_bchopper,
+                /*m72*/ driver_mrheli,
+                /*m72*/ driver_nspirit,
+                /*m72*/ driver_nspiritj,
+                /*m72*/ driver_imgfight,
+                /*m72*/ driver_rtype2,
                 /*m72*/ driver_rtype2j,
                 /*m72*/ driver_gallop,
-
                 /*
           Possible cpu bugs
                  */
@@ -1058,8 +1053,6 @@ public class driver {
                 /*slapfght*/ driver_slapbtjp,
                 /*slapfght*/ driver_slapbtuk,
                 /*slapfght*/ driver_getstarb,
-                
-
                 driver_contra, /* GX633 (c) 1987 */
                 driver_contrab, /* bootleg */
                 driver_contraj, /* GX633 (c) 1987 (Japan) */
@@ -1558,7 +1551,6 @@ public class driver {
                 /*TODO*/ //	DRIVER( crbalon2 )	/* (c) 1980 Taito Corporation */
 
                 /* Taito "Qix hardware" games */
-
                 driver_sdungeon,//M68705
                 driver_elecyoyo,//M68705
                 driver_elecyoy2,//M68705
@@ -1636,19 +1628,18 @@ public class driver {
                 driver_vimana,/* TP-019 (c) 1991 Toaplan (+ Tecmo license when set to Japan) */
                 driver_vimana2, /* TP-019 (c) 1991 Toaplan (+ Tecmo license when set to Japan)  */
                 driver_vimanan, /* TP-019 (c) 1991 Toaplan (+ Nova Apparate GMBH & Co license) */
-                driver_tekipaki,	/* TP-020 (c) 1991 Toaplan */
-                driver_ghox,		/* TP-021 (c) 1991 Toaplan */
-                driver_dogyuun,	/* TP-022 (c) 1992 Toaplan */
-                driver_kbash,	/* TP-023 (c) 1993 Toaplan */
+                driver_tekipaki, /* TP-020 (c) 1991 Toaplan */
+                driver_ghox, /* TP-021 (c) 1991 Toaplan */
+                driver_dogyuun, /* TP-022 (c) 1992 Toaplan */
+                driver_kbash, /* TP-023 (c) 1993 Toaplan */
                 /*TODO*/ //TESTDRIVER( tatsujn2 )	/* TP-024 */
-                driver_pipibibs,	/* TP-025 */
+                driver_pipibibs, /* TP-025 */
                 /*TODO*/ //TESTDRIVER( pipibibi )	/* bootleg */
-                driver_whoopee,	/* TP-025 */
+                driver_whoopee, /* TP-025 */
                 /*TODO*/ //TESTDRIVER( fixeight )	/* TP-026 (c) 1992 + Taito license */
-                driver_vfive,		/* TP-027 (c) 1993 Toaplan */
-                driver_batsugun,	/* TP-030 (c) 1993 Toaplan */
-                driver_snowbro2,	/* TP-??? (c) 1994 Hanafram */
-
+                driver_vfive, /* TP-027 (c) 1993 Toaplan */
+                driver_batsugun, /* TP-030 (c) 1993 Toaplan */
+                driver_snowbro2, /* TP-??? (c) 1994 Hanafram */
                 /* Williams games */
                 /*TODO*/ //	DRIVER( defender )	/* (c) 1980 */
                 /*TODO*/ //	DRIVER( defendg )	/* (c) 1980 */
@@ -1686,10 +1677,10 @@ public class driver {
                 /*TODO*/ //	DRIVER( bionicc2 )	/*  3/1987 (c) 1987 (US) */
                 /*TODO*/ //	DRIVER( topsecrt )	/*  3/1987 (c) 1987 (Japan) */
 
-                driver_tigeroad,	/* 11/1987 (c) 1987 + Romstar (US) */
-                driver_toramich,	/* 11/1987 (c) 1987 (Japan) */
-                driver_f1dream,	/*  4/1988 (c) 1988 + Romstar */
-                driver_f1dreamb,	/* bootleg */
+                driver_tigeroad, /* 11/1987 (c) 1987 + Romstar (US) */
+                driver_toramich, /* 11/1987 (c) 1987 (Japan) */
+                driver_f1dream, /*  4/1988 (c) 1988 + Romstar */
+                driver_f1dreamb, /* bootleg */
                 driver_lastduel, /*  7/1988 (c) 1988 (US) */
                 driver_lstduela, /*  7/1988 (c) 1988 (US) */
                 driver_lstduelb, /* bootleg */
@@ -1940,7 +1931,7 @@ public class driver {
 
                 /* Sega System 16 games */
                 // Not working
-                driver_alexkidd,	/* (c) 1986 (protected) */
+                driver_alexkidd, /* (c) 1986 (protected) */
                 /*TODO*/ //	DRIVER( aliensya )	/* (c) 1987 (protected) */
                 /*TODO*/ //	DRIVER( aliensyb )	/* (c) 1987 (protected) */
                 /*TODO*/ //	DRIVER( aliensyj )	/* (c) 1987 (protected. Japan) */
@@ -1990,28 +1981,28 @@ public class driver {
                 /*TODO*/ //TESTDRIVER( toutruna )	/* (protected) */
 
                 // Working
-                driver_alexkida,	/* (c) 1986 */
+                driver_alexkida, /* (c) 1986 */
                 /*TODO*/ //	DRIVER( aliensyn )	/* (c) 1987 */
                 /*TODO*/ //	DRIVER( altbeas2 )	/* (c) 1988 */
-                driver_altbeast,	/* (c) 1988 */
+                driver_altbeast, /* (c) 1988 */
                 /*TODO*/ //	DRIVER( astormbl )	/* bootleg */
-                driver_atomicp,	/* (c) 1990 Philko */
+                driver_atomicp, /* (c) 1990 Philko */
                 /*TODO*/ //	DRIVER( aurail )	/* (c) 1990 Sega / Westone */
                 /*TODO*/ //	DRIVER( bayroute )	/* (c) 1989 */
                 /*TODO*/ //	DRIVER( bodyslam )	/* (c) 1986 */
-                driver_dduxbl,	/* (c) 1989 (Datsu bootleg) */
+                driver_dduxbl, /* (c) 1989 (Datsu bootleg) */
                 /*TODO*/ //	DRIVER( dumpmtmt )	/* (c) 1986 (Japan) */
                 /*TODO*/ //	DRIVER( endurob2 )	/* (c) 1985 (Beta bootleg) */
                 /*TODO*/ //	DRIVER( endurobl )	/* (c) 1985 (Herb bootleg) */
                 /*TODO*/ //	DRIVER( eswatbl )	/* (c) 1989 (but bootleg) */
                 /*TODO*/ //	DRIVER( fantzone )	/* (c) 1986 */
                 /*TODO*/ //	DRIVER( fantzono )	/* (c) 1986 */
-                driver_fpointbl,	/* (c) 1989 (Datsu bootleg) */
+                driver_fpointbl, /* (c) 1989 (Datsu bootleg) */
                 /*TODO*/ //	DRIVER( goldnabl )	/* (c) 1989 (bootleg) */
                 /*TODO*/ //	DRIVER( goldnaxa )	/* (c) 1989 */
-                driver_goldnaxe,	/* (c) 1989 */
+                driver_goldnaxe, /* (c) 1989 */
                 /*TODO*/ //	DRIVER( hangon )	/* (c) 1985 */
-                driver_hwchamp,	/* (c) 1987 */
+                driver_hwchamp, /* (c) 1987 */
                 /*TODO*/ //	DRIVER( mjleague )	/* (c) 1985 */
                 /*TODO*/ //	DRIVER( moonwlkb )	/* bootleg */
                 /*TODO*/ //	DRIVER( outrun )	/* (c) 1986 (bootleg)*/
@@ -2023,21 +2014,21 @@ public class driver {
                 /*TODO*/ //	DRIVER( quartet2 )	/* (c) 1986 */
                 /*TODO*/ //	DRIVER( quartetj )	/* (c) 1986 */
                 /*TODO*/ //	DRIVER( riotcity )	/* (c) 1991 Sega / Westone */
-                driver_sdi,		/* (c) 1987 */
+                driver_sdi, /* (c) 1987 */
                 /*TODO*/ //	DRIVER( shangonb )	/* (c) 1992 (but bootleg) */
                 /*TODO*/ //	DRIVER( sharrier )	/* (c) 1985 */
                 /*TODO*/ //	DRIVER( shdancbl )	/* (c) 1989 (but bootleg) */
                 /*TODO*/ //	DRIVER( shdancer )	/* (c) 1989 */
                 /*TODO*/ //	DRIVER( shdancrj )	/* (c) 1989 */
-                driver_shinobi,	/* (c) 1987 */
+                driver_shinobi, /* (c) 1987 */
                 /*TODO*/ //	DRIVER( shinobl )	/* (c) 1987 (but bootleg) */
-                driver_tetrisbl,	/* (c) 1988 (but bootleg) */
+                driver_tetrisbl, /* (c) 1988 (but bootleg) */
                 /*TODO*/ //	DRIVER( timscanr )	/* (c) 1987 */
                 /*TODO*/ //	DRIVER( toryumon )	/* (c) 1995 */
                 /*TODO*/ //	DRIVER( tturf )		/* (c) 1989 Sega / Sunsoft */
                 /*TODO*/ //	DRIVER( tturfbl )	/* (c) 1989 (Datsu bootleg) */
                 /*TODO*/ //	DRIVER( tturfu )	/* (c) 1989 Sega / Sunsoft */
-                driver_wb3,		/* (c) 1988 Sega / Westone */
+                driver_wb3, /* (c) 1988 Sega / Westone */
                 /*TODO*////driver_wb3bl,	/* (c) 1988 Sega / Westone (but bootleg) */
                 /*TODO*/ //	DRIVER( wrestwar )	/* (c) 1989 */
 
@@ -2095,11 +2086,11 @@ public class driver {
                 /*TODO*/ //TESTDRIVER( edrandyj )	/* MAD (c) 1990 Data East Corporation (Japan) */
                 /*TODO*/ //	DRIVER( supbtime )	/* MAE (c) 1990 Data East Corporation (Japan) */
                 /* Mutant Fighter/Death Brade MAF (c) 1991 */
-                driver_cninja,	/* MAG (c) 1991 Data East Corporation (World) */
+                driver_cninja, /* MAG (c) 1991 Data East Corporation (World) */
                 /*TODO*/ //	DRIVER( cninja0 )	/* MAG (c) 1991 Data East Corporation (World) */
                 /*TODO*/ //	DRIVER( cninjau )	/* MAG (c) 1991 Data East Corporation (US) */
                 /*TODO*/ //	DRIVER( joemac )	/* MAG (c) 1991 Data East Corporation (Japan) */
-                driver_stoneage,	/* bootleg */
+                driver_stoneage, /* bootleg */
                 /* Robocop 2           MAH (c) 1991 */
                 /* Desert Assault/Thunderzone MAJ (c) 1991 */
                 /* Rohga Armour Attack/Wolf Fang MAM (c) 1991 */
@@ -2117,10 +2108,10 @@ public class driver {
                 /*TODO*/ //	DRIVER( megaforc )	/* (c) 1985 Tehkan + Video Ware license */
                 /*TODO*/ //	DRIVER( baluba )	/* (c) 1986 Able Corp. */
 
-                driver_gaiden,	/* 6215 - (c) 1988 Tecmo */
-                driver_shadoww,	/* 6215 - (c) 1988 Tecmo */
-                driver_tknight,	/* (c) 1989 Tecmo */
-                driver_wildfang,	/* (c) 1989 Tecmo */
+                driver_gaiden, /* 6215 - (c) 1988 Tecmo */
+                driver_shadoww, /* 6215 - (c) 1988 Tecmo */
+                driver_tknight, /* (c) 1989 Tecmo */
+                driver_wildfang, /* (c) 1989 Tecmo */
                 /*TODO*/ //	DRIVER( wc90b )		/* bootleg */
 
                 /* Konami bitmap games */
@@ -2577,8 +2568,7 @@ public class driver {
                 /*TODO*/ //	DRIVER( vastar2 )	/* (c) 1983 Sesame Japan */
 
                 /* Gaelco games */
-                driver_splash,	/* (c) 1992 Gaelco */
-
+                driver_splash, /* (c) 1992 Gaelco */
                 /* Kaneko "AX System" games */
                 driver_berlwall,
                 driver_berlwalt,
@@ -2783,21 +2773,21 @@ public class driver {
                 /*TODO*/ //TESTDRIVER( mslugx )	/* 0250 (c) 1999 SNK */
                 /*TODO*/ //TESTDRIVER( kof99 )		/* 0251 (c) 1999 SNK */
                 /*TODO*/ //TESTDRIVER( garou )		/* 0253 (c) 1999 SNK */
-                
-                /****
+
+                /**
+                 * **
                  * 0.37b7 games
-                 * 
+                 *
                  */
-                
-                /*jrpacman*/driver_jrpacman,
-                /*macross */driver_macross,
-                /*cop01   */driver_cop01,
-                /*cop01   */driver_cop01a,
+                /*jrpacman*/ driver_jrpacman,
+                /*macross */ driver_macross,
+                /*cop01   */ driver_cop01,
+                /*cop01   */ driver_cop01a,
                 /*zodiack */ driver_bounty,
-                /*galpanic */driver_fantasia,
-                /*galpanic */driver_newfant,
-                /*galpanic */driver_missw96,
-                /*galspnbl */driver_hotpinbl,
-                /*galspnbl */driver_galspnbl,
+                /*galpanic */ driver_fantasia,
+                /*galpanic */ driver_newfant,
+                /*galpanic */ driver_missw96,
+                /*galspnbl */ driver_hotpinbl,
+                /*galspnbl */ driver_galspnbl,
                 null /* end of array */};
 }

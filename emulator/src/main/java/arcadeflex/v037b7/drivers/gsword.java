@@ -1,38 +1,38 @@
 /*
+ * ported to v0.37b7
  * ported to v0.36
- * using automatic conversion tool v0.10
+ * 
  */
-package gr.codebb.arcadeflex.v036.drivers;
+package arcadeflex.v037b7.drivers;
 
+//generic imports
+import static arcadeflex.v037b7.generic.fucPtr.*;
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
+import static arcadeflex.v037b7.mame.sndintrf.*;
+import static arcadeflex.v037b7.mame.drawgfxH.*;
+import static arcadeflex.v037b7.mame.sndintrfH.*;
+//sound imports
+import static arcadeflex.v037b7.sound.ay8910.*;
+import static arcadeflex.v037b7.sound.ay8910H.*;
+//vidhrdw imports
+import static arcadeflex.v037b7.vidhrdw.gsword.*;
 
 //to be organized
-import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputport.*;
-import static arcadeflex.v037b7.mame.drawgfxH.*;
-import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
-import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static gr.codebb.arcadeflex.v036.mame.inputportH.*;
-import static arcadeflex.v037b7.vidhrdw.gsword.*;
-import static arcadeflex.v037b7.sound.ay8910.*;
-import static arcadeflex.v037b7.sound.ay8910H.*;
-import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.machine.tait8741H.*;
 import static gr.codebb.arcadeflex.v036.machine.tait8741.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205.*;
 import static gr.codebb.arcadeflex.v036.sound.MSM5205H.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.platform.fileio.*;
-import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
+import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
 
 public class gsword {
 
@@ -43,33 +43,31 @@ public class gsword {
     static int gsword_coins_in() {
         /* emulate 8741 coin slot */
         if ((readinputport(4) & 0xc0) != 0) {
-            if (errorlog != null) {
-                fprintf(errorlog, "Coin In\n");
-            }
+            logerror("Coin In\n");
+
             return 0x80;
         }
-        if (errorlog != null) {
-            fprintf(errorlog, "NO Coin\n");
-        }
+        logerror("NO Coin\n");
         return 0x00;
     }
 
     public static ReadHandlerPtr gsword_8741_2_r = new ReadHandlerPtr() {
         public int handler(int num) {
             switch (num) {
-                case 0x01: /* start button , coins */
+                case 0x01:
+                    /* start button , coins */
 
                     return readinputport(0);
-                case 0x02: /* Player 1 Controller */
+                case 0x02:
+                    /* Player 1 Controller */
 
                     return readinputport(1);
-                case 0x04: /* Player 2 Controller */
+                case 0x04:
+                    /* Player 2 Controller */
 
                     return readinputport(3);
                 default:
-                    if (errorlog != null) {
-                        fprintf(errorlog, "8741-2 unknown read %d PC=%04x\n", num, cpu_get_pc());
-                    }
+                    logerror("8741-2 unknown read %d PC=%04x\n", num, cpu_get_pc());
             }
             /* unknown */
             return 0;
@@ -79,20 +77,21 @@ public class gsword {
     public static ReadHandlerPtr gsword_8741_3_r = new ReadHandlerPtr() {
         public int handler(int num) {
             switch (num) {
-                case 0x01: /* start button  */
+                case 0x01:
+                    /* start button  */
 
                     return readinputport(2);
-                case 0x02: /* Player 1 Controller? */
+                case 0x02:
+                    /* Player 1 Controller? */
 
                     return readinputport(1);
-                case 0x04: /* Player 2 Controller? */
+                case 0x04:
+                    /* Player 2 Controller? */
 
                     return readinputport(3);
             }
             /* unknown */
-            if (errorlog != null) {
-                fprintf(errorlog, "8741-3 unknown read %d PC=%04x\n", num, cpu_get_pc());
-            }
+            logerror("8741-3 unknown read %d PC=%04x\n", num, cpu_get_pc());
             return 0;
         }
     };
@@ -108,9 +107,11 @@ public class gsword {
         public void handler() {
             UBytePtr ROM2 = memory_region(REGION_CPU2);
 
-            ROM2.write(0x1da, 0xc3); /* patch for rom self check */
+            ROM2.write(0x1da, 0xc3);
+            /* patch for rom self check */
 
-            ROM2.write(0x726, 0);    /* patch for sound protection or time out function */
+            ROM2.write(0x726, 0);
+            /* patch for sound protection or time out function */
 
             ROM2.write(0x727, 0);
 
@@ -139,7 +140,7 @@ public class gsword {
         }
     };
 
-    public static WriteHandlerPtr gsword_nmi_set = new WriteHandlerPtr() {
+    public static WriteHandlerPtr gsword_nmi_set_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
             switch (data) {
                 case 0x02:
@@ -157,9 +158,7 @@ public class gsword {
                     break;
             }
             /* bit1= nmi disable , for ram check */
-            if (errorlog != null) {
-                fprintf(errorlog, "NMI controll %02x\n", data);
-            }
+            logerror("NMI controll %02x\n", data);
         }
     };
 
@@ -189,11 +188,14 @@ public class gsword {
 
     public static WriteHandlerPtr gsword_adpcm_data_w = new WriteHandlerPtr() {
         public void handler(int offset, int data) {
-            MSM5205_data_w.handler(0, data & 0x0f); /* bit 0..3 */
+            MSM5205_data_w.handler(0, data & 0x0f);
+            /* bit 0..3 */
 
-            MSM5205_reset_w.handler(0, (data >> 5) & 1); /* bit 5    */
+            MSM5205_reset_w.handler(0, (data >> 5) & 1);
+            /* bit 5    */
 
-            MSM5205_vclk_w.handler(0, (data >> 4) & 1);  /* bit 4    */
+            MSM5205_vclk_w.handler(0, (data >> 4) & 1);
+            /* bit 4    */
 
         }
     };
@@ -295,7 +297,8 @@ public class gsword {
 
     static InputPortPtr input_ports_gsword = new InputPortPtr() {
         public void handler() {
-            PORT_START(); 	/* IN0 (8741-2 port1?) */
+            PORT_START();
+            /* IN0 (8741-2 port1?) */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_START1);
             PORT_BIT(0x02, IP_ACTIVE_HIGH, IPT_START2);
@@ -305,7 +308,8 @@ public class gsword {
             PORT_BIT(0x20, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT(0x40, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT_IMPULSE(0x80, IP_ACTIVE_HIGH, IPT_COIN1, 1);
-            PORT_START(); 	/* IN1 (8741-2 port2?) */
+            PORT_START();
+            /* IN1 (8741-2 port2?) */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_JOYSTICK_RIGHT | IPF_2WAY);
             PORT_BIT(0x02, IP_ACTIVE_HIGH, IPT_JOYSTICK_LEFT | IPF_2WAY);
@@ -315,7 +319,8 @@ public class gsword {
             PORT_BIT(0x20, IP_ACTIVE_HIGH, IPT_BUTTON2);
             PORT_BIT(0x40, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT_IMPULSE(0x80, IP_ACTIVE_HIGH, IPT_COIN1, 1);
-            PORT_START(); 	/* IN2 (8741-3 port1?) */
+            PORT_START();
+            /* IN2 (8741-3 port1?) */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_START1);
             PORT_BIT(0x02, IP_ACTIVE_HIGH, IPT_START2);
@@ -324,7 +329,8 @@ public class gsword {
             PORT_BIT(0x20, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT(0x40, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT_IMPULSE(0x80, IP_ACTIVE_HIGH, IPT_COIN1, 1);
-            PORT_START(); 	/* IN3  (8741-3 port2?) */
+            PORT_START();
+            /* IN3  (8741-3 port2?) */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_JOYSTICK_RIGHT | IPF_2WAY | IPF_COCKTAIL);
             PORT_BIT(0x02, IP_ACTIVE_HIGH, IPT_JOYSTICK_LEFT | IPF_2WAY | IPF_COCKTAIL);
@@ -334,7 +340,8 @@ public class gsword {
             PORT_BIT(0x20, IP_ACTIVE_HIGH, IPT_BUTTON2 | IPF_COCKTAIL);
             PORT_BIT(0x40, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT_IMPULSE(0x80, IP_ACTIVE_HIGH, IPT_COIN1, 1);
-            PORT_START(); 	/* IN4 (coins) */
+            PORT_START();
+            /* IN4 (coins) */
 
             PORT_BIT(0x01, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT(0x02, IP_ACTIVE_HIGH, IPT_UNKNOWN);
@@ -345,10 +352,11 @@ public class gsword {
             PORT_BIT(0x40, IP_ACTIVE_HIGH, IPT_UNKNOWN);
             PORT_BIT_IMPULSE(0x80, IP_ACTIVE_HIGH, IPT_COIN1, 1);
 
-            PORT_START(); 	/* DSW0 */
-            /* NOTE: Switches 0 & 1, 6,7,8 not used 	 */
-            /*	 Coins configurations were handled 	 */
-            /*	 via external hardware & not via program */
+            PORT_START();
+            /* DSW0 */
+ /* NOTE: Switches 0 & 1, 6,7,8 not used 	 */
+ /*	 Coins configurations were handled 	 */
+ /*	 via external hardware & not via program */
 
             PORT_DIPNAME(0x1c, 0x00, DEF_STR("Coin_A"));
             PORT_DIPSETTING(0x1c, DEF_STR("5C_1C"));
@@ -359,7 +367,8 @@ public class gsword {
             PORT_DIPSETTING(0x08, DEF_STR("1C_4C"));
             PORT_DIPSETTING(0x0c, DEF_STR("1C_5C"));
 
-            PORT_START();       /* DSW1 */
+            PORT_START();
+            /* DSW1 */
 
             PORT_DIPNAME(0x01, 0x00, DEF_STR("Unknown"));
             PORT_DIPSETTING(0x00, DEF_STR("Off"));
@@ -385,7 +394,8 @@ public class gsword {
             PORT_DIPSETTING(0x00, DEF_STR("Off"));
             PORT_DIPSETTING(0x80, DEF_STR("On"));
 
-            PORT_START();       /* DSW2 */
+            PORT_START();
+            /* DSW2 */
 
             PORT_DIPNAME(0x01, 0x00, DEF_STR("Unknown"));
             PORT_DIPSETTING(0x00, DEF_STR("Off"));
@@ -465,7 +475,7 @@ public class gsword {
             new int[]{30, 30},
             new ReadHandlerPtr[]{null, null},
             new ReadHandlerPtr[]{null, null},
-            new WriteHandlerPtr[]{null, gsword_nmi_set}, /* portA write */
+            new WriteHandlerPtr[]{null, gsword_nmi_set_w}, /* portA write */
             new WriteHandlerPtr[]{null, null}
     );
 
