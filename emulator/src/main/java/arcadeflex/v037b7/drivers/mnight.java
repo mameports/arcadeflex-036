@@ -4,8 +4,6 @@
  */
 package arcadeflex.v037b7.drivers;
 
-package gr.codebb.arcadeflex.v036.drivers;
-
 //mame imports
 import static arcadeflex.v037b7.mame.driverH.*;
 
