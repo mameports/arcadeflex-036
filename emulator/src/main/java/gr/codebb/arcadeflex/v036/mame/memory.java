@@ -490,7 +490,7 @@ public class memory {
 		}																				
 		/* extract words */																
 																			
-			word1 = (data >> 16); //should be unsigned??															
+			word1 = (data >> 16)&0xffff;														
 			word2 = data & 0xffff;														
 																
 																						

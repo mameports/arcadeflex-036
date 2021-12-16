@@ -2,6 +2,7 @@
 ==========
 Input ports updated to v0.37b7
 Ported snk driver to v0.37b7
+Improved cpu_writemem24_dword 
 
 15/12/2021
 ----------
