@@ -5,7 +5,7 @@ import static gr.codebb.arcadeflex.v036.platform.libc.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 
 public class memory {

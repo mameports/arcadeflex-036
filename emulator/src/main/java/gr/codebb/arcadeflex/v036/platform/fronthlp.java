@@ -27,7 +27,7 @@ import static gr.codebb.arcadeflex.v036.mame.driver.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 

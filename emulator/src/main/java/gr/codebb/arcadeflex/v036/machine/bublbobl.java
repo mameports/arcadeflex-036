@@ -27,7 +27,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v037b7.cpu.z80.z80H.*;
 import static arcadeflex.v056.mame.timer.*;
 import static arcadeflex.v056.mame.timerH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;

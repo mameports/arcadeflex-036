@@ -14,7 +14,7 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.generic.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;
 import static arcadeflex.v037b7.vidhrdw.cop01.*;

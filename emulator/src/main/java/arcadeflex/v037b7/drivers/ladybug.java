@@ -18,7 +18,7 @@ import static arcadeflex.v037b7.vidhrdw.ladybug.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static arcadeflex.v058.sound.sn76496H.*;
 import static arcadeflex.v058.sound.sn76496.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 

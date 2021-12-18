@@ -13,8 +13,7 @@ import static gr.codebb.arcadeflex.v036.platform.fileio.osd_fclose;
 import static gr.codebb.arcadeflex.v036.platform.fileio.osd_fopen;
 import static gr.codebb.arcadeflex.v036.platform.fileio.osd_fread;
 import static gr.codebb.arcadeflex.v036.platform.fileio.osd_fwrite;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_getactivecpu;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpuintf;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.memorycontextswap;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
 

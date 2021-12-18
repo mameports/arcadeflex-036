@@ -2,7 +2,7 @@
  * ported to v0.37b7
  *
  */
-package gr.codebb.arcadeflex.v037b7.mame;
+package arcadeflex.v037b7.mame;
 
 //generic imports
 import static arcadeflex.v037b7.generic.fucPtr.*;

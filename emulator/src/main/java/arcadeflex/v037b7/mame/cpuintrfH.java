@@ -3,7 +3,7 @@
  */
 package arcadeflex.v037b7.mame;
 
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.cpu_get_reg;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 
 
 public class cpuintrfH {

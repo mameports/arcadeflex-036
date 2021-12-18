@@ -6,7 +6,7 @@ package gr.codebb.arcadeflex.v037b7.mame;
 //generic imports
 import static arcadeflex.v037b7.generic.fucPtr.*;
 
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.memory.cpu_setOPbase20;
 import static gr.codebb.arcadeflex.v036.mame.memory.cpu_setOPbase24;
 import gr.codebb.arcadeflex.common.PtrLib.*;

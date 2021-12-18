@@ -5,7 +5,7 @@ import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import arcadeflex.v037b7.mame.cpuintrfH.cpu_interface;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;

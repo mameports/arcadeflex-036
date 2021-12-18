@@ -18,7 +18,7 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.marvins.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.namcoH.*;
 import static gr.codebb.arcadeflex.v036.sound.namco.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;

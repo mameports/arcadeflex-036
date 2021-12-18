@@ -120,7 +120,7 @@ import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static arcadeflex.v037b7.mame.inptport.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static arcadeflex.v037b7.mame.sndintrf.*;

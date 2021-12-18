@@ -10,7 +10,7 @@ package gr.codebb.arcadeflex.v036.sndhrdw;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.sound.ay8910.*;
 import static arcadeflex.v037b7.sound.ay8910H.*;

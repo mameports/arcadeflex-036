@@ -17,7 +17,7 @@ import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.input.*;
 import static gr.codebb.arcadeflex.v036.mame.version.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.inptport.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;

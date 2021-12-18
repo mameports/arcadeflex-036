@@ -19,7 +19,7 @@ import static arcadeflex.v037b7.mame.sndintrfH.*;
 import static gr.codebb.arcadeflex.v036.sound.namcoH.*;
 import static gr.codebb.arcadeflex.v036.sound.namco.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static gr.codebb.arcadeflex.v036.mame.common.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;

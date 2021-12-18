@@ -4,7 +4,7 @@
  */
 package arcadeflex.v037b7.machine;
 
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
+import static arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static arcadeflex.v037b7.generic.fucPtr.*;
