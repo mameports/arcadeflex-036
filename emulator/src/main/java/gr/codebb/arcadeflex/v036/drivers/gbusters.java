@@ -28,7 +28,7 @@ import static gr.codebb.arcadeflex.v036.mame.commonH.*;
 import static arcadeflex.v037b7.mame.inptport.*;
 import static arcadeflex.v037b7.mame.drawgfxH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;

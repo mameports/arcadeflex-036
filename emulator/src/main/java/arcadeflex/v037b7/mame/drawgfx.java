@@ -26,8 +26,9 @@ public class drawgfx {
     /*TODO*///UINT8 gfx_drawmode_table[256];
 /*TODO*///plot_pixel_proc plot_pixel;
 /*TODO*///read_pixel_proc read_pixel;
-/*TODO*///plot_box_proc plot_box;
-/*TODO*///
+    public static plot_box_procPtr plot_box;
+
+    /*TODO*///
 /*TODO*///static UINT8 is_raw[TRANSPARENCY_MODES];
 /*TODO*///
 /*TODO*///
@@ -3218,7 +3219,7 @@ public class drawgfx {
 /*TODO*///	}
 /*TODO*///})
 /*TODO*///
-    public static void blockmove_8toN_transmask_pri_flipx8(UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo,UBytePtr dstdata, int dstmodulo,UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
+    public static void blockmove_8toN_transmask_pri_flipx8(UBytePtr srcdata, int srcwidth, int srcheight, int srcmodulo, UBytePtr dstdata, int dstmodulo, UShortArray paldata, int transmask, UBytePtr pridata, int/*UINT32*/ pmask) {
         int end;
         IntPtr sd4;
 

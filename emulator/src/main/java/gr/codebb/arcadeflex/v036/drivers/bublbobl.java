@@ -32,7 +32,7 @@ import static gr.codebb.arcadeflex.v036.vidhrdw.bublbobl.*;
 import static gr.codebb.arcadeflex.v036.machine.bublbobl.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 
 public class bublbobl {
 

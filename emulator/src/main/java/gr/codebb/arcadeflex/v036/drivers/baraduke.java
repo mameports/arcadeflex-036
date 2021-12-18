@@ -36,7 +36,7 @@ import static gr.codebb.arcadeflex.v036.platform.input.*;
 import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.mame.inputH.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v036.cpu.m6800.hd63701.*;

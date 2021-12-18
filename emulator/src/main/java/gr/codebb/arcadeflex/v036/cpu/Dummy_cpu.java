@@ -4,7 +4,7 @@ package gr.codebb.arcadeflex.v036.cpu;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 

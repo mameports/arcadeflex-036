@@ -25,7 +25,7 @@ import static arcadeflex.v037b7.mame.inptportH.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
 import static arcadeflex.v037b7.vidhrdw.wc90b.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 

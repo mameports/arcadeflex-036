@@ -7,7 +7,7 @@ package gr.codebb.arcadeflex.v037b7.cpu.m6805;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.cpu.m6805.m6805H.*;

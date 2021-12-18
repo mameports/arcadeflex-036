@@ -20,7 +20,7 @@ import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static arcadeflex.v058.sound.sn76496H.*;
 import static arcadeflex.v058.sound.sn76496.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static arcadeflex.v037b7.mame.sndintrfH.*;
 

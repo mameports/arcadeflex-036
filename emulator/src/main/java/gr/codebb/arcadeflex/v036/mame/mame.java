@@ -582,4 +582,11 @@ public class mame {
  /*TODO*/ //            if (he_did_cheat != 0) return 0;
         return 1;
     }
+    
+    /**
+     * 037b7 fixes
+     */
+    public static void update_video_and_audio() {
+        osd_update_video_and_audio();
+    }
 }

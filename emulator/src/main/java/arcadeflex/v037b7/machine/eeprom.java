@@ -8,7 +8,7 @@ import gr.codebb.arcadeflex.common.PtrLib.UBytePtr;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.logerror;
 import static arcadeflex.v037b7.machine.eepromH.*;
 import static gr.codebb.arcadeflex.v036.mame.usrintrf.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.platform.fileio.*;
 import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
 

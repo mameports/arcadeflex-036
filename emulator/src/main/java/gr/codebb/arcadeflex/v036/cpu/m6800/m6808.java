@@ -9,15 +9,9 @@ package gr.codebb.arcadeflex.v036.cpu.m6800;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.cpu_interface;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
-import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import static gr.codebb.arcadeflex.v036.cpu.m6800.m6800H.*;
-import static gr.codebb.arcadeflex.v036.platform.libc_old.*;
-import static gr.codebb.arcadeflex.v036.mame.mame.*;
 
 public class m6808 extends m6800 {
 

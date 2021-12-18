@@ -4,10 +4,9 @@ package gr.codebb.arcadeflex.v036.cpu.nec;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import gr.codebb.arcadeflex.v037b7.mame.cpuintrfH;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static arcadeflex.v037b7.generic.fucPtr.*;
+import arcadeflex.v037b7.mame.cpuintrfH;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.mame.memory.*;
 import static gr.codebb.arcadeflex.v036.cpu.nec.necH.*;
@@ -16,7 +15,7 @@ import static gr.codebb.arcadeflex.v036.cpu.nec.necmodrmH.*;
 import static gr.codebb.arcadeflex.v036.cpu.nec.necinstrH.*;
 import static gr.codebb.arcadeflex.v036.cpu.nec.neceaH.*;
 
-public class v30 extends cpuintrfH.cpu_interface {
+public class v30 extends cpu_interface {
 
     public static FILE neclog = null;//ofopen("neclog.log", "wa");  //for debug purposes
 

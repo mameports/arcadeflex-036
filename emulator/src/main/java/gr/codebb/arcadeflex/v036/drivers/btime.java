@@ -26,7 +26,7 @@ import static arcadeflex.v037b7.sound.ay8910H.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
 import static arcadeflex.v037b7.mame.sndintrf.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v036.cpu.m6502.m6502H.*;
 import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.install_mem_read_handler;

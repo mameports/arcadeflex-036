@@ -79,7 +79,7 @@ import arcadeflex.v037b7.sound._2151intfH.YM2151interface;
 import static arcadeflex.v037b7.sound._2151intfH.YM3012_VOL;
 import static gr.codebb.arcadeflex.v036.sound.mixerH.*;
 import static gr.codebb.arcadeflex.v036.mame.mame.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.install_mem_read_handler;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.install_mem_write_handler;
 import static gr.codebb.arcadeflex.v037b7.mame.memory.install_port_write_handler;

@@ -7,8 +7,7 @@ package gr.codebb.arcadeflex.v036.cpu.konami;
 import static arcadeflex.v037b7.mame.driverH.*;
 
 //to be organized
-import gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.cpu_interface;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
 import static arcadeflex.v037b7.generic.fucPtr.*;
 import static gr.codebb.arcadeflex.v037b7.mame.memoryH.*;

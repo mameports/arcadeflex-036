@@ -15,7 +15,7 @@ import static gr.codebb.arcadeflex.v036.mame.mame.Machine;
 import static gr.codebb.arcadeflex.v036.mame.mame.options;
 import static gr.codebb.arcadeflex.v036.mame.osdependH.*;
 import static gr.codebb.arcadeflex.v037b7.mame.cpuintrf.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 
 import java.util.HashMap;
 

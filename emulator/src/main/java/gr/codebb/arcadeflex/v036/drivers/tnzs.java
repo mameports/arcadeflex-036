@@ -26,7 +26,7 @@ import static arcadeflex.v037b7.mame.inptportH.*;
 import static gr.codebb.arcadeflex.v036.vidhrdw.tnzs.*;
 import static gr.codebb.arcadeflex.v036.machine.tnzs.*;
 import static gr.codebb.arcadeflex.v037b7.mame.palette.*;
-import static gr.codebb.arcadeflex.v037b7.mame.cpuintrfH.*;
+import static arcadeflex.v037b7.mame.cpuintrfH.*;
 
 public class tnzs {
 
