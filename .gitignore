@@ -28,3 +28,5 @@ emulator/samples/*
 /emulator/temp.txt
 /frontend/temp.txt
 /emulator/nbactions.xml
+/release_files/roms/*.zip
+/release_files/samples/*.zip
