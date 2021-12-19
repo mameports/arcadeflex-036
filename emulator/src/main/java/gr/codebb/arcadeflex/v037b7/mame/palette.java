@@ -18,7 +18,7 @@ import static gr.codebb.arcadeflex.common.PtrLib.*;
 import static gr.codebb.arcadeflex.common.libc.cstring.memset;
 import static gr.codebb.arcadeflex.v036.mame.memoryH.*;
 import static gr.codebb.arcadeflex.v036.platform.osdepend.*;
-import static gr.codebb.arcadeflex.v037b7.mame.artworkC.artwork_remap;
+import static arcadeflex.v037b7.mame.artworkC.*;
 import static gr.codebb.arcadeflex.v036.mame.usrintrf.*;
 
 public class palette {

@@ -1,10 +1,10 @@
 /**
  * ported to 0.37b7
  */
-package gr.codebb.arcadeflex.v037b7.mame;
+package arcadeflex.v037b7.mame;
 
 import gr.codebb.arcadeflex.v036.mame.osdependH.osd_bitmap;
-import gr.codebb.arcadeflex.v037b7.mame.artworkH.*;
+import arcadeflex.v037b7.mame.artworkH.*;
 
 
 public class artworkC {
